@@ -1,7 +1,3 @@
-下面是完整详细版 `README.md`。你可以直接复制到 GitLab 的 `README.md` 里。内容已经按照你当前 release 文件夹结构写好，并且对应你现在实际包含的文件：scripts、reports、models、logs、environment、data_docs 等。你的 manifest 里也确实包含了最终模型、final_eval 表格、robustness、folder-level、sanity checks、Stage 1/Stage 2 summaries 和核心脚本。
-
----
-
 # OnlyFeet M14 Final Experiments
 
 This repository contains the final experiment release for the **OnlyFeet M14 bachelor thesis project**. It includes training scripts, evaluation scripts, result reports, selected trained models, logs, dataset/split documentation, and environment information.
