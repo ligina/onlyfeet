@@ -1,0 +1,2 @@
+Filesystem                  Size  Used Avail Use% Mounted on
+mfs#euro-2.runpod.net:9421  2.1P  1.8P  349T  84% /workspace

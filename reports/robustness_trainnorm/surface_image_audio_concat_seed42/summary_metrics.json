@@ -1,0 +1,26 @@
+[
+  {
+    "condition": "normal",
+    "accuracy": 0.9926393270241851,
+    "macro_f1": 0.9926235152940024,
+    "weighted_f1": 0.9925900247912064,
+    "n_eval": 951,
+    "ablated": ""
+  },
+  {
+    "condition": "no_image",
+    "accuracy": 0.49631966351209256,
+    "macro_f1": 0.476249167226486,
+    "weighted_f1": 0.41795987067799906,
+    "n_eval": 951,
+    "ablated": "image"
+  },
+  {
+    "condition": "no_audio",
+    "accuracy": 0.28180862250262884,
+    "macro_f1": 0.08794093519278097,
+    "weighted_f1": 0.12391256904135278,
+    "n_eval": 951,
+    "ablated": "audio"
+  }
+]

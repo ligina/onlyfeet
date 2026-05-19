@@ -1,0 +1,370 @@
+nohup: ignoring input
+2026-05-18 19:35:30.755771: I tensorflow/core/util/port.cc:111] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-05-18 19:35:30.780654: E tensorflow/compiler/xla/stream_executor/cuda/cuda_dnn.cc:9342] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-05-18 19:35:30.780713: E tensorflow/compiler/xla/stream_executor/cuda/cuda_fft.cc:609] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-05-18 19:35:30.780752: E tensorflow/compiler/xla/stream_executor/cuda/cuda_blas.cc:1518] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-05-18 19:35:30.784798: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-05-18 19:35:32.045037: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2303] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 12.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+2026-05-18 19:36:02.647285: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2303] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 12.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+2026-05-18 19:36:02.735042: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1886] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 29801 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 5090, pci bus id: 0000:02:00.0, compute capability: 12.0
+2026-05-18 19:36:02.797104: I tensorflow/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+2026-05-18 19:36:02.803857: W tensorflow/compiler/xla/stream_executor/gpu/asm_compiler.cc:231] Falling back to the CUDA driver for PTX compilation; ptxas does not support CC 12.0
+2026-05-18 19:36:02.803911: W tensorflow/compiler/xla/stream_executor/gpu/asm_compiler.cc:234] Used ptxas at /usr/local/cuda-11.8/bin/ptxas
+2026-05-18 19:36:02.804022: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+[INFO] GPU detected: 1
+[INFO] task: activity
+[INFO] modalities: ['imu', 'image', 'audio', 'tof']
+[INFO] fusion_strategy: late_avg
+[INFO] train samples: 29788 eval samples: 2735
+[INFO] classes: ['walk', 'standing', 'sitting']
+[INFO] input_shapes: {'imu': [50, 8], 'image': [64, 64, 6], 'audio': [40, 40, 1], 'tof': [50, 2]}
+[INFO] train bincount: [10299, 9340, 10149]
+[INFO] eval  bincount: [951, 873, 911]
+Model: "M14_late_avg_imu_image_audio_tof"
+__________________________________________________________________________________________________
+ Layer (type)                Output Shape                 Param #   Connected to                  
+==================================================================================================
+ image (InputLayer)          [(None, 64, 64, 6)]          0         []                            
+                                                                                                  
+ audio (InputLayer)          [(None, 40, 40, 1)]          0         []                            
+                                                                                                  
+ image_conv1 (Conv2D)        (None, 64, 64, 32)           1760      ['image[0][0]']               
+                                                                                                  
+ audio_conv1 (Conv2D)        (None, 40, 40, 32)           320       ['audio[0][0]']               
+                                                                                                  
+ image_bn1 (BatchNormalizat  (None, 64, 64, 32)           128       ['image_conv1[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ audio_bn1 (BatchNormalizat  (None, 40, 40, 32)           128       ['audio_conv1[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ imu (InputLayer)            [(None, 50, 8)]              0         []                            
+                                                                                                  
+ image_pool1 (MaxPooling2D)  (None, 32, 32, 32)           0         ['image_bn1[0][0]']           
+                                                                                                  
+ audio_pool1 (MaxPooling2D)  (None, 20, 20, 32)           0         ['audio_bn1[0][0]']           
+                                                                                                  
+ tof (InputLayer)            [(None, 50, 2)]              0         []                            
+                                                                                                  
+ imu_conv1 (Conv1D)          (None, 50, 64)               2624      ['imu[0][0]']                 
+                                                                                                  
+ image_conv2 (Conv2D)        (None, 32, 32, 64)           18496     ['image_pool1[0][0]']         
+                                                                                                  
+ audio_conv2 (Conv2D)        (None, 20, 20, 64)           18496     ['audio_pool1[0][0]']         
+                                                                                                  
+ tof_conv1 (Conv1D)          (None, 50, 48)               528       ['tof[0][0]']                 
+                                                                                                  
+ imu_bn1 (BatchNormalizatio  (None, 50, 64)               256       ['imu_conv1[0][0]']           
+ n)                                                                                               
+                                                                                                  
+ image_bn2 (BatchNormalizat  (None, 32, 32, 64)           256       ['image_conv2[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ audio_bn2 (BatchNormalizat  (None, 20, 20, 64)           256       ['audio_conv2[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ tof_bn1 (BatchNormalizatio  (None, 50, 48)               192       ['tof_conv1[0][0]']           
+ n)                                                                                               
+                                                                                                  
+ imu_pool1 (MaxPooling1D)    (None, 25, 64)               0         ['imu_bn1[0][0]']             
+                                                                                                  
+ image_pool2 (MaxPooling2D)  (None, 16, 16, 64)           0         ['image_bn2[0][0]']           
+                                                                                                  
+ audio_pool2 (MaxPooling2D)  (None, 10, 10, 64)           0         ['audio_bn2[0][0]']           
+                                                                                                  
+ tof_pool1 (MaxPooling1D)    (None, 25, 48)               0         ['tof_bn1[0][0]']             
+                                                                                                  
+ imu_conv2 (Conv1D)          (None, 25, 128)              24704     ['imu_pool1[0][0]']           
+                                                                                                  
+ image_conv3 (Conv2D)        (None, 16, 16, 128)          73856     ['image_pool2[0][0]']         
+                                                                                                  
+ audio_conv3 (Conv2D)        (None, 10, 10, 128)          73856     ['audio_pool2[0][0]']         
+                                                                                                  
+ tof_conv2 (Conv1D)          (None, 25, 96)               13920     ['tof_pool1[0][0]']           
+                                                                                                  
+ imu_bn2 (BatchNormalizatio  (None, 25, 128)              512       ['imu_conv2[0][0]']           
+ n)                                                                                               
+                                                                                                  
+ image_bn3 (BatchNormalizat  (None, 16, 16, 128)          512       ['image_conv3[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ audio_bn3 (BatchNormalizat  (None, 10, 10, 128)          512       ['audio_conv3[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ tof_bn2 (BatchNormalizatio  (None, 25, 96)               384       ['tof_conv2[0][0]']           
+ n)                                                                                               
+                                                                                                  
+ imu_gru (GRU)               (None, 64)                   37248     ['imu_bn2[0][0]']             
+                                                                                                  
+ image_gap (GlobalAveragePo  (None, 128)                  0         ['image_bn3[0][0]']           
+ oling2D)                                                                                         
+                                                                                                  
+ audio_gap (GlobalAveragePo  (None, 128)                  0         ['audio_bn3[0][0]']           
+ oling2D)                                                                                         
+                                                                                                  
+ tof_gap (GlobalAveragePool  (None, 96)                   0         ['tof_bn2[0][0]']             
+ ing1D)                                                                                           
+                                                                                                  
+ imu_feat (Dense)            (None, 128)                  8320      ['imu_gru[0][0]']             
+                                                                                                  
+ image_feat (Dense)          (None, 128)                  16512     ['image_gap[0][0]']           
+                                                                                                  
+ audio_feat (Dense)          (None, 128)                  16512     ['audio_gap[0][0]']           
+                                                                                                  
+ tof_feat (Dense)            (None, 128)                  12416     ['tof_gap[0][0]']             
+                                                                                                  
+ imu_dropout (Dropout)       (None, 128)                  0         ['imu_feat[0][0]']            
+                                                                                                  
+ image_dropout (Dropout)     (None, 128)                  0         ['image_feat[0][0]']          
+                                                                                                  
+ audio_dropout (Dropout)     (None, 128)                  0         ['audio_feat[0][0]']          
+                                                                                                  
+ tof_dropout (Dropout)       (None, 128)                  0         ['tof_feat[0][0]']            
+                                                                                                  
+ imu_late_dense1 (Dense)     (None, 128)                  16512     ['imu_dropout[0][0]']         
+                                                                                                  
+ image_late_dense1 (Dense)   (None, 128)                  16512     ['image_dropout[0][0]']       
+                                                                                                  
+ audio_late_dense1 (Dense)   (None, 128)                  16512     ['audio_dropout[0][0]']       
+                                                                                                  
+ tof_late_dense1 (Dense)     (None, 128)                  16512     ['tof_dropout[0][0]']         
+                                                                                                  
+ imu_late_bn1 (BatchNormali  (None, 128)                  512       ['imu_late_dense1[0][0]']     
+ zation)                                                                                          
+                                                                                                  
+ image_late_bn1 (BatchNorma  (None, 128)                  512       ['image_late_dense1[0][0]']   
+ lization)                                                                                        
+                                                                                                  
+ audio_late_bn1 (BatchNorma  (None, 128)                  512       ['audio_late_dense1[0][0]']   
+ lization)                                                                                        
+                                                                                                  
+ tof_late_bn1 (BatchNormali  (None, 128)                  512       ['tof_late_dense1[0][0]']     
+ zation)                                                                                          
+                                                                                                  
+ imu_late_dropout1 (Dropout  (None, 128)                  0         ['imu_late_bn1[0][0]']        
+ )                                                                                                
+                                                                                                  
+ image_late_dropout1 (Dropo  (None, 128)                  0         ['image_late_bn1[0][0]']      
+ ut)                                                                                              
+                                                                                                  
+ audio_late_dropout1 (Dropo  (None, 128)                  0         ['audio_late_bn1[0][0]']      
+ ut)                                                                                              
+                                                                                                  
+ tof_late_dropout1 (Dropout  (None, 128)                  0         ['tof_late_bn1[0][0]']        
+ )                                                                                                
+                                                                                                  
+ imu_prob (Dense)            (None, 3)                    387       ['imu_late_dropout1[0][0]']   
+                                                                                                  
+ image_prob (Dense)          (None, 3)                    387       ['image_late_dropout1[0][0]'] 
+                                                                                                  
+ audio_prob (Dense)          (None, 3)                    387       ['audio_late_dropout1[0][0]'] 
+                                                                                                  
+ tof_prob (Dense)            (None, 3)                    387       ['tof_late_dropout1[0][0]']   
+                                                                                                  
+ late_average_output (Avera  (None, 3)                    0         ['imu_prob[0][0]',            
+ ge)                                                                 'image_prob[0][0]',          
+                                                                     'audio_prob[0][0]',          
+                                                                     'tof_prob[0][0]']            
+                                                                                                  
+==================================================================================================
+Total params: 392348 (1.50 MB)
+Trainable params: 389756 (1.49 MB)
+Non-trainable params: 2592 (10.12 KB)
+__________________________________________________________________________________________________
+Epoch 1/100
+2026-05-18 19:36:06.828578: I tensorflow/compiler/xla/stream_executor/cuda/cuda_dnn.cc:442] Loaded cuDNN version 8905
+2026-05-18 19:36:06.866387: I tensorflow/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+2026-05-18 19:36:06.872976: W tensorflow/compiler/xla/stream_executor/gpu/redzone_allocator.cc:322] UNIMPLEMENTED: /usr/local/cuda-11.8/bin/ptxas ptxas too old. Falling back to the driver to compile.
+Relying on driver to perform ptx compilation. 
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+2026-05-18 19:36:07.023147: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.033028: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.079494: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.079538: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.079580: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.079623: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.079660: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.079695: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.079725: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.080070: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.101974: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.102043: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.102158: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.102190: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.102222: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.102254: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.102288: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.102313: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.102342: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.167745: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.250718: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.250770: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.250810: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.250854: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.250888: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.250926: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.250952: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.250980: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.251010: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.356002: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.400208: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.400582: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.412640: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.473301: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.473397: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.473443: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.473472: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.473506: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.473539: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.473568: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.473597: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.584634: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.585041: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.585073: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.585145: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.585203: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.588880: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.589118: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.589165: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.689632: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.724362: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 19:36:07.745555: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7dbf8698d750 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2026-05-18 19:36:07.745609: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): NVIDIA GeForce RTX 5090, Compute Capability 12.0
+2026-05-18 19:36:07.748026: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+2026-05-18 19:36:07.767817: W tensorflow/compiler/xla/service/gpu/nvptx_compiler.cc:445] Couldn't read CUDA driver version.
+2026-05-18 19:36:07.774819: I ./tensorflow/compiler/jit/device_compiler.h:186] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+
+Epoch 1: val_loss improved from inf to 0.61170, saving model to models_m14_rgb64/fusion_strategy_extra/stage2/activity_imu_image_audio_tof_late_avg_seed42/best_model.h5
+/usr/local/lib/python3.11/dist-packages/keras/src/engine/training.py:3079: UserWarning: You are saving your model as an HDF5 file via `model.save()`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')`.
+  saving_api.save_model(
+931/931 - 11s - loss: 0.4931 - accuracy: 0.9713 - val_loss: 0.6117 - val_accuracy: 0.9082 - lr: 5.0000e-04 - 11s/epoch - 12ms/step
+Epoch 2/100
+
+Epoch 2: val_loss did not improve from 0.61170
+931/931 - 5s - loss: 0.4138 - accuracy: 0.9907 - val_loss: 0.6182 - val_accuracy: 0.7755 - lr: 5.0000e-04 - 5s/epoch - 6ms/step
+Epoch 3/100
+
+Epoch 3: val_loss improved from 0.61170 to 0.56069, saving model to models_m14_rgb64/fusion_strategy_extra/stage2/activity_imu_image_audio_tof_late_avg_seed42/best_model.h5
+931/931 - 5s - loss: 0.3784 - accuracy: 0.9923 - val_loss: 0.5607 - val_accuracy: 0.8325 - lr: 5.0000e-04 - 5s/epoch - 6ms/step
+Epoch 4/100
+
+Epoch 4: val_loss did not improve from 0.56069
+931/931 - 5s - loss: 0.3498 - accuracy: 0.9939 - val_loss: 0.5810 - val_accuracy: 0.7682 - lr: 5.0000e-04 - 5s/epoch - 6ms/step
+Epoch 5/100
+
+Epoch 5: val_loss improved from 0.56069 to 0.52746, saving model to models_m14_rgb64/fusion_strategy_extra/stage2/activity_imu_image_audio_tof_late_avg_seed42/best_model.h5
+931/931 - 6s - loss: 0.3288 - accuracy: 0.9943 - val_loss: 0.5275 - val_accuracy: 0.8260 - lr: 5.0000e-04 - 6s/epoch - 6ms/step
+Epoch 6/100
+
+Epoch 6: val_loss did not improve from 0.52746
+931/931 - 7s - loss: 0.3157 - accuracy: 0.9914 - val_loss: 0.5674 - val_accuracy: 0.7803 - lr: 5.0000e-04 - 7s/epoch - 8ms/step
+Epoch 7/100
+
+Epoch 7: val_loss improved from 0.52746 to 0.47582, saving model to models_m14_rgb64/fusion_strategy_extra/stage2/activity_imu_image_audio_tof_late_avg_seed42/best_model.h5
+931/931 - 5s - loss: 0.3022 - accuracy: 0.9943 - val_loss: 0.4758 - val_accuracy: 0.9086 - lr: 5.0000e-04 - 5s/epoch - 6ms/step
+Epoch 8/100
+
+Epoch 8: val_loss improved from 0.47582 to 0.46306, saving model to models_m14_rgb64/fusion_strategy_extra/stage2/activity_imu_image_audio_tof_late_avg_seed42/best_model.h5
+931/931 - 5s - loss: 0.2942 - accuracy: 0.9952 - val_loss: 0.4631 - val_accuracy: 0.9254 - lr: 5.0000e-04 - 5s/epoch - 6ms/step
+Epoch 9/100
+
+Epoch 9: val_loss improved from 0.46306 to 0.45754, saving model to models_m14_rgb64/fusion_strategy_extra/stage2/activity_imu_image_audio_tof_late_avg_seed42/best_model.h5
+931/931 - 5s - loss: 0.2883 - accuracy: 0.9943 - val_loss: 0.4575 - val_accuracy: 0.9821 - lr: 5.0000e-04 - 5s/epoch - 6ms/step
+Epoch 10/100
+
+Epoch 10: val_loss did not improve from 0.45754
+931/931 - 5s - loss: 0.2839 - accuracy: 0.9953 - val_loss: 0.4906 - val_accuracy: 0.8541 - lr: 5.0000e-04 - 5s/epoch - 6ms/step
+Epoch 11/100
+
+Epoch 11: val_loss did not improve from 0.45754
+931/931 - 6s - loss: 0.2793 - accuracy: 0.9952 - val_loss: 0.5514 - val_accuracy: 0.7682 - lr: 5.0000e-04 - 6s/epoch - 6ms/step
+Epoch 12/100
+
+Epoch 12: val_loss did not improve from 0.45754
+931/931 - 6s - loss: 0.2834 - accuracy: 0.9930 - val_loss: 0.4856 - val_accuracy: 0.8863 - lr: 5.0000e-04 - 6s/epoch - 6ms/step
+Epoch 13/100
+
+Epoch 13: val_loss did not improve from 0.45754
+931/931 - 6s - loss: 0.2756 - accuracy: 0.9961 - val_loss: 0.4621 - val_accuracy: 0.8687 - lr: 5.0000e-04 - 6s/epoch - 6ms/step
+Epoch 14/100
+
+Epoch 14: val_loss did not improve from 0.45754
+
+Epoch 14: ReduceLROnPlateau reducing learning rate to 0.0002500000118743628.
+931/931 - 6s - loss: 0.2737 - accuracy: 0.9960 - val_loss: 0.5409 - val_accuracy: 0.8197 - lr: 5.0000e-04 - 6s/epoch - 6ms/step
+Epoch 15/100
+
+Epoch 15: val_loss did not improve from 0.45754
+931/931 - 5s - loss: 0.2641 - accuracy: 0.9972 - val_loss: 0.5107 - val_accuracy: 0.8845 - lr: 2.5000e-04 - 5s/epoch - 6ms/step
+Epoch 16/100
+
+Epoch 16: val_loss did not improve from 0.45754
+931/931 - 5s - loss: 0.2569 - accuracy: 0.9979 - val_loss: 0.5116 - val_accuracy: 0.8640 - lr: 2.5000e-04 - 5s/epoch - 6ms/step
+Epoch 17/100
+
+Epoch 17: val_loss did not improve from 0.45754
+931/931 - 6s - loss: 0.2593 - accuracy: 0.9957 - val_loss: 0.5189 - val_accuracy: 0.8647 - lr: 2.5000e-04 - 6s/epoch - 6ms/step
+Epoch 18/100
+
+Epoch 18: val_loss did not improve from 0.45754
+931/931 - 6s - loss: 0.2532 - accuracy: 0.9980 - val_loss: 0.4996 - val_accuracy: 0.8761 - lr: 2.5000e-04 - 6s/epoch - 6ms/step
+Epoch 19/100
+
+Epoch 19: val_loss did not improve from 0.45754
+
+Epoch 19: ReduceLROnPlateau reducing learning rate to 0.0001250000059371814.
+931/931 - 5s - loss: 0.2534 - accuracy: 0.9974 - val_loss: 0.5384 - val_accuracy: 0.7700 - lr: 2.5000e-04 - 5s/epoch - 6ms/step
+Epoch 20/100
+
+Epoch 20: val_loss did not improve from 0.45754
+931/931 - 5s - loss: 0.2453 - accuracy: 0.9984 - val_loss: 0.4776 - val_accuracy: 0.8947 - lr: 1.2500e-04 - 5s/epoch - 6ms/step
+Epoch 21/100
+
+Epoch 21: val_loss did not improve from 0.45754
+931/931 - 5s - loss: 0.2429 - accuracy: 0.9985 - val_loss: 0.4705 - val_accuracy: 0.9386 - lr: 1.2500e-04 - 5s/epoch - 6ms/step
+Epoch 22/100
+
+Epoch 22: val_loss did not improve from 0.45754
+931/931 - 5s - loss: 0.2411 - accuracy: 0.9989 - val_loss: 0.5094 - val_accuracy: 0.8790 - lr: 1.2500e-04 - 5s/epoch - 6ms/step
+Epoch 23/100
+
+Epoch 23: val_loss did not improve from 0.45754
+931/931 - 6s - loss: 0.2390 - accuracy: 0.9987 - val_loss: 0.5069 - val_accuracy: 0.8684 - lr: 1.2500e-04 - 6s/epoch - 6ms/step
+Epoch 24/100
+
+Epoch 24: val_loss did not improve from 0.45754
+
+Epoch 24: ReduceLROnPlateau reducing learning rate to 6.25000029685907e-05.
+931/931 - 6s - loss: 0.2386 - accuracy: 0.9989 - val_loss: 0.4981 - val_accuracy: 0.8735 - lr: 1.2500e-04 - 6s/epoch - 6ms/step
+Epoch 25/100
+
+Epoch 25: val_loss did not improve from 0.45754
+Restoring model weights from the end of the best epoch: 9.
+931/931 - 5s - loss: 0.2350 - accuracy: 0.9992 - val_loss: 0.4999 - val_accuracy: 0.8874 - lr: 6.2500e-05 - 5s/epoch - 6ms/step
+Epoch 25: early stopping
+ 1/86 [..............................] - ETA: 17s28/86 [========>.....................] - ETA: 0s 59/86 [===================>..........] - ETA: 0s86/86 [==============================] - 0s 2ms/step
+[DONE]
+{
+  "accuracy": 0.9820840950639854,
+  "macro_f1": 0.9818953954712054,
+  "weighted_f1": 0.9820465763117192,
+  "n_eval": 2735,
+  "classes": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "model_params": 392348,
+  "task": "activity",
+  "modalities": [
+    "imu",
+    "image",
+    "audio",
+    "tof"
+  ],
+  "fusion": "late_avg",
+  "best_model": "models_m14_rgb64/fusion_strategy_extra/stage2/activity_imu_image_audio_tof_late_avg_seed42/best_model.h5",
+  "model_size_mb": 4.783599853515625
+}

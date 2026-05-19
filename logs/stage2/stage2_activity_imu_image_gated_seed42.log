@@ -1,0 +1,462 @@
+2026-05-18 18:31:45.241037: I tensorflow/core/util/port.cc:111] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-05-18 18:31:45.259299: E tensorflow/compiler/xla/stream_executor/cuda/cuda_dnn.cc:9342] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-05-18 18:31:45.259376: E tensorflow/compiler/xla/stream_executor/cuda/cuda_fft.cc:609] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-05-18 18:31:45.259409: E tensorflow/compiler/xla/stream_executor/cuda/cuda_blas.cc:1518] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-05-18 18:31:45.263243: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-05-18 18:31:46.450841: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2303] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 12.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+[INFO] GPU detected: 1
+[INFO] task: activity
+[INFO] modalities: ['imu', 'image']
+[INFO] fusion: gated
+[INFO] train samples: 29788 eval samples: 2735
+[INFO] class names: ['walk', 'standing', 'sitting']
+[INFO] train bincount: [10299, 9340, 10149]
+[INFO] eval  bincount: [951, 873, 911]
+[INFO] input shapes: {'imu': [50, 8], 'image': [64, 64, 6]}
+2026-05-18 18:32:01.237023: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2303] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 12.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+2026-05-18 18:32:01.314869: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1886] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 29801 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 5090, pci bus id: 0000:02:00.0, compute capability: 12.0
+2026-05-18 18:32:01.375700: I tensorflow/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+2026-05-18 18:32:01.383525: W tensorflow/compiler/xla/stream_executor/gpu/asm_compiler.cc:231] Falling back to the CUDA driver for PTX compilation; ptxas does not support CC 12.0
+2026-05-18 18:32:01.383587: W tensorflow/compiler/xla/stream_executor/gpu/asm_compiler.cc:234] Used ptxas at /usr/local/cuda-11.8/bin/ptxas
+2026-05-18 18:32:01.383652: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+Model: "M14_imu_image_gated_classifier"
+__________________________________________________________________________________________________
+ Layer (type)                Output Shape                 Param #   Connected to                  
+==================================================================================================
+ image (InputLayer)          [(None, 64, 64, 6)]          0         []                            
+                                                                                                  
+ image_conv1 (Conv2D)        (None, 64, 64, 32)           1760      ['image[0][0]']               
+                                                                                                  
+ image_bn1 (BatchNormalizat  (None, 64, 64, 32)           128       ['image_conv1[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ imu (InputLayer)            [(None, 50, 8)]              0         []                            
+                                                                                                  
+ image_pool1 (MaxPooling2D)  (None, 32, 32, 32)           0         ['image_bn1[0][0]']           
+                                                                                                  
+ imu_conv1 (Conv1D)          (None, 50, 64)               2624      ['imu[0][0]']                 
+                                                                                                  
+ image_conv2 (Conv2D)        (None, 32, 32, 64)           18496     ['image_pool1[0][0]']         
+                                                                                                  
+ imu_bn1 (BatchNormalizatio  (None, 50, 64)               256       ['imu_conv1[0][0]']           
+ n)                                                                                               
+                                                                                                  
+ image_bn2 (BatchNormalizat  (None, 32, 32, 64)           256       ['image_conv2[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ imu_pool1 (MaxPooling1D)    (None, 25, 64)               0         ['imu_bn1[0][0]']             
+                                                                                                  
+ image_pool2 (MaxPooling2D)  (None, 16, 16, 64)           0         ['image_bn2[0][0]']           
+                                                                                                  
+ imu_conv2 (Conv1D)          (None, 25, 128)              24704     ['imu_pool1[0][0]']           
+                                                                                                  
+ image_conv3 (Conv2D)        (None, 16, 16, 128)          73856     ['image_pool2[0][0]']         
+                                                                                                  
+ imu_bn2 (BatchNormalizatio  (None, 25, 128)              512       ['imu_conv2[0][0]']           
+ n)                                                                                               
+                                                                                                  
+ image_bn3 (BatchNormalizat  (None, 16, 16, 128)          512       ['image_conv3[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ imu_gru (GRU)               (None, 64)                   37248     ['imu_bn2[0][0]']             
+                                                                                                  
+ image_gap (GlobalAveragePo  (None, 128)                  0         ['image_bn3[0][0]']           
+ oling2D)                                                                                         
+                                                                                                  
+ imu_feat (Dense)            (None, 128)                  8320      ['imu_gru[0][0]']             
+                                                                                                  
+ image_feat (Dense)          (None, 128)                  16512     ['image_gap[0][0]']           
+                                                                                                  
+ imu_dropout (Dropout)       (None, 128)                  0         ['imu_feat[0][0]']            
+                                                                                                  
+ image_dropout (Dropout)     (None, 128)                  0         ['image_feat[0][0]']          
+                                                                                                  
+ gate_context (Concatenate)  (None, 256)                  0         ['imu_dropout[0][0]',         
+                                                                     'image_dropout[0][0]']       
+                                                                                                  
+ gate_hidden (Dense)         (None, 64)                   16448     ['gate_context[0][0]']        
+                                                                                                  
+ reshape_imu (Reshape)       (None, 1, 128)               0         ['imu_dropout[0][0]']         
+                                                                                                  
+ reshape_image (Reshape)     (None, 1, 128)               0         ['image_dropout[0][0]']       
+                                                                                                  
+ modality_weights (Dense)    (None, 2)                    130       ['gate_hidden[0][0]']         
+                                                                                                  
+ feature_stack (Concatenate  (None, 2, 128)               0         ['reshape_imu[0][0]',         
+ )                                                                   'reshape_image[0][0]']       
+                                                                                                  
+ weighted_sum (Dot)          (None, 128)                  0         ['modality_weights[0][0]',    
+                                                                     'feature_stack[0][0]']       
+                                                                                                  
+ fused_dense (Dense)         (None, 128)                  16512     ['weighted_sum[0][0]']        
+                                                                                                  
+ fused_bn (BatchNormalizati  (None, 128)                  512       ['fused_dense[0][0]']         
+ on)                                                                                              
+                                                                                                  
+ fused_dropout (Dropout)     (None, 128)                  0         ['fused_bn[0][0]']            
+                                                                                                  
+ head_dense1 (Dense)         (None, 128)                  16512     ['fused_dropout[0][0]']       
+                                                                                                  
+ head_bn1 (BatchNormalizati  (None, 128)                  512       ['head_dense1[0][0]']         
+ on)                                                                                              
+                                                                                                  
+ head_dropout1 (Dropout)     (None, 128)                  0         ['head_bn1[0][0]']            
+                                                                                                  
+ head_dense2 (Dense)         (None, 64)                   8256      ['head_dropout1[0][0]']       
+                                                                                                  
+ head_dropout2 (Dropout)     (None, 64)                   0         ['head_dense2[0][0]']         
+                                                                                                  
+ output (Dense)              (None, 3)                    195       ['head_dropout2[0][0]']       
+                                                                                                  
+==================================================================================================
+Total params: 244261 (954.14 KB)
+Trainable params: 242917 (948.89 KB)
+Non-trainable params: 1344 (5.25 KB)
+__________________________________________________________________________________________________
+Epoch 1/100
+2026-05-18 18:32:04.117264: I tensorflow/compiler/xla/stream_executor/cuda/cuda_dnn.cc:442] Loaded cuDNN version 8905
+2026-05-18 18:32:04.143377: I tensorflow/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+2026-05-18 18:32:04.149527: W tensorflow/compiler/xla/stream_executor/gpu/redzone_allocator.cc:322] UNIMPLEMENTED: /usr/local/cuda-11.8/bin/ptxas ptxas too old. Falling back to the driver to compile.
+Relying on driver to perform ptx compilation. 
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+2026-05-18 18:32:04.268373: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.324746: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.324794: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.324833: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.324867: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.324940: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.325002: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.325032: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.325054: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.419607: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.498275: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.498323: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.498355: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.498392: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.498439: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.498470: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.498508: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.498645: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.511988: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.676548: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.718871: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.719065: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:32:04.735717: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x71f56eb86b90 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2026-05-18 18:32:04.735768: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): NVIDIA GeForce RTX 5090, Compute Capability 12.0
+2026-05-18 18:32:04.738429: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+2026-05-18 18:32:04.758130: W tensorflow/compiler/xla/service/gpu/nvptx_compiler.cc:445] Couldn't read CUDA driver version.
+2026-05-18 18:32:04.765321: I ./tensorflow/compiler/jit/device_compiler.h:186] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+2026-05-18 18:32:04.878143: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+
+Epoch 1: val_loss improved from inf to 0.47227, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+/usr/local/lib/python3.11/dist-packages/keras/src/engine/training.py:3079: UserWarning: You are saving your model as an HDF5 file via `model.save()`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')`.
+  saving_api.save_model(
+931/931 - 7s - loss: 0.4666 - accuracy: 0.9165 - val_loss: 0.4723 - val_accuracy: 0.8596 - lr: 5.0000e-04 - 7s/epoch - 7ms/step
+Epoch 2/100
+
+Epoch 2: val_loss improved from 0.47227 to 0.24084, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.3099 - accuracy: 0.9822 - val_loss: 0.2408 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 3/100
+
+Epoch 3: val_loss improved from 0.24084 to 0.23633, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2785 - accuracy: 0.9904 - val_loss: 0.2363 - val_accuracy: 0.9989 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 4/100
+
+Epoch 4: val_loss improved from 0.23633 to 0.22824, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2622 - accuracy: 0.9932 - val_loss: 0.2282 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 5/100
+
+Epoch 5: val_loss improved from 0.22824 to 0.22347, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2587 - accuracy: 0.9926 - val_loss: 0.2235 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 6/100
+
+Epoch 6: val_loss improved from 0.22347 to 0.21871, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2443 - accuracy: 0.9954 - val_loss: 0.2187 - val_accuracy: 0.9985 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 7/100
+
+Epoch 7: val_loss improved from 0.21871 to 0.21141, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2363 - accuracy: 0.9956 - val_loss: 0.2114 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 8/100
+
+Epoch 8: val_loss did not improve from 0.21141
+931/931 - 4s - loss: 0.2364 - accuracy: 0.9941 - val_loss: 0.2210 - val_accuracy: 0.9941 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 9/100
+
+Epoch 9: val_loss improved from 0.21141 to 0.20215, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2291 - accuracy: 0.9948 - val_loss: 0.2022 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 10/100
+
+Epoch 10: val_loss improved from 0.20215 to 0.19777, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2210 - accuracy: 0.9963 - val_loss: 0.1978 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 11/100
+
+Epoch 11: val_loss improved from 0.19777 to 0.19711, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2142 - accuracy: 0.9970 - val_loss: 0.1971 - val_accuracy: 0.9993 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 12/100
+
+Epoch 12: val_loss improved from 0.19711 to 0.19173, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2117 - accuracy: 0.9966 - val_loss: 0.1917 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 13/100
+
+Epoch 13: val_loss did not improve from 0.19173
+931/931 - 4s - loss: 0.2083 - accuracy: 0.9971 - val_loss: 0.1921 - val_accuracy: 0.9996 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 14/100
+
+Epoch 14: val_loss improved from 0.19173 to 0.18855, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2088 - accuracy: 0.9965 - val_loss: 0.1885 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 15/100
+
+Epoch 15: val_loss improved from 0.18855 to 0.18759, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2082 - accuracy: 0.9961 - val_loss: 0.1876 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 16/100
+
+Epoch 16: val_loss improved from 0.18759 to 0.18554, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2040 - accuracy: 0.9973 - val_loss: 0.1855 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 17/100
+
+Epoch 17: val_loss improved from 0.18554 to 0.18464, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2017 - accuracy: 0.9974 - val_loss: 0.1846 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 18/100
+
+Epoch 18: val_loss did not improve from 0.18464
+931/931 - 4s - loss: 0.2031 - accuracy: 0.9967 - val_loss: 0.2323 - val_accuracy: 0.9781 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 19/100
+
+Epoch 19: val_loss improved from 0.18464 to 0.18310, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2025 - accuracy: 0.9968 - val_loss: 0.1831 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 20/100
+
+Epoch 20: val_loss did not improve from 0.18310
+931/931 - 4s - loss: 0.2016 - accuracy: 0.9969 - val_loss: 0.1835 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 21/100
+
+Epoch 21: val_loss improved from 0.18310 to 0.18302, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1998 - accuracy: 0.9976 - val_loss: 0.1830 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 22/100
+
+Epoch 22: val_loss did not improve from 0.18302
+931/931 - 4s - loss: 0.1994 - accuracy: 0.9974 - val_loss: 0.1853 - val_accuracy: 0.9996 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 23/100
+
+Epoch 23: val_loss did not improve from 0.18302
+931/931 - 4s - loss: 0.2038 - accuracy: 0.9961 - val_loss: 0.3919 - val_accuracy: 0.9389 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 24/100
+
+Epoch 24: val_loss improved from 0.18302 to 0.18216, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1991 - accuracy: 0.9972 - val_loss: 0.1822 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 25/100
+
+Epoch 25: val_loss did not improve from 0.18216
+931/931 - 4s - loss: 0.1976 - accuracy: 0.9978 - val_loss: 0.1860 - val_accuracy: 0.9985 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 26/100
+
+Epoch 26: val_loss improved from 0.18216 to 0.18209, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.2022 - accuracy: 0.9961 - val_loss: 0.1821 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 27/100
+
+Epoch 27: val_loss did not improve from 0.18209
+931/931 - 4s - loss: 0.1957 - accuracy: 0.9981 - val_loss: 0.1859 - val_accuracy: 0.9993 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 28/100
+
+Epoch 28: val_loss improved from 0.18209 to 0.18105, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1970 - accuracy: 0.9972 - val_loss: 0.1811 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 29/100
+
+Epoch 29: val_loss did not improve from 0.18105
+931/931 - 4s - loss: 0.1962 - accuracy: 0.9977 - val_loss: 0.1813 - val_accuracy: 0.9996 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 30/100
+
+Epoch 30: val_loss did not improve from 0.18105
+931/931 - 4s - loss: 0.1964 - accuracy: 0.9977 - val_loss: 0.1813 - val_accuracy: 1.0000 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 31/100
+
+Epoch 31: val_loss did not improve from 0.18105
+931/931 - 4s - loss: 0.1969 - accuracy: 0.9974 - val_loss: 0.2010 - val_accuracy: 0.9923 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 32/100
+
+Epoch 32: val_loss did not improve from 0.18105
+931/931 - 4s - loss: 0.1942 - accuracy: 0.9981 - val_loss: 0.1822 - val_accuracy: 0.9989 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 33/100
+
+Epoch 33: val_loss did not improve from 0.18105
+
+Epoch 33: ReduceLROnPlateau reducing learning rate to 0.0002500000118743628.
+931/931 - 4s - loss: 0.1960 - accuracy: 0.9973 - val_loss: 0.1881 - val_accuracy: 0.9985 - lr: 5.0000e-04 - 4s/epoch - 4ms/step
+Epoch 34/100
+
+Epoch 34: val_loss improved from 0.18105 to 0.17946, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1937 - accuracy: 0.9985 - val_loss: 0.1795 - val_accuracy: 1.0000 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 35/100
+
+Epoch 35: val_loss did not improve from 0.17946
+931/931 - 4s - loss: 0.1915 - accuracy: 0.9985 - val_loss: 0.1801 - val_accuracy: 0.9996 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 36/100
+
+Epoch 36: val_loss did not improve from 0.17946
+931/931 - 4s - loss: 0.1900 - accuracy: 0.9987 - val_loss: 0.1988 - val_accuracy: 0.9872 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 37/100
+
+Epoch 37: val_loss improved from 0.17946 to 0.17759, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1895 - accuracy: 0.9987 - val_loss: 0.1776 - val_accuracy: 1.0000 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 38/100
+
+Epoch 38: val_loss improved from 0.17759 to 0.17736, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1894 - accuracy: 0.9984 - val_loss: 0.1774 - val_accuracy: 1.0000 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 39/100
+
+Epoch 39: val_loss did not improve from 0.17736
+931/931 - 4s - loss: 0.1884 - accuracy: 0.9989 - val_loss: 0.1777 - val_accuracy: 1.0000 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 40/100
+
+Epoch 40: val_loss did not improve from 0.17736
+931/931 - 4s - loss: 0.1876 - accuracy: 0.9991 - val_loss: 0.1937 - val_accuracy: 0.9916 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 41/100
+
+Epoch 41: val_loss improved from 0.17736 to 0.17602, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1882 - accuracy: 0.9987 - val_loss: 0.1760 - val_accuracy: 1.0000 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 42/100
+
+Epoch 42: val_loss did not improve from 0.17602
+931/931 - 4s - loss: 0.1870 - accuracy: 0.9991 - val_loss: 0.1764 - val_accuracy: 1.0000 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 43/100
+
+Epoch 43: val_loss improved from 0.17602 to 0.17571, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1878 - accuracy: 0.9987 - val_loss: 0.1757 - val_accuracy: 1.0000 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 44/100
+
+Epoch 44: val_loss did not improve from 0.17571
+931/931 - 4s - loss: 0.1872 - accuracy: 0.9986 - val_loss: 0.1757 - val_accuracy: 1.0000 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 45/100
+
+Epoch 45: val_loss did not improve from 0.17571
+931/931 - 4s - loss: 0.1869 - accuracy: 0.9989 - val_loss: 0.1759 - val_accuracy: 1.0000 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 46/100
+
+Epoch 46: val_loss did not improve from 0.17571
+931/931 - 4s - loss: 0.1872 - accuracy: 0.9988 - val_loss: 0.2345 - val_accuracy: 0.9634 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 47/100
+
+Epoch 47: val_loss did not improve from 0.17571
+931/931 - 4s - loss: 0.1879 - accuracy: 0.9985 - val_loss: 0.1763 - val_accuracy: 0.9996 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 48/100
+
+Epoch 48: val_loss did not improve from 0.17571
+
+Epoch 48: ReduceLROnPlateau reducing learning rate to 0.0001250000059371814.
+931/931 - 4s - loss: 0.1882 - accuracy: 0.9983 - val_loss: 0.1919 - val_accuracy: 0.9876 - lr: 2.5000e-04 - 4s/epoch - 4ms/step
+Epoch 49/100
+
+Epoch 49: val_loss did not improve from 0.17571
+931/931 - 4s - loss: 0.1867 - accuracy: 0.9987 - val_loss: 0.1801 - val_accuracy: 0.9996 - lr: 1.2500e-04 - 4s/epoch - 4ms/step
+Epoch 50/100
+
+Epoch 50: val_loss improved from 0.17571 to 0.17534, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1851 - accuracy: 0.9992 - val_loss: 0.1753 - val_accuracy: 0.9996 - lr: 1.2500e-04 - 4s/epoch - 4ms/step
+Epoch 51/100
+
+Epoch 51: val_loss did not improve from 0.17534
+931/931 - 4s - loss: 0.1857 - accuracy: 0.9991 - val_loss: 0.1756 - val_accuracy: 0.9996 - lr: 1.2500e-04 - 4s/epoch - 4ms/step
+Epoch 52/100
+
+Epoch 52: val_loss improved from 0.17534 to 0.17453, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1848 - accuracy: 0.9992 - val_loss: 0.1745 - val_accuracy: 1.0000 - lr: 1.2500e-04 - 4s/epoch - 4ms/step
+Epoch 53/100
+
+Epoch 53: val_loss improved from 0.17453 to 0.17436, saving model to models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5
+931/931 - 4s - loss: 0.1844 - accuracy: 0.9993 - val_loss: 0.1744 - val_accuracy: 1.0000 - lr: 1.2500e-04 - 4s/epoch - 4ms/step
+Epoch 54/100
+
+Epoch 54: val_loss did not improve from 0.17436
+931/931 - 5s - loss: 0.1851 - accuracy: 0.9989 - val_loss: 0.1747 - val_accuracy: 1.0000 - lr: 1.2500e-04 - 5s/epoch - 5ms/step
+Epoch 55/100
+
+Epoch 55: val_loss did not improve from 0.17436
+931/931 - 5s - loss: 0.1846 - accuracy: 0.9990 - val_loss: 0.1752 - val_accuracy: 1.0000 - lr: 1.2500e-04 - 5s/epoch - 5ms/step
+Epoch 56/100
+
+Epoch 56: val_loss did not improve from 0.17436
+931/931 - 4s - loss: 0.1837 - accuracy: 0.9994 - val_loss: 0.2850 - val_accuracy: 0.9506 - lr: 1.2500e-04 - 4s/epoch - 4ms/step
+Epoch 57/100
+
+Epoch 57: val_loss did not improve from 0.17436
+931/931 - 4s - loss: 0.1831 - accuracy: 0.9995 - val_loss: 0.1767 - val_accuracy: 0.9996 - lr: 1.2500e-04 - 4s/epoch - 4ms/step
+Epoch 58/100
+
+Epoch 58: val_loss did not improve from 0.17436
+
+Epoch 58: ReduceLROnPlateau reducing learning rate to 6.25000029685907e-05.
+931/931 - 4s - loss: 0.1843 - accuracy: 0.9990 - val_loss: 0.1759 - val_accuracy: 0.9996 - lr: 1.2500e-04 - 4s/epoch - 4ms/step
+Epoch 59/100
+
+Epoch 59: val_loss did not improve from 0.17436
+931/931 - 4s - loss: 0.1835 - accuracy: 0.9992 - val_loss: 0.1792 - val_accuracy: 0.9996 - lr: 6.2500e-05 - 4s/epoch - 4ms/step
+Epoch 60/100
+
+Epoch 60: val_loss did not improve from 0.17436
+931/931 - 4s - loss: 0.1827 - accuracy: 0.9997 - val_loss: 0.1753 - val_accuracy: 1.0000 - lr: 6.2500e-05 - 4s/epoch - 4ms/step
+Epoch 61/100
+
+Epoch 61: val_loss did not improve from 0.17436
+931/931 - 4s - loss: 0.1826 - accuracy: 0.9995 - val_loss: 0.2267 - val_accuracy: 0.9733 - lr: 6.2500e-05 - 4s/epoch - 4ms/step
+Epoch 62/100
+
+Epoch 62: val_loss did not improve from 0.17436
+931/931 - 4s - loss: 0.1821 - accuracy: 0.9997 - val_loss: 0.2148 - val_accuracy: 0.9733 - lr: 6.2500e-05 - 4s/epoch - 4ms/step
+Epoch 63/100
+
+Epoch 63: val_loss did not improve from 0.17436
+
+Epoch 63: ReduceLROnPlateau reducing learning rate to 3.125000148429535e-05.
+931/931 - 4s - loss: 0.1827 - accuracy: 0.9995 - val_loss: 0.1756 - val_accuracy: 0.9996 - lr: 6.2500e-05 - 4s/epoch - 4ms/step
+Epoch 64/100
+
+Epoch 64: val_loss did not improve from 0.17436
+931/931 - 4s - loss: 0.1824 - accuracy: 0.9994 - val_loss: 0.1900 - val_accuracy: 0.9868 - lr: 3.1250e-05 - 4s/epoch - 4ms/step
+Epoch 65/100
+
+Epoch 65: val_loss did not improve from 0.17436
+931/931 - 4s - loss: 0.1819 - accuracy: 0.9997 - val_loss: 0.2098 - val_accuracy: 0.9806 - lr: 3.1250e-05 - 4s/epoch - 4ms/step
+Epoch 66/100
+
+Epoch 66: val_loss did not improve from 0.17436
+931/931 - 4s - loss: 0.1821 - accuracy: 0.9995 - val_loss: 0.1754 - val_accuracy: 0.9993 - lr: 3.1250e-05 - 4s/epoch - 4ms/step
+Epoch 67/100
+
+Epoch 67: val_loss did not improve from 0.17436
+931/931 - 4s - loss: 0.1821 - accuracy: 0.9996 - val_loss: 0.1960 - val_accuracy: 0.9839 - lr: 3.1250e-05 - 4s/epoch - 4ms/step
+Epoch 68/100
+
+Epoch 68: val_loss did not improve from 0.17436
+
+Epoch 68: ReduceLROnPlateau reducing learning rate to 1.5625000742147677e-05.
+931/931 - 4s - loss: 0.1818 - accuracy: 0.9996 - val_loss: 0.2575 - val_accuracy: 0.9656 - lr: 3.1250e-05 - 4s/epoch - 4ms/step
+Epoch 69/100
+
+Epoch 69: val_loss did not improve from 0.17436
+Restoring model weights from the end of the best epoch: 53.
+931/931 - 4s - loss: 0.1820 - accuracy: 0.9995 - val_loss: 0.2110 - val_accuracy: 0.9792 - lr: 1.5625e-05 - 4s/epoch - 4ms/step
+Epoch 69: early stopping
+ 1/86 [..............................] - ETA: 13s40/86 [============>.................] - ETA: 0s 83/86 [===========================>..] - ETA: 0s86/86 [==============================] - 0s 1ms/step
+[DONE]
+{
+  "accuracy": 1.0,
+  "macro_f1": 1.0,
+  "weighted_f1": 1.0,
+  "n_eval": 2735,
+  "classes": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "model_params": 244261,
+  "task": "activity",
+  "modalities": [
+    "imu",
+    "image"
+  ],
+  "fusion": "gated",
+  "best_model": "models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42/best_model.h5",
+  "model_size_mb": 2.9793472290039062
+}

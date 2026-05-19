@@ -1,0 +1,32 @@
+[
+  {
+    "input_name": "image",
+    "modality": "image",
+    "expected_shape": [
+      64,
+      64,
+      6
+    ],
+    "array_shape": [
+      951,
+      64,
+      64,
+      6
+    ]
+  },
+  {
+    "input_name": "audio",
+    "modality": "audio",
+    "expected_shape": [
+      40,
+      40,
+      1
+    ],
+    "array_shape": [
+      951,
+      40,
+      40,
+      1
+    ]
+  }
+]

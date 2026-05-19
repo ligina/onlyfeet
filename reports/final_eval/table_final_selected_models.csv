@@ -1,0 +1,3 @@
+task,modalities,fusion,accuracy,macro_f1,weighted_f1,model_params,model_size_mb,run_dir
+activity,imu,single,1.0,1.0,1.0,99139,1.2244720458984375,models_m14_rgb64/stage2/stage2_activity_imu_single_seed42
+surface,"image,audio",concat,0.9926393270241852,0.9926235152940024,0.9925900247912064,280613,3.3811187744140625,models_m14_rgb64/stage2/stage2_surface_image_audio_concat_seed42

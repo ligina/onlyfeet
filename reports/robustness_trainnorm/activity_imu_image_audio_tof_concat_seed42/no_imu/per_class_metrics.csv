@@ -1,0 +1,4 @@
+class,precision,recall,f1,support
+walk,0.0,0.0,0.0,951
+standing,0.0,0.0,0.0,873
+sitting,0.33308957952468005,1.0,0.49972572682391664,911

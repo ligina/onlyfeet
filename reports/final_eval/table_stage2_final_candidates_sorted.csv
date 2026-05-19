@@ -1,0 +1,13 @@
+task,modalities,fusion,accuracy,macro_f1,weighted_f1,model_params,model_size_mb,run_dir
+activity,"imu,image,audio",concat,1.0,1.0,1.0,370531,4.461448669433594,models_m14_rgb64/stage2/stage2_activity_imu_image_audio_concat_seed42
+activity,"imu,image,audio,tof",concat,1.0,1.0,1.0,414355,5.0072174072265625,models_m14_rgb64/stage2/stage2_activity_imu_image_audio_tof_concat_seed42
+activity,"imu,image",gated,1.0,1.0,1.0,244261,2.9793472290039062,models_m14_rgb64/stage2/stage2_activity_imu_image_gated_seed42
+activity,imu,single,1.0,1.0,1.0,99139,1.2244720458984375,models_m14_rgb64/stage2/stage2_activity_imu_single_seed42
+activity,image,single,0.7586837294332724,0.7392337771113651,0.742614249284333,136995,1.6632614135742188,models_m14_rgb64/stage2/stage2_activity_image_single_seed42
+surface,"image,audio",concat,0.9926393270241852,0.9926235152940024,0.9925900247912064,280613,3.3811187744140625,models_m14_rgb64/stage2/stage2_surface_image_audio_concat_seed42
+surface,"image,audio,tof",concat,0.9842271293375394,0.9827788314188264,0.9841960519734424,324437,3.925849914550781,models_m14_rgb64/stage2/stage2_surface_image_audio_tof_concat_seed42
+surface,"imu,image,tof",concat,0.9621451104100948,0.9635161434543,0.9616767561555288,288021,3.502197265625,models_m14_rgb64/stage2/stage2_surface_imu_image_tof_concat_seed42
+surface,"image,tof",gated,0.9621451104100948,0.9603142353761956,0.9619277374267746,198167,2.441925048828125,models_m14_rgb64/stage2/stage2_surface_image_tof_gated_seed42
+surface,image,single,0.9589905362776026,0.9561286004940408,0.9594178104957428,137125,1.665374755859375,models_m14_rgb64/stage2/stage2_surface_image_single_seed42
+surface,"image,tof",concat,0.9484752891692956,0.9416449287054058,0.946709694148148,197973,2.4205780029296875,models_m14_rgb64/stage2/stage2_surface_image_tof_concat_seed42
+surface,audio,single,0.9116719242902208,0.9003828807816786,0.9077753173263448,135685,1.649505615234375,models_m14_rgb64/stage2/stage2_surface_audio_single_seed42

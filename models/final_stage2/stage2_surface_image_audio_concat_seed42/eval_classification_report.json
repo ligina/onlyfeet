@@ -1,0 +1,45 @@
+{
+  "asphalt": {
+    "precision": 1.0,
+    "recall": 0.9608938547486033,
+    "f1-score": 0.98005698005698,
+    "support": 179.0
+  },
+  "PVC": {
+    "precision": 0.9942857142857143,
+    "recall": 1.0,
+    "f1-score": 0.997134670487106,
+    "support": 174.0
+  },
+  "sand": {
+    "precision": 0.9867549668874173,
+    "recall": 1.0,
+    "f1-score": 0.9933333333333333,
+    "support": 149.0
+  },
+  "gravel": {
+    "precision": 0.9852941176470589,
+    "recall": 1.0,
+    "f1-score": 0.9925925925925926,
+    "support": 268.0
+  },
+  "grass": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 181.0
+  },
+  "accuracy": 0.9926393270241851,
+  "macro avg": {
+    "precision": 0.993266959764038,
+    "recall": 0.9921787709497206,
+    "f1-score": 0.9926235152940024,
+    "support": 951.0
+  },
+  "weighted avg": {
+    "precision": 0.9927350450908005,
+    "recall": 0.9926393270241851,
+    "f1-score": 0.9925900247912064,
+    "support": 951.0
+  }
+}

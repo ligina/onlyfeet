@@ -1,0 +1,9 @@
+ablated,accuracy,condition,macro_f1,n_eval,weighted_f1,experiment
+,1.0,normal,1.0,2735,1.0,activity_imu_image_audio_tof_concat_seed42
+imu,0.33308957952468,no_imu,0.1665752422746388,2735,0.1664534322254435,activity_imu_image_audio_tof_concat_seed42
+image,1.0,no_image,1.0,2735,1.0,activity_imu_image_audio_tof_concat_seed42
+audio,0.7411334552102377,no_audio,0.6822182357761388,2735,0.6879601238786298,activity_imu_image_audio_tof_concat_seed42
+tof,1.0,no_tof,1.0,2735,1.0,activity_imu_image_audio_tof_concat_seed42
+,0.9926393270241852,normal,0.9926235152940024,951,0.9925900247912064,surface_image_audio_concat_seed42
+image,0.4963196635120925,no_image,0.476249167226486,951,0.417959870677999,surface_image_audio_concat_seed42
+audio,0.2818086225026288,no_audio,0.0879409351927809,951,0.1239125690413527,surface_image_audio_concat_seed42

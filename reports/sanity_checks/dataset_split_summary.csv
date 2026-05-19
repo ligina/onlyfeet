@@ -1,0 +1,5 @@
+split,path,n_windows,n_folders,participants,activity_bincount,surface_bincount
+stage2_activity_train,datasets_m14_rgb64_stage2/activity/dataset_train.npz,29788,1058,"P1and2,P3","[10299, 9340, 10149]","[5315, 5545, 7696, 5740, 5492]"
+stage2_activity_test,datasets_m14_rgb64_stage2/activity/dataset_test.npz,2735,105,P4,"[951, 873, 911]","[564, 539, 510, 605, 517]"
+stage2_surface_train,datasets_m14_rgb64_stage2/surface/dataset_train.npz,10299,371,"P1and2,P3",[10299],"[1726, 1773, 2964, 2038, 1798]"
+stage2_surface_test,datasets_m14_rgb64_stage2/surface/dataset_test.npz,951,36,P4,[951],"[179, 174, 149, 268, 181]"

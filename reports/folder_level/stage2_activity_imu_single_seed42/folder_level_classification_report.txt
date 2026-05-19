@@ -1,0 +1,9 @@
+              precision    recall  f1-score   support
+
+        walk     1.0000    1.0000    1.0000        36
+    standing     1.0000    1.0000    1.0000        35
+     sitting     1.0000    1.0000    1.0000        34
+
+    accuracy                         1.0000       105
+   macro avg     1.0000    1.0000    1.0000       105
+weighted avg     1.0000    1.0000    1.0000       105

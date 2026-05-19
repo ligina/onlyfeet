@@ -1,0 +1,305 @@
+2026-05-18 18:56:44.139926: I tensorflow/core/util/port.cc:111] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-05-18 18:56:44.159229: E tensorflow/compiler/xla/stream_executor/cuda/cuda_dnn.cc:9342] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-05-18 18:56:44.159286: E tensorflow/compiler/xla/stream_executor/cuda/cuda_fft.cc:609] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-05-18 18:56:44.159320: E tensorflow/compiler/xla/stream_executor/cuda/cuda_blas.cc:1518] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-05-18 18:56:44.163194: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-05-18 18:56:45.361517: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2303] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 12.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+[INFO] GPU detected: 1
+[INFO] task: surface
+[INFO] modalities: ['image', 'audio']
+[INFO] fusion: concat
+[INFO] train samples: 10299 eval samples: 951
+[INFO] class names: ['asphalt', 'PVC', 'sand', 'gravel', 'grass']
+[INFO] train bincount: [1726, 1773, 2964, 2038, 1798]
+[INFO] eval  bincount: [179, 174, 149, 268, 181]
+[INFO] input shapes: {'image': [64, 64, 6], 'audio': [40, 40, 1]}
+2026-05-18 18:56:50.846534: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2303] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 12.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+2026-05-18 18:56:50.923446: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1886] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 29801 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 5090, pci bus id: 0000:02:00.0, compute capability: 12.0
+Model: "M14_image_audio_concat_classifier"
+__________________________________________________________________________________________________
+ Layer (type)                Output Shape                 Param #   Connected to                  
+==================================================================================================
+ image (InputLayer)          [(None, 64, 64, 6)]          0         []                            
+                                                                                                  
+ audio (InputLayer)          [(None, 40, 40, 1)]          0         []                            
+                                                                                                  
+ image_conv1 (Conv2D)        (None, 64, 64, 32)           1760      ['image[0][0]']               
+                                                                                                  
+ audio_conv1 (Conv2D)        (None, 40, 40, 32)           320       ['audio[0][0]']               
+                                                                                                  
+ image_bn1 (BatchNormalizat  (None, 64, 64, 32)           128       ['image_conv1[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ audio_bn1 (BatchNormalizat  (None, 40, 40, 32)           128       ['audio_conv1[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ image_pool1 (MaxPooling2D)  (None, 32, 32, 32)           0         ['image_bn1[0][0]']           
+                                                                                                  
+ audio_pool1 (MaxPooling2D)  (None, 20, 20, 32)           0         ['audio_bn1[0][0]']           
+                                                                                                  
+ image_conv2 (Conv2D)        (None, 32, 32, 64)           18496     ['image_pool1[0][0]']         
+                                                                                                  
+ audio_conv2 (Conv2D)        (None, 20, 20, 64)           18496     ['audio_pool1[0][0]']         
+                                                                                                  
+ image_bn2 (BatchNormalizat  (None, 32, 32, 64)           256       ['image_conv2[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ audio_bn2 (BatchNormalizat  (None, 20, 20, 64)           256       ['audio_conv2[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ image_pool2 (MaxPooling2D)  (None, 16, 16, 64)           0         ['image_bn2[0][0]']           
+                                                                                                  
+ audio_pool2 (MaxPooling2D)  (None, 10, 10, 64)           0         ['audio_bn2[0][0]']           
+                                                                                                  
+ image_conv3 (Conv2D)        (None, 16, 16, 128)          73856     ['image_pool2[0][0]']         
+                                                                                                  
+ audio_conv3 (Conv2D)        (None, 10, 10, 128)          73856     ['audio_pool2[0][0]']         
+                                                                                                  
+ image_bn3 (BatchNormalizat  (None, 16, 16, 128)          512       ['image_conv3[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ audio_bn3 (BatchNormalizat  (None, 10, 10, 128)          512       ['audio_conv3[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ image_gap (GlobalAveragePo  (None, 128)                  0         ['image_bn3[0][0]']           
+ oling2D)                                                                                         
+                                                                                                  
+ audio_gap (GlobalAveragePo  (None, 128)                  0         ['audio_bn3[0][0]']           
+ oling2D)                                                                                         
+                                                                                                  
+ image_feat (Dense)          (None, 128)                  16512     ['image_gap[0][0]']           
+                                                                                                  
+ audio_feat (Dense)          (None, 128)                  16512     ['audio_gap[0][0]']           
+                                                                                                  
+ image_dropout (Dropout)     (None, 128)                  0         ['image_feat[0][0]']          
+                                                                                                  
+ audio_dropout (Dropout)     (None, 128)                  0         ['audio_feat[0][0]']          
+                                                                                                  
+ concat_fusion (Concatenate  (None, 256)                  0         ['image_dropout[0][0]',       
+ )                                                                   'audio_dropout[0][0]']       
+                                                                                                  
+ concat_fused_dense (Dense)  (None, 128)                  32896     ['concat_fusion[0][0]']       
+                                                                                                  
+ concat_fused_bn (BatchNorm  (None, 128)                  512       ['concat_fused_dense[0][0]']  
+ alization)                                                                                       
+                                                                                                  
+ concat_fused_dropout (Drop  (None, 128)                  0         ['concat_fused_bn[0][0]']     
+ out)                                                                                             
+                                                                                                  
+ head_dense1 (Dense)         (None, 128)                  16512     ['concat_fused_dropout[0][0]']
+                                                                                                  
+ head_bn1 (BatchNormalizati  (None, 128)                  512       ['head_dense1[0][0]']         
+ on)                                                                                              
+                                                                                                  
+ head_dropout1 (Dropout)     (None, 128)                  0         ['head_bn1[0][0]']            
+                                                                                                  
+ head_dense2 (Dense)         (None, 64)                   8256      ['head_dropout1[0][0]']       
+                                                                                                  
+ head_dropout2 (Dropout)     (None, 64)                   0         ['head_dense2[0][0]']         
+                                                                                                  
+ output (Dense)              (None, 5)                    325       ['head_dropout2[0][0]']       
+                                                                                                  
+==================================================================================================
+Total params: 280613 (1.07 MB)
+Trainable params: 279205 (1.07 MB)
+Non-trainable params: 1408 (5.50 KB)
+__________________________________________________________________________________________________
+Epoch 1/100
+2026-05-18 18:56:52.416462: I tensorflow/compiler/xla/stream_executor/cuda/cuda_dnn.cc:442] Loaded cuDNN version 8905
+2026-05-18 18:56:52.447707: I tensorflow/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+2026-05-18 18:56:52.455012: W tensorflow/compiler/xla/stream_executor/gpu/asm_compiler.cc:231] Falling back to the CUDA driver for PTX compilation; ptxas does not support CC 12.0
+2026-05-18 18:56:52.455057: W tensorflow/compiler/xla/stream_executor/gpu/asm_compiler.cc:234] Used ptxas at /usr/local/cuda-11.8/bin/ptxas
+2026-05-18 18:56:52.455175: W tensorflow/compiler/xla/stream_executor/gpu/redzone_allocator.cc:322] UNIMPLEMENTED: /usr/local/cuda-11.8/bin/ptxas ptxas too old. Falling back to the driver to compile.
+Relying on driver to perform ptx compilation. 
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+2026-05-18 18:56:52.585684: I tensorflow/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+2026-05-18 18:56:52.592923: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.671183: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.671252: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.671280: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.671305: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.671356: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.671398: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.671426: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.671449: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.671470: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.865956: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.866006: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.866217: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.869117: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.872440: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.880833: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.880864: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.880900: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.966814: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+2026-05-18 18:56:52.992689: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x72a0c0bbe680 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2026-05-18 18:56:52.992762: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): NVIDIA GeForce RTX 5090, Compute Capability 12.0
+2026-05-18 18:56:52.995046: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+2026-05-18 18:56:53.013922: W tensorflow/compiler/xla/service/gpu/nvptx_compiler.cc:445] Couldn't read CUDA driver version.
+2026-05-18 18:56:53.021029: I ./tensorflow/compiler/jit/device_compiler.h:186] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+2026-05-18 18:56:53.131051: W tensorflow/compiler/mlir/tools/kernel_gen/transforms/gpu_kernel_to_blob_pass.cc:191] Failed to compile generated PTX with ptxas. Falling back to compilation by driver.
+
+Epoch 1: val_loss improved from inf to 2.04418, saving model to models_m14_rgb64/stage2/stage2_surface_image_audio_concat_seed42/best_model.h5
+/usr/local/lib/python3.11/dist-packages/keras/src/engine/training.py:3079: UserWarning: You are saving your model as an HDF5 file via `model.save()`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')`.
+  saving_api.save_model(
+322/322 - 4s - loss: 1.0785 - accuracy: 0.6775 - val_loss: 2.0442 - val_accuracy: 0.3554 - lr: 5.0000e-04 - 4s/epoch - 12ms/step
+Epoch 2/100
+
+Epoch 2: val_loss improved from 2.04418 to 0.57660, saving model to models_m14_rgb64/stage2/stage2_surface_image_audio_concat_seed42/best_model.h5
+322/322 - 1s - loss: 0.5491 - accuracy: 0.9191 - val_loss: 0.5766 - val_accuracy: 0.8959 - lr: 5.0000e-04 - 1s/epoch - 4ms/step
+Epoch 3/100
+
+Epoch 3: val_loss improved from 0.57660 to 0.42886, saving model to models_m14_rgb64/stage2/stage2_surface_image_audio_concat_seed42/best_model.h5
+322/322 - 1s - loss: 0.4510 - accuracy: 0.9559 - val_loss: 0.4289 - val_accuracy: 0.9464 - lr: 5.0000e-04 - 1s/epoch - 3ms/step
+Epoch 4/100
+
+Epoch 4: val_loss did not improve from 0.42886
+322/322 - 1s - loss: 0.4080 - accuracy: 0.9735 - val_loss: 0.7358 - val_accuracy: 0.8360 - lr: 5.0000e-04 - 1s/epoch - 3ms/step
+Epoch 5/100
+
+Epoch 5: val_loss did not improve from 0.42886
+322/322 - 1s - loss: 0.3850 - accuracy: 0.9783 - val_loss: 0.6718 - val_accuracy: 0.8538 - lr: 5.0000e-04 - 1s/epoch - 3ms/step
+Epoch 6/100
+
+Epoch 6: val_loss improved from 0.42886 to 0.33183, saving model to models_m14_rgb64/stage2/stage2_surface_image_audio_concat_seed42/best_model.h5
+322/322 - 1s - loss: 0.3686 - accuracy: 0.9829 - val_loss: 0.3318 - val_accuracy: 0.9832 - lr: 5.0000e-04 - 1s/epoch - 4ms/step
+Epoch 7/100
+
+Epoch 7: val_loss did not improve from 0.33183
+322/322 - 1s - loss: 0.3505 - accuracy: 0.9885 - val_loss: 0.4274 - val_accuracy: 0.9401 - lr: 5.0000e-04 - 1s/epoch - 3ms/step
+Epoch 8/100
+
+Epoch 8: val_loss did not improve from 0.33183
+322/322 - 1s - loss: 0.3451 - accuracy: 0.9877 - val_loss: 0.5420 - val_accuracy: 0.9001 - lr: 5.0000e-04 - 1s/epoch - 3ms/step
+Epoch 9/100
+
+Epoch 9: val_loss did not improve from 0.33183
+322/322 - 1s - loss: 0.3355 - accuracy: 0.9916 - val_loss: 0.6023 - val_accuracy: 0.8654 - lr: 5.0000e-04 - 1s/epoch - 3ms/step
+Epoch 10/100
+
+Epoch 10: val_loss did not improve from 0.33183
+322/322 - 1s - loss: 0.3293 - accuracy: 0.9914 - val_loss: 0.4556 - val_accuracy: 0.9348 - lr: 5.0000e-04 - 1s/epoch - 3ms/step
+Epoch 11/100
+
+Epoch 11: val_loss did not improve from 0.33183
+
+Epoch 11: ReduceLROnPlateau reducing learning rate to 0.0002500000118743628.
+322/322 - 1s - loss: 0.3217 - accuracy: 0.9944 - val_loss: 0.5740 - val_accuracy: 0.8738 - lr: 5.0000e-04 - 1s/epoch - 3ms/step
+Epoch 12/100
+
+Epoch 12: val_loss did not improve from 0.33183
+322/322 - 1s - loss: 0.3166 - accuracy: 0.9940 - val_loss: 0.6737 - val_accuracy: 0.8381 - lr: 2.5000e-04 - 1s/epoch - 3ms/step
+Epoch 13/100
+
+Epoch 13: val_loss did not improve from 0.33183
+322/322 - 1s - loss: 0.3153 - accuracy: 0.9942 - val_loss: 0.6894 - val_accuracy: 0.8517 - lr: 2.5000e-04 - 1s/epoch - 3ms/step
+Epoch 14/100
+
+Epoch 14: val_loss did not improve from 0.33183
+322/322 - 1s - loss: 0.3103 - accuracy: 0.9961 - val_loss: 0.5510 - val_accuracy: 0.8959 - lr: 2.5000e-04 - 1s/epoch - 3ms/step
+Epoch 15/100
+
+Epoch 15: val_loss did not improve from 0.33183
+322/322 - 1s - loss: 0.3082 - accuracy: 0.9959 - val_loss: 0.5692 - val_accuracy: 0.8770 - lr: 2.5000e-04 - 1s/epoch - 3ms/step
+Epoch 16/100
+
+Epoch 16: val_loss improved from 0.33183 to 0.30103, saving model to models_m14_rgb64/stage2/stage2_surface_image_audio_concat_seed42/best_model.h5
+322/322 - 1s - loss: 0.3023 - accuracy: 0.9976 - val_loss: 0.3010 - val_accuracy: 0.9926 - lr: 2.5000e-04 - 1s/epoch - 3ms/step
+Epoch 17/100
+
+Epoch 17: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.3029 - accuracy: 0.9965 - val_loss: 0.7486 - val_accuracy: 0.8391 - lr: 2.5000e-04 - 1s/epoch - 3ms/step
+Epoch 18/100
+
+Epoch 18: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.3035 - accuracy: 0.9962 - val_loss: 0.4145 - val_accuracy: 0.9380 - lr: 2.5000e-04 - 1s/epoch - 3ms/step
+Epoch 19/100
+
+Epoch 19: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.3003 - accuracy: 0.9960 - val_loss: 0.4882 - val_accuracy: 0.9127 - lr: 2.5000e-04 - 1s/epoch - 3ms/step
+Epoch 20/100
+
+Epoch 20: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.3001 - accuracy: 0.9960 - val_loss: 0.4496 - val_accuracy: 0.9243 - lr: 2.5000e-04 - 1s/epoch - 3ms/step
+Epoch 21/100
+
+Epoch 21: val_loss did not improve from 0.30103
+
+Epoch 21: ReduceLROnPlateau reducing learning rate to 0.0001250000059371814.
+322/322 - 1s - loss: 0.2967 - accuracy: 0.9978 - val_loss: 0.4117 - val_accuracy: 0.9401 - lr: 2.5000e-04 - 1s/epoch - 3ms/step
+Epoch 22/100
+
+Epoch 22: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.2926 - accuracy: 0.9976 - val_loss: 0.4036 - val_accuracy: 0.9422 - lr: 1.2500e-04 - 1s/epoch - 3ms/step
+Epoch 23/100
+
+Epoch 23: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.2899 - accuracy: 0.9989 - val_loss: 0.3802 - val_accuracy: 0.9527 - lr: 1.2500e-04 - 1s/epoch - 3ms/step
+Epoch 24/100
+
+Epoch 24: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.2915 - accuracy: 0.9977 - val_loss: 0.3389 - val_accuracy: 0.9716 - lr: 1.2500e-04 - 1s/epoch - 3ms/step
+Epoch 25/100
+
+Epoch 25: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.2883 - accuracy: 0.9980 - val_loss: 0.4925 - val_accuracy: 0.9117 - lr: 1.2500e-04 - 1s/epoch - 3ms/step
+Epoch 26/100
+
+Epoch 26: val_loss did not improve from 0.30103
+
+Epoch 26: ReduceLROnPlateau reducing learning rate to 6.25000029685907e-05.
+322/322 - 1s - loss: 0.2884 - accuracy: 0.9980 - val_loss: 0.4203 - val_accuracy: 0.9306 - lr: 1.2500e-04 - 1s/epoch - 3ms/step
+Epoch 27/100
+
+Epoch 27: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.2838 - accuracy: 0.9994 - val_loss: 0.4233 - val_accuracy: 0.9306 - lr: 6.2500e-05 - 1s/epoch - 3ms/step
+Epoch 28/100
+
+Epoch 28: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.2839 - accuracy: 0.9989 - val_loss: 0.4274 - val_accuracy: 0.9348 - lr: 6.2500e-05 - 1s/epoch - 3ms/step
+Epoch 29/100
+
+Epoch 29: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.2835 - accuracy: 0.9987 - val_loss: 0.3381 - val_accuracy: 0.9664 - lr: 6.2500e-05 - 1s/epoch - 3ms/step
+Epoch 30/100
+
+Epoch 30: val_loss did not improve from 0.30103
+322/322 - 1s - loss: 0.2839 - accuracy: 0.9989 - val_loss: 0.3815 - val_accuracy: 0.9527 - lr: 6.2500e-05 - 1s/epoch - 3ms/step
+Epoch 31/100
+
+Epoch 31: val_loss did not improve from 0.30103
+
+Epoch 31: ReduceLROnPlateau reducing learning rate to 3.125000148429535e-05.
+322/322 - 1s - loss: 0.2824 - accuracy: 0.9990 - val_loss: 0.4775 - val_accuracy: 0.9190 - lr: 6.2500e-05 - 1s/epoch - 3ms/step
+Epoch 32/100
+
+Epoch 32: val_loss did not improve from 0.30103
+Restoring model weights from the end of the best epoch: 16.
+322/322 - 1s - loss: 0.2818 - accuracy: 0.9991 - val_loss: 0.4340 - val_accuracy: 0.9285 - lr: 3.1250e-05 - 1s/epoch - 3ms/step
+Epoch 32: early stopping
+ 1/30 [>.............................] - ETA: 2s30/30 [==============================] - 0s 874us/step
+[DONE]
+{
+  "accuracy": 0.9926393270241851,
+  "macro_f1": 0.9926235152940024,
+  "weighted_f1": 0.9925900247912064,
+  "n_eval": 951,
+  "classes": [
+    "asphalt",
+    "PVC",
+    "sand",
+    "gravel",
+    "grass"
+  ],
+  "model_params": 280613,
+  "task": "surface",
+  "modalities": [
+    "image",
+    "audio"
+  ],
+  "fusion": "concat",
+  "best_model": "models_m14_rgb64/stage2/stage2_surface_image_audio_concat_seed42/best_model.h5",
+  "model_size_mb": 3.3811187744140625
+}

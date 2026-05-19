@@ -1,0 +1,46 @@
+{
+  "task": "activity",
+  "modalities": "imu",
+  "fusion": "single",
+  "train_npz": "datasets_m14_rgb64_stage2/activity/dataset_train.npz",
+  "eval_npz": "datasets_m14_rgb64_stage2/activity/dataset_test.npz",
+  "card": "datasets_m14_rgb64_stage2/activity/dataset_card.json",
+  "out_dir": "models_m14_rgb64/stage2/stage2_activity_imu_single_seed42",
+  "epochs": 100,
+  "batch": 32,
+  "lr": 0.0005,
+  "dropout": 0.35,
+  "l2": 0.0001,
+  "feature_dim": 128,
+  "patience": 16,
+  "label_smoothing": 0.05,
+  "seed": 42,
+  "no_imu_magnitude": false,
+  "monitor": "val_loss",
+  "modalities_parsed": [
+    "imu"
+  ],
+  "input_shapes": {
+    "imu": [
+      50,
+      8
+    ]
+  },
+  "class_names": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "train_samples": 29788,
+  "eval_samples": 2735,
+  "train_bincount": [
+    10299,
+    9340,
+    10149
+  ],
+  "eval_bincount": [
+    951,
+    873,
+    911
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "accuracy": 0.9926393270241851,
+  "macro_f1": 0.9926235152940024,
+  "weighted_f1": 0.9925900247912064,
+  "n_eval": 951,
+  "classes": [
+    "asphalt",
+    "PVC",
+    "sand",
+    "gravel",
+    "grass"
+  ],
+  "model_params": 280613
+}

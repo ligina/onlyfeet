@@ -1,0 +1,59 @@
+{
+  "rows": 1166,
+  "columns": [
+    "folder",
+    "participant",
+    "split_stage1",
+    "split_stage2",
+    "surface_raw",
+    "label_env",
+    "activity_raw",
+    "label_activity",
+    "use_activity",
+    "use_surface",
+    "relative_path",
+    "absolute_path",
+    "has_pkt",
+    "has_wav",
+    "has_img",
+    "has_mid",
+    "pkt_count",
+    "wav_count",
+    "img_count",
+    "mid_count",
+    "has_required_files"
+  ],
+  "participant": {
+    "P1and2": 691,
+    "P3": 369,
+    "P4": 106
+  },
+  "split_stage1": {
+    "train": 691,
+    "val": 369,
+    "test": 106
+  },
+  "split_stage2": {
+    "train": 1060,
+    "test": 106
+  },
+  "label_activity": {
+    "walk": 409,
+    "sitting": 391,
+    "standing": 366
+  },
+  "label_env": {
+    "sand": 299,
+    "gravel": 225,
+    "grass": 215,
+    "PVC": 215,
+    "asphalt": 212
+  },
+  "use_activity": {
+    "1": 1166
+  },
+  "use_surface": {
+    "0": 757,
+    "1": 409
+  }
+}

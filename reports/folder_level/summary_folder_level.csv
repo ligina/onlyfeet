@@ -1,0 +1,3 @@
+task,n_folders,accuracy,macro_f1,weighted_f1,classes,experiment
+surface,36,1.0,1.0,1.0,"['asphalt', 'PVC', 'sand', 'gravel', 'grass']",stage2_surface_image_audio_concat_seed42
+activity,105,1.0,1.0,1.0,"['walk', 'standing', 'sitting']",stage2_activity_imu_single_seed42

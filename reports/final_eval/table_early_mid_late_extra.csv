@@ -1,0 +1,5 @@
+task,modalities,fusion,accuracy,macro_f1,weighted_f1,model_params,model_size_mb,run_dir
+activity,"imu,image,audio,tof",early_flat,1.0,1.0,1.0,7130883,81.70682525634766,models_m14_rgb64/fusion_strategy_extra/stage2/activity_imu_image_audio_tof_early_flat_seed42
+activity,"imu,image,audio,tof",late_avg,0.9820840950639854,0.9818953954712054,0.9820465763117192,392348,4.783599853515625,models_m14_rgb64/fusion_strategy_extra/stage2/activity_imu_image_audio_tof_late_avg_seed42
+surface,"image,audio",late_avg,0.9716088328075708,0.9692339421894972,0.9711900965497136,256938,3.110679626464844,models_m14_rgb64/fusion_strategy_extra/stage2/surface_image_audio_late_avg_seed42
+surface,"image,audio",early_flat,0.7981072555205048,0.7559073757713681,0.7732029095442535,6869509,78.68450164794922,models_m14_rgb64/fusion_strategy_extra/stage2/surface_image_audio_early_flat_seed42

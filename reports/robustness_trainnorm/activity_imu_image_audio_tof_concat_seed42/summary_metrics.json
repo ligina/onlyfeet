@@ -1,0 +1,42 @@
+[
+  {
+    "condition": "normal",
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0,
+    "n_eval": 2735,
+    "ablated": ""
+  },
+  {
+    "condition": "no_imu",
+    "accuracy": 0.33308957952468005,
+    "macro_f1": 0.16657524227463888,
+    "weighted_f1": 0.16645343222544354,
+    "n_eval": 2735,
+    "ablated": "imu"
+  },
+  {
+    "condition": "no_image",
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0,
+    "n_eval": 2735,
+    "ablated": "image"
+  },
+  {
+    "condition": "no_audio",
+    "accuracy": 0.7411334552102377,
+    "macro_f1": 0.6822182357761388,
+    "weighted_f1": 0.6879601238786298,
+    "n_eval": 2735,
+    "ablated": "audio"
+  },
+  {
+    "condition": "no_tof",
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0,
+    "n_eval": 2735,
+    "ablated": "tof"
+  }
+]

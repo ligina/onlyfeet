@@ -1,0 +1,19 @@
+{
+  "accuracy": 1.0,
+  "macro_f1": 1.0,
+  "weighted_f1": 1.0,
+  "n_eval": 2735,
+  "classes": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "model_params": 99139,
+  "task": "activity",
+  "modalities": [
+    "imu"
+  ],
+  "fusion": "single",
+  "best_model": "models_m14_rgb64/stage2/stage2_activity_imu_single_seed42/best_model.h5",
+  "model_size_mb": 1.2244720458984375
+}

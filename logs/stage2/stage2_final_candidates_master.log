@@ -1,0 +1,53 @@
+nohup: ignoring input
+======================================================================
+[RUN] stage2_activity_imu_single_seed42
+======================================================================
+[DONE] stage2_activity_imu_single_seed42
+======================================================================
+[RUN] stage2_activity_image_single_seed42
+======================================================================
+[DONE] stage2_activity_image_single_seed42
+======================================================================
+[RUN] stage2_activity_imu_image_gated_seed42
+======================================================================
+[DONE] stage2_activity_imu_image_gated_seed42
+======================================================================
+[RUN] stage2_activity_imu_image_audio_concat_seed42
+======================================================================
+[DONE] stage2_activity_imu_image_audio_concat_seed42
+======================================================================
+[RUN] stage2_activity_imu_image_audio_tof_concat_seed42
+======================================================================
+[DONE] stage2_activity_imu_image_audio_tof_concat_seed42
+======================================================================
+[RUN] stage2_surface_image_single_seed42
+======================================================================
+[DONE] stage2_surface_image_single_seed42
+======================================================================
+[RUN] stage2_surface_audio_single_seed42
+======================================================================
+[DONE] stage2_surface_audio_single_seed42
+======================================================================
+[RUN] stage2_surface_image_tof_concat_seed42
+======================================================================
+[DONE] stage2_surface_image_tof_concat_seed42
+======================================================================
+[RUN] stage2_surface_image_tof_gated_seed42
+======================================================================
+[DONE] stage2_surface_image_tof_gated_seed42
+======================================================================
+[RUN] stage2_surface_imu_image_tof_concat_seed42
+======================================================================
+[DONE] stage2_surface_imu_image_tof_concat_seed42
+======================================================================
+[RUN] stage2_surface_image_audio_concat_seed42
+======================================================================
+[DONE] stage2_surface_image_audio_concat_seed42
+======================================================================
+[RUN] stage2_surface_image_audio_tof_concat_seed42
+======================================================================
+[DONE] stage2_surface_image_audio_tof_concat_seed42
+[DONE] rows=12
+reports_m14_rgb64/stage2/summary_stage2_final_candidates.csv
+reports_m14_rgb64/stage2/summary_stage2_final_candidates.json
+[DONE] Stage 2 final candidates complete.

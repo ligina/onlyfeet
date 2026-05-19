@@ -1,0 +1,58 @@
+[
+  {
+    "input_name": "imu",
+    "modality": "imu",
+    "expected_shape": [
+      50,
+      8
+    ],
+    "array_shape": [
+      2735,
+      50,
+      8
+    ]
+  },
+  {
+    "input_name": "image",
+    "modality": "image",
+    "expected_shape": [
+      64,
+      64,
+      6
+    ],
+    "array_shape": [
+      2735,
+      64,
+      64,
+      6
+    ]
+  },
+  {
+    "input_name": "audio",
+    "modality": "audio",
+    "expected_shape": [
+      40,
+      40,
+      1
+    ],
+    "array_shape": [
+      2735,
+      40,
+      40,
+      1
+    ]
+  },
+  {
+    "input_name": "tof",
+    "modality": "tof",
+    "expected_shape": [
+      50,
+      2
+    ],
+    "array_shape": [
+      2735,
+      50,
+      2
+    ]
+  }
+]

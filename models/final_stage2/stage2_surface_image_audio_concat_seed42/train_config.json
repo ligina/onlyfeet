@@ -1,0 +1,59 @@
+{
+  "task": "surface",
+  "modalities": "image,audio",
+  "fusion": "concat",
+  "train_npz": "datasets_m14_rgb64_stage2/surface/dataset_train.npz",
+  "eval_npz": "datasets_m14_rgb64_stage2/surface/dataset_test.npz",
+  "card": "datasets_m14_rgb64_stage2/surface/dataset_card.json",
+  "out_dir": "models_m14_rgb64/stage2/stage2_surface_image_audio_concat_seed42",
+  "epochs": 100,
+  "batch": 32,
+  "lr": 0.0005,
+  "dropout": 0.4,
+  "l2": 0.0001,
+  "feature_dim": 128,
+  "patience": 16,
+  "label_smoothing": 0.05,
+  "seed": 42,
+  "no_imu_magnitude": false,
+  "monitor": "val_loss",
+  "modalities_parsed": [
+    "image",
+    "audio"
+  ],
+  "input_shapes": {
+    "image": [
+      64,
+      64,
+      6
+    ],
+    "audio": [
+      40,
+      40,
+      1
+    ]
+  },
+  "class_names": [
+    "asphalt",
+    "PVC",
+    "sand",
+    "gravel",
+    "grass"
+  ],
+  "train_samples": 10299,
+  "eval_samples": 951,
+  "train_bincount": [
+    1726,
+    1773,
+    2964,
+    2038,
+    1798
+  ],
+  "eval_bincount": [
+    179,
+    174,
+    149,
+    268,
+    181
+  ]
+}
