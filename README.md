@@ -576,6 +576,66 @@ The high P4 results are not only caused by isolated window-level predictions. Th
 
 ---
 
+## 12.1 Non-Overlapping-Window Evaluation
+
+The original preprocessing pipeline used 2-second windows with 1-second stride, resulting in 50% temporal overlap between adjacent windows.
+
+To further evaluate whether the high performance was primarily caused by overlapping-window redundancy, an additional non-overlapping-window evaluation was performed on the held-out P4 participant.
+
+For each recording folder, only windows separated by at least 2 seconds were retained.
+
+Location:
+
+```text
+reports/nonoverlap_windows/
+```
+
+Main script:
+
+```text
+scripts/09_eval_nonoverlap_windows.py
+```
+
+Summary file:
+
+```text
+reports/nonoverlap_windows/summary_nonoverlap_windows.csv
+```
+
+### Results
+
+Activity:
+
+```text
+Original windows:         2,735
+Non-overlapping windows:  1,417
+P4 folders:                 105
+
+Accuracy:     100.00%
+Macro-F1:     100.00%
+Weighted-F1:  100.00%
+```
+
+Surface:
+
+```text
+Original windows:           951
+Non-overlapping windows:    493
+P4 folders:                  36
+
+Accuracy:      98.99%
+Macro-F1:      98.94%
+Weighted-F1:   98.98%
+```
+
+Interpretation:
+
+The strong performance remains even after removing overlapping temporal windows. This suggests that the high results are not solely explained by overlapping-window redundancy.
+
+However, the evaluation should still be interpreted under a controlled subject-held-out setting rather than fully unconstrained real-world deployment.
+
+---
+
 ## 13. Split Sanity Checks
 
 Sanity checks were performed to verify split integrity and folder overlap.
@@ -949,6 +1009,7 @@ reports/final_eval/table_stage2_final_candidates_sorted.csv
 reports/final_eval/table_robustness_trainnorm.csv
 reports/final_eval/table_early_mid_late_extra.csv
 reports/final_eval/table_folder_level_summary.csv
+reports/nonoverlap_windows/summary_nonoverlap_windows.csv
 reports/sanity_checks/folder_overlap_summary.csv
 reports/sanity_checks/dataset_split_summary.csv
 ```
@@ -969,5 +1030,5 @@ scripts/03b_eval_m14_model_robustness_trainnorm.py
 scripts/06_eval_folder_level_majority.py
 scripts/07_make_final_evaluation_tables.py
 scripts/08_sanity_check_m14_final.py
+scripts/09_eval_nonoverlap_windows.py
 ```
-
