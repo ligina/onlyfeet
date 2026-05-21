@@ -1,0 +1,3 @@
+task,gap_ms,n_original_windows,n_nonoverlap_windows,n_folders,accuracy,macro_f1,weighted_f1,classes,experiment
+surface,2000.0,951,493,36,0.9898580121703854,0.9893774917531823,0.989764026424791,"['asphalt', 'PVC', 'sand', 'gravel', 'grass']",stage2_surface_image_audio_concat_seed42
+activity,2000.0,2735,1417,105,1.0,1.0,1.0,"['walk', 'standing', 'sitting']",stage2_activity_imu_single_seed42

@@ -971,13 +971,3 @@ scripts/07_make_final_evaluation_tables.py
 scripts/08_sanity_check_m14_final.py
 ```
 
----
-
-## 22. Contact
-
-Author:
-
-```text
-Ziang Liu
-Bachelor thesis project: OnlyFeet multimodal HAR and surface recognition
-```
