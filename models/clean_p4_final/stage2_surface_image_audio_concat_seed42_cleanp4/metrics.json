@@ -1,0 +1,29 @@
+{
+  "accuracy": 0.9505783385909569,
+  "macro_f1": 0.9458577752905943,
+  "weighted_f1": 0.9496640939385093,
+  "n_eval": 951,
+  "classes": [
+    "asphalt",
+    "PVC",
+    "sand",
+    "gravel",
+    "grass"
+  ],
+  "model_params": 280613,
+  "task": "surface",
+  "modalities": [
+    "image",
+    "audio"
+  ],
+  "fusion": "concat",
+  "best_model": "models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5",
+  "model_size_mb": 3.3811187744140625,
+  "test_npz": "datasets_m14_rgb64_stage2/surface/dataset_test.npz",
+  "p4_used_for_training": false,
+  "p4_used_for_validation": false,
+  "p4_used_for_checkpoint_selection": false,
+  "p4_used_for_final_eval_only": true,
+  "validation_split_method": "folder_level_internal_validation",
+  "validation_split_ratio": 0.15
+}

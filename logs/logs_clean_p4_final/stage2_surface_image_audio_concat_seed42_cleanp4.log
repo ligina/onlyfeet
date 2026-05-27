@@ -1,0 +1,319 @@
+2026-05-24 09:20:48.002933: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-05-24 09:20:48.027618: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-05-24 09:20:48.027724: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-05-24 09:20:48.028636: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-05-24 09:20:48.032703: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[INFO] GPU detected: 1
+[INFO] CLEAN P4 TRAINING
+[INFO] task: surface
+[INFO] modalities: ['image', 'audio']
+[INFO] fusion: concat
+[INFO] train_npz: datasets_m14_rgb64_stage2/surface/dataset_train.npz
+[INFO] test_npz reserved for final eval: datasets_m14_rgb64_stage2/surface/dataset_test.npz
+[INFO] internal validation method: folder_level_internal_validation
+[INFO] internal train samples: 8709 internal val samples: 1590
+[INFO] class names: ['asphalt', 'PVC', 'sand', 'gravel', 'grass']
+[INFO] internal train bincount: [1414, 1485, 2524, 1769, 1517]
+[INFO] internal val bincount: [312, 288, 440, 269, 281]
+[INFO] input shapes: {'image': [64, 64, 6], 'audio': [40, 40, 1]}
+2026-05-24 09:20:54.888152: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1929] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 22149 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4090, pci bus id: 0000:02:00.0, compute capability: 8.9
+Model: "M14_image_audio_concat_classifier"
+__________________________________________________________________________________________________
+ Layer (type)                Output Shape                 Param #   Connected to                  
+==================================================================================================
+ image (InputLayer)          [(None, 64, 64, 6)]          0         []                            
+                                                                                                  
+ audio (InputLayer)          [(None, 40, 40, 1)]          0         []                            
+                                                                                                  
+ image_conv1 (Conv2D)        (None, 64, 64, 32)           1760      ['image[0][0]']               
+                                                                                                  
+ audio_conv1 (Conv2D)        (None, 40, 40, 32)           320       ['audio[0][0]']               
+                                                                                                  
+ image_bn1 (BatchNormalizat  (None, 64, 64, 32)           128       ['image_conv1[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ audio_bn1 (BatchNormalizat  (None, 40, 40, 32)           128       ['audio_conv1[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ image_pool1 (MaxPooling2D)  (None, 32, 32, 32)           0         ['image_bn1[0][0]']           
+                                                                                                  
+ audio_pool1 (MaxPooling2D)  (None, 20, 20, 32)           0         ['audio_bn1[0][0]']           
+                                                                                                  
+ image_conv2 (Conv2D)        (None, 32, 32, 64)           18496     ['image_pool1[0][0]']         
+                                                                                                  
+ audio_conv2 (Conv2D)        (None, 20, 20, 64)           18496     ['audio_pool1[0][0]']         
+                                                                                                  
+ image_bn2 (BatchNormalizat  (None, 32, 32, 64)           256       ['image_conv2[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ audio_bn2 (BatchNormalizat  (None, 20, 20, 64)           256       ['audio_conv2[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ image_pool2 (MaxPooling2D)  (None, 16, 16, 64)           0         ['image_bn2[0][0]']           
+                                                                                                  
+ audio_pool2 (MaxPooling2D)  (None, 10, 10, 64)           0         ['audio_bn2[0][0]']           
+                                                                                                  
+ image_conv3 (Conv2D)        (None, 16, 16, 128)          73856     ['image_pool2[0][0]']         
+                                                                                                  
+ audio_conv3 (Conv2D)        (None, 10, 10, 128)          73856     ['audio_pool2[0][0]']         
+                                                                                                  
+ image_bn3 (BatchNormalizat  (None, 16, 16, 128)          512       ['image_conv3[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ audio_bn3 (BatchNormalizat  (None, 10, 10, 128)          512       ['audio_conv3[0][0]']         
+ ion)                                                                                             
+                                                                                                  
+ image_gap (GlobalAveragePo  (None, 128)                  0         ['image_bn3[0][0]']           
+ oling2D)                                                                                         
+                                                                                                  
+ audio_gap (GlobalAveragePo  (None, 128)                  0         ['audio_bn3[0][0]']           
+ oling2D)                                                                                         
+                                                                                                  
+ image_feat (Dense)          (None, 128)                  16512     ['image_gap[0][0]']           
+                                                                                                  
+ audio_feat (Dense)          (None, 128)                  16512     ['audio_gap[0][0]']           
+                                                                                                  
+ image_dropout (Dropout)     (None, 128)                  0         ['image_feat[0][0]']          
+                                                                                                  
+ audio_dropout (Dropout)     (None, 128)                  0         ['audio_feat[0][0]']          
+                                                                                                  
+ concat_fusion (Concatenate  (None, 256)                  0         ['image_dropout[0][0]',       
+ )                                                                   'audio_dropout[0][0]']       
+                                                                                                  
+ concat_fused_dense (Dense)  (None, 128)                  32896     ['concat_fusion[0][0]']       
+                                                                                                  
+ concat_fused_bn (BatchNorm  (None, 128)                  512       ['concat_fused_dense[0][0]']  
+ alization)                                                                                       
+                                                                                                  
+ concat_fused_dropout (Drop  (None, 128)                  0         ['concat_fused_bn[0][0]']     
+ out)                                                                                             
+                                                                                                  
+ head_dense1 (Dense)         (None, 128)                  16512     ['concat_fused_dropout[0][0]']
+                                                                                                  
+ head_bn1 (BatchNormalizati  (None, 128)                  512       ['head_dense1[0][0]']         
+ on)                                                                                              
+                                                                                                  
+ head_dropout1 (Dropout)     (None, 128)                  0         ['head_bn1[0][0]']            
+                                                                                                  
+ head_dense2 (Dense)         (None, 64)                   8256      ['head_dropout1[0][0]']       
+                                                                                                  
+ head_dropout2 (Dropout)     (None, 64)                   0         ['head_dense2[0][0]']         
+                                                                                                  
+ output (Dense)              (None, 5)                    325       ['head_dropout2[0][0]']       
+                                                                                                  
+==================================================================================================
+Total params: 280613 (1.07 MB)
+Trainable params: 279205 (1.07 MB)
+Non-trainable params: 1408 (5.50 KB)
+__________________________________________________________________________________________________
+Epoch 1/100
+2026-05-24 09:20:56.958511: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:454] Loaded cuDNN version 8907
+2026-05-24 09:20:57.676251: I external/local_xla/xla/service/service.cc:168] XLA service 0x711446d5c6e0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2026-05-24 09:20:57.676364: I external/local_xla/xla/service/service.cc:176]   StreamExecutor device (0): NVIDIA GeForce RTX 4090, Compute Capability 8.9
+2026-05-24 09:20:57.679233: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1779614457.732300    6143 device_compiler.h:186] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+
+Epoch 1: val_loss improved from inf to 1.74505, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+/usr/local/lib/python3.11/dist-packages/keras/src/engine/training.py:3103: UserWarning: You are saving your model as an HDF5 file via `model.save()`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')`.
+  saving_api.save_model(
+273/273 - 5s - loss: 1.1117 - accuracy: 0.6630 - val_loss: 1.7451 - val_accuracy: 0.4233 - lr: 5.0000e-04 - 5s/epoch - 19ms/step
+Epoch 2/100
+
+Epoch 2: val_loss improved from 1.74505 to 0.62355, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.5728 - accuracy: 0.9069 - val_loss: 0.6236 - val_accuracy: 0.9484 - lr: 5.0000e-04 - 1s/epoch - 5ms/step
+Epoch 3/100
+
+Epoch 3: val_loss improved from 0.62355 to 0.55615, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.4908 - accuracy: 0.9416 - val_loss: 0.5561 - val_accuracy: 0.9541 - lr: 5.0000e-04 - 1s/epoch - 5ms/step
+Epoch 4/100
+
+Epoch 4: val_loss improved from 0.55615 to 0.49747, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.4299 - accuracy: 0.9644 - val_loss: 0.4975 - val_accuracy: 0.9667 - lr: 5.0000e-04 - 1s/epoch - 5ms/step
+Epoch 5/100
+
+Epoch 5: val_loss improved from 0.49747 to 0.47044, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.4098 - accuracy: 0.9700 - val_loss: 0.4704 - val_accuracy: 0.9648 - lr: 5.0000e-04 - 1s/epoch - 5ms/step
+Epoch 6/100
+
+Epoch 6: val_loss did not improve from 0.47044
+273/273 - 1s - loss: 0.3838 - accuracy: 0.9789 - val_loss: 0.4728 - val_accuracy: 0.9604 - lr: 5.0000e-04 - 1s/epoch - 5ms/step
+Epoch 7/100
+
+Epoch 7: val_loss improved from 0.47044 to 0.37618, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.3989 - accuracy: 0.9703 - val_loss: 0.3762 - val_accuracy: 0.9811 - lr: 5.0000e-04 - 1s/epoch - 4ms/step
+Epoch 8/100
+
+Epoch 8: val_loss improved from 0.37618 to 0.37508, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.3611 - accuracy: 0.9839 - val_loss: 0.3751 - val_accuracy: 0.9799 - lr: 5.0000e-04 - 1s/epoch - 5ms/step
+Epoch 9/100
+
+Epoch 9: val_loss did not improve from 0.37508
+273/273 - 1s - loss: 0.3512 - accuracy: 0.9878 - val_loss: 0.3901 - val_accuracy: 0.9742 - lr: 5.0000e-04 - 1s/epoch - 5ms/step
+Epoch 10/100
+
+Epoch 10: val_loss did not improve from 0.37508
+273/273 - 1s - loss: 0.3533 - accuracy: 0.9850 - val_loss: 0.3893 - val_accuracy: 0.9723 - lr: 5.0000e-04 - 1s/epoch - 5ms/step
+Epoch 11/100
+
+Epoch 11: val_loss did not improve from 0.37508
+273/273 - 1s - loss: 0.3361 - accuracy: 0.9901 - val_loss: 0.3850 - val_accuracy: 0.9679 - lr: 5.0000e-04 - 1s/epoch - 5ms/step
+Epoch 12/100
+
+Epoch 12: val_loss did not improve from 0.37508
+273/273 - 1s - loss: 0.3515 - accuracy: 0.9848 - val_loss: 0.3933 - val_accuracy: 0.9730 - lr: 5.0000e-04 - 1s/epoch - 4ms/step
+Epoch 13/100
+
+Epoch 13: val_loss did not improve from 0.37508
+
+Epoch 13: ReduceLROnPlateau reducing learning rate to 0.0002500000118743628.
+273/273 - 1s - loss: 0.3414 - accuracy: 0.9869 - val_loss: 0.3822 - val_accuracy: 0.9736 - lr: 5.0000e-04 - 1s/epoch - 4ms/step
+Epoch 14/100
+
+Epoch 14: val_loss improved from 0.37508 to 0.34734, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.3200 - accuracy: 0.9949 - val_loss: 0.3473 - val_accuracy: 0.9843 - lr: 2.5000e-04 - 1s/epoch - 4ms/step
+Epoch 15/100
+
+Epoch 15: val_loss improved from 0.34734 to 0.34522, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.3143 - accuracy: 0.9960 - val_loss: 0.3452 - val_accuracy: 0.9843 - lr: 2.5000e-04 - 1s/epoch - 4ms/step
+Epoch 16/100
+
+Epoch 16: val_loss did not improve from 0.34522
+273/273 - 1s - loss: 0.3143 - accuracy: 0.9964 - val_loss: 0.3530 - val_accuracy: 0.9811 - lr: 2.5000e-04 - 1s/epoch - 4ms/step
+Epoch 17/100
+
+Epoch 17: val_loss did not improve from 0.34522
+273/273 - 1s - loss: 0.3126 - accuracy: 0.9952 - val_loss: 0.3577 - val_accuracy: 0.9786 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 18/100
+
+Epoch 18: val_loss improved from 0.34522 to 0.34044, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.3149 - accuracy: 0.9944 - val_loss: 0.3404 - val_accuracy: 0.9849 - lr: 2.5000e-04 - 1s/epoch - 4ms/step
+Epoch 19/100
+
+Epoch 19: val_loss improved from 0.34044 to 0.33628, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.3106 - accuracy: 0.9959 - val_loss: 0.3363 - val_accuracy: 0.9830 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 20/100
+
+Epoch 20: val_loss did not improve from 0.33628
+273/273 - 1s - loss: 0.3086 - accuracy: 0.9952 - val_loss: 0.3401 - val_accuracy: 0.9748 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 21/100
+
+Epoch 21: val_loss improved from 0.33628 to 0.32640, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.3117 - accuracy: 0.9949 - val_loss: 0.3264 - val_accuracy: 0.9855 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 22/100
+
+Epoch 22: val_loss improved from 0.32640 to 0.32268, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.3030 - accuracy: 0.9967 - val_loss: 0.3227 - val_accuracy: 0.9855 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 23/100
+
+Epoch 23: val_loss did not improve from 0.32268
+273/273 - 1s - loss: 0.3088 - accuracy: 0.9944 - val_loss: 0.3578 - val_accuracy: 0.9748 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 24/100
+
+Epoch 24: val_loss improved from 0.32268 to 0.30528, saving model to models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5
+273/273 - 1s - loss: 0.3048 - accuracy: 0.9953 - val_loss: 0.3053 - val_accuracy: 0.9824 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 25/100
+
+Epoch 25: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.3003 - accuracy: 0.9970 - val_loss: 0.3261 - val_accuracy: 0.9855 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 26/100
+
+Epoch 26: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.2974 - accuracy: 0.9969 - val_loss: 0.3450 - val_accuracy: 0.9748 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 27/100
+
+Epoch 27: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.3007 - accuracy: 0.9961 - val_loss: 0.3204 - val_accuracy: 0.9843 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 28/100
+
+Epoch 28: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.2972 - accuracy: 0.9961 - val_loss: 0.3331 - val_accuracy: 0.9836 - lr: 2.5000e-04 - 1s/epoch - 5ms/step
+Epoch 29/100
+
+Epoch 29: val_loss did not improve from 0.30528
+
+Epoch 29: ReduceLROnPlateau reducing learning rate to 0.0001250000059371814.
+273/273 - 1s - loss: 0.2947 - accuracy: 0.9971 - val_loss: 0.3372 - val_accuracy: 0.9830 - lr: 2.5000e-04 - 1s/epoch - 4ms/step
+Epoch 30/100
+
+Epoch 30: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.2938 - accuracy: 0.9971 - val_loss: 0.3161 - val_accuracy: 0.9862 - lr: 1.2500e-04 - 1s/epoch - 5ms/step
+Epoch 31/100
+
+Epoch 31: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.2902 - accuracy: 0.9985 - val_loss: 0.3324 - val_accuracy: 0.9855 - lr: 1.2500e-04 - 1s/epoch - 4ms/step
+Epoch 32/100
+
+Epoch 32: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.2895 - accuracy: 0.9977 - val_loss: 0.3251 - val_accuracy: 0.9855 - lr: 1.2500e-04 - 1s/epoch - 5ms/step
+Epoch 33/100
+
+Epoch 33: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.2866 - accuracy: 0.9986 - val_loss: 0.3299 - val_accuracy: 0.9836 - lr: 1.2500e-04 - 1s/epoch - 4ms/step
+Epoch 34/100
+
+Epoch 34: val_loss did not improve from 0.30528
+
+Epoch 34: ReduceLROnPlateau reducing learning rate to 6.25000029685907e-05.
+273/273 - 1s - loss: 0.2879 - accuracy: 0.9984 - val_loss: 0.3186 - val_accuracy: 0.9855 - lr: 1.2500e-04 - 1s/epoch - 5ms/step
+Epoch 35/100
+
+Epoch 35: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.2851 - accuracy: 0.9983 - val_loss: 0.3096 - val_accuracy: 0.9862 - lr: 6.2500e-05 - 1s/epoch - 4ms/step
+Epoch 36/100
+
+Epoch 36: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.2891 - accuracy: 0.9976 - val_loss: 0.3309 - val_accuracy: 0.9824 - lr: 6.2500e-05 - 1s/epoch - 4ms/step
+Epoch 37/100
+
+Epoch 37: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.2850 - accuracy: 0.9986 - val_loss: 0.3291 - val_accuracy: 0.9836 - lr: 6.2500e-05 - 1s/epoch - 4ms/step
+Epoch 38/100
+
+Epoch 38: val_loss did not improve from 0.30528
+273/273 - 1s - loss: 0.2860 - accuracy: 0.9987 - val_loss: 0.3278 - val_accuracy: 0.9849 - lr: 6.2500e-05 - 1s/epoch - 4ms/step
+Epoch 39/100
+
+Epoch 39: val_loss did not improve from 0.30528
+
+Epoch 39: ReduceLROnPlateau reducing learning rate to 3.125000148429535e-05.
+273/273 - 1s - loss: 0.2830 - accuracy: 0.9990 - val_loss: 0.3304 - val_accuracy: 0.9830 - lr: 6.2500e-05 - 1s/epoch - 4ms/step
+Epoch 40/100
+
+Epoch 40: val_loss did not improve from 0.30528
+Restoring model weights from the end of the best epoch: 24.
+273/273 - 1s - loss: 0.2827 - accuracy: 0.9989 - val_loss: 0.3291 - val_accuracy: 0.9824 - lr: 3.1250e-05 - 1s/epoch - 4ms/step
+Epoch 40: early stopping
+[INFO] Loading P4 test NPZ for final evaluation only: datasets_m14_rgb64_stage2/surface/dataset_test.npz
+ 1/30 [>.............................] - ETA: 2s30/30 [==============================] - ETA: 0s30/30 [==============================] - 0s 3ms/step
+[DONE CLEAN P4]
+{
+  "accuracy": 0.9505783385909569,
+  "macro_f1": 0.9458577752905943,
+  "weighted_f1": 0.9496640939385093,
+  "n_eval": 951,
+  "classes": [
+    "asphalt",
+    "PVC",
+    "sand",
+    "gravel",
+    "grass"
+  ],
+  "model_params": 280613,
+  "task": "surface",
+  "modalities": [
+    "image",
+    "audio"
+  ],
+  "fusion": "concat",
+  "best_model": "models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5",
+  "model_size_mb": 3.3811187744140625,
+  "test_npz": "datasets_m14_rgb64_stage2/surface/dataset_test.npz",
+  "p4_used_for_training": false,
+  "p4_used_for_validation": false,
+  "p4_used_for_checkpoint_selection": false,
+  "p4_used_for_final_eval_only": true,
+  "validation_split_method": "folder_level_internal_validation",
+  "validation_split_ratio": 0.15
+}

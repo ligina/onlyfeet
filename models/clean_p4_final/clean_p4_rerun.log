@@ -1,0 +1,10 @@
+nohup: ignoring input
+======================================================================
+[RUN CLEAN P4] stage2_activity_imu_single_seed42_cleanp4
+======================================================================
+[DONE CLEAN P4] stage2_activity_imu_single_seed42_cleanp4
+======================================================================
+[RUN CLEAN P4] stage2_surface_image_audio_concat_seed42_cleanp4
+======================================================================
+[DONE CLEAN P4] stage2_surface_image_audio_concat_seed42_cleanp4
+[DONE] Clean-P4 Stage 2 final-model reruns complete.

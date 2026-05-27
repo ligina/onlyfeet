@@ -1,0 +1,17 @@
+{
+  "task": "surface",
+  "gap_ms": 2000.0,
+  "n_original_windows": 951,
+  "n_nonoverlap_windows": 493,
+  "n_folders": 36,
+  "accuracy": 0.9898580121703854,
+  "macro_f1": 0.9893774917531823,
+  "weighted_f1": 0.989764026424791,
+  "classes": [
+    "asphalt",
+    "PVC",
+    "sand",
+    "gravel",
+    "grass"
+  ]
+}
