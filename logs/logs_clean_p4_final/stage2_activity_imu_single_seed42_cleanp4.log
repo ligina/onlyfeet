@@ -1,0 +1,287 @@
+2026-05-24 09:18:54.177260: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-05-24 09:18:54.208631: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-05-24 09:18:54.208728: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-05-24 09:18:54.209695: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-05-24 09:18:54.214566: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[INFO] GPU detected: 1
+[INFO] CLEAN P4 TRAINING
+[INFO] task: activity
+[INFO] modalities: ['imu']
+[INFO] fusion: single
+[INFO] train_npz: datasets_m14_rgb64_stage2/activity/dataset_train.npz
+[INFO] test_npz reserved for final eval: datasets_m14_rgb64_stage2/activity/dataset_test.npz
+[INFO] internal validation method: folder_level_internal_validation
+[INFO] internal train samples: 25343 internal val samples: 4445
+[INFO] class names: ['walk', 'standing', 'sitting']
+[INFO] internal train bincount: [8740, 7843, 8760]
+[INFO] internal val bincount: [1559, 1497, 1389]
+[INFO] input shapes: {'imu': [50, 8]}
+2026-05-24 09:18:56.342529: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1929] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 22149 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4090, pci bus id: 0000:02:00.0, compute capability: 8.9
+Model: "M14_imu_single_classifier"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ imu (InputLayer)            [(None, 50, 8)]           0         
+                                                                 
+ imu_conv1 (Conv1D)          (None, 50, 64)            2624      
+                                                                 
+ imu_bn1 (BatchNormalizatio  (None, 50, 64)            256       
+ n)                                                              
+                                                                 
+ imu_pool1 (MaxPooling1D)    (None, 25, 64)            0         
+                                                                 
+ imu_conv2 (Conv1D)          (None, 25, 128)           24704     
+                                                                 
+ imu_bn2 (BatchNormalizatio  (None, 25, 128)           512       
+ n)                                                              
+                                                                 
+ imu_gru (GRU)               (None, 64)                37248     
+                                                                 
+ imu_feat (Dense)            (None, 128)               8320      
+                                                                 
+ imu_dropout (Dropout)       (None, 128)               0         
+                                                                 
+ head_dense1 (Dense)         (None, 128)               16512     
+                                                                 
+ head_bn1 (BatchNormalizati  (None, 128)               512       
+ on)                                                             
+                                                                 
+ head_dropout1 (Dropout)     (None, 128)               0         
+                                                                 
+ head_dense2 (Dense)         (None, 64)                8256      
+                                                                 
+ head_dropout2 (Dropout)     (None, 64)                0         
+                                                                 
+ output (Dense)              (None, 3)                 195       
+                                                                 
+=================================================================
+Total params: 99139 (387.26 KB)
+Trainable params: 98499 (384.76 KB)
+Non-trainable params: 640 (2.50 KB)
+_________________________________________________________________
+Epoch 1/100
+2026-05-24 09:18:57.999742: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:454] Loaded cuDNN version 8907
+2026-05-24 09:18:58.857476: I external/local_xla/xla/service/service.cc:168] XLA service 0x703934d9d350 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2026-05-24 09:18:58.857584: I external/local_xla/xla/service/service.cc:176]   StreamExecutor device (0): NVIDIA GeForce RTX 4090, Compute Capability 8.9
+2026-05-24 09:18:58.860917: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1779614338.905535    2820 device_compiler.h:186] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+
+Epoch 1: val_loss improved from inf to 0.25748, saving model to models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5
+/usr/local/lib/python3.11/dist-packages/keras/src/engine/training.py:3103: UserWarning: You are saving your model as an HDF5 file via `model.save()`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')`.
+  saving_api.save_model(
+792/792 - 6s - loss: 0.3950 - accuracy: 0.9202 - val_loss: 0.2575 - val_accuracy: 0.9780 - lr: 5.0000e-04 - 6s/epoch - 8ms/step
+Epoch 2/100
+
+Epoch 2: val_loss improved from 0.25748 to 0.22858, saving model to models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5
+792/792 - 2s - loss: 0.2586 - accuracy: 0.9842 - val_loss: 0.2286 - val_accuracy: 0.9872 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 3/100
+
+Epoch 3: val_loss improved from 0.22858 to 0.22173, saving model to models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5
+792/792 - 3s - loss: 0.2417 - accuracy: 0.9878 - val_loss: 0.2217 - val_accuracy: 0.9888 - lr: 5.0000e-04 - 3s/epoch - 3ms/step
+Epoch 4/100
+
+Epoch 4: val_loss improved from 0.22173 to 0.21638, saving model to models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5
+792/792 - 3s - loss: 0.2325 - accuracy: 0.9900 - val_loss: 0.2164 - val_accuracy: 0.9912 - lr: 5.0000e-04 - 3s/epoch - 3ms/step
+Epoch 5/100
+
+Epoch 5: val_loss did not improve from 0.21638
+792/792 - 2s - loss: 0.2269 - accuracy: 0.9912 - val_loss: 0.2344 - val_accuracy: 0.9856 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 6/100
+
+Epoch 6: val_loss did not improve from 0.21638
+792/792 - 2s - loss: 0.2215 - accuracy: 0.9928 - val_loss: 0.2396 - val_accuracy: 0.9852 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 7/100
+
+Epoch 7: val_loss improved from 0.21638 to 0.20549, saving model to models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5
+792/792 - 2s - loss: 0.2178 - accuracy: 0.9933 - val_loss: 0.2055 - val_accuracy: 0.9930 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 8/100
+
+Epoch 8: val_loss did not improve from 0.20549
+792/792 - 2s - loss: 0.2165 - accuracy: 0.9934 - val_loss: 0.2108 - val_accuracy: 0.9915 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 9/100
+
+Epoch 9: val_loss did not improve from 0.20549
+792/792 - 2s - loss: 0.2108 - accuracy: 0.9951 - val_loss: 0.2070 - val_accuracy: 0.9910 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 10/100
+
+Epoch 10: val_loss improved from 0.20549 to 0.20340, saving model to models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5
+792/792 - 2s - loss: 0.2101 - accuracy: 0.9946 - val_loss: 0.2034 - val_accuracy: 0.9928 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 11/100
+
+Epoch 11: val_loss did not improve from 0.20340
+792/792 - 2s - loss: 0.2097 - accuracy: 0.9942 - val_loss: 0.2174 - val_accuracy: 0.9858 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 12/100
+
+Epoch 12: val_loss did not improve from 0.20340
+792/792 - 2s - loss: 0.2067 - accuracy: 0.9952 - val_loss: 0.2069 - val_accuracy: 0.9912 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 13/100
+
+Epoch 13: val_loss did not improve from 0.20340
+792/792 - 2s - loss: 0.2059 - accuracy: 0.9953 - val_loss: 0.2120 - val_accuracy: 0.9863 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 14/100
+
+Epoch 14: val_loss did not improve from 0.20340
+792/792 - 2s - loss: 0.2053 - accuracy: 0.9946 - val_loss: 0.2274 - val_accuracy: 0.9845 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 15/100
+
+Epoch 15: val_loss did not improve from 0.20340
+
+Epoch 15: ReduceLROnPlateau reducing learning rate to 0.0002500000118743628.
+792/792 - 2s - loss: 0.2027 - accuracy: 0.9953 - val_loss: 0.2077 - val_accuracy: 0.9921 - lr: 5.0000e-04 - 2s/epoch - 3ms/step
+Epoch 16/100
+
+Epoch 16: val_loss improved from 0.20340 to 0.19271, saving model to models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5
+792/792 - 2s - loss: 0.1977 - accuracy: 0.9972 - val_loss: 0.1927 - val_accuracy: 0.9960 - lr: 2.5000e-04 - 2s/epoch - 3ms/step
+Epoch 17/100
+
+Epoch 17: val_loss did not improve from 0.19271
+792/792 - 2s - loss: 0.1972 - accuracy: 0.9970 - val_loss: 0.1990 - val_accuracy: 0.9942 - lr: 2.5000e-04 - 2s/epoch - 3ms/step
+Epoch 18/100
+
+Epoch 18: val_loss did not improve from 0.19271
+792/792 - 2s - loss: 0.1982 - accuracy: 0.9964 - val_loss: 0.2021 - val_accuracy: 0.9928 - lr: 2.5000e-04 - 2s/epoch - 3ms/step
+Epoch 19/100
+
+Epoch 19: val_loss did not improve from 0.19271
+792/792 - 2s - loss: 0.1960 - accuracy: 0.9970 - val_loss: 0.1980 - val_accuracy: 0.9944 - lr: 2.5000e-04 - 2s/epoch - 3ms/step
+Epoch 20/100
+
+Epoch 20: val_loss did not improve from 0.19271
+792/792 - 2s - loss: 0.1944 - accuracy: 0.9972 - val_loss: 0.1931 - val_accuracy: 0.9948 - lr: 2.5000e-04 - 2s/epoch - 3ms/step
+Epoch 21/100
+
+Epoch 21: val_loss did not improve from 0.19271
+
+Epoch 21: ReduceLROnPlateau reducing learning rate to 0.0001250000059371814.
+792/792 - 2s - loss: 0.1952 - accuracy: 0.9970 - val_loss: 0.1975 - val_accuracy: 0.9944 - lr: 2.5000e-04 - 2s/epoch - 3ms/step
+Epoch 22/100
+
+Epoch 22: val_loss did not improve from 0.19271
+792/792 - 2s - loss: 0.1925 - accuracy: 0.9978 - val_loss: 0.1985 - val_accuracy: 0.9928 - lr: 1.2500e-04 - 2s/epoch - 3ms/step
+Epoch 23/100
+
+Epoch 23: val_loss did not improve from 0.19271
+792/792 - 2s - loss: 0.1921 - accuracy: 0.9979 - val_loss: 0.2051 - val_accuracy: 0.9912 - lr: 1.2500e-04 - 2s/epoch - 3ms/step
+Epoch 24/100
+
+Epoch 24: val_loss did not improve from 0.19271
+792/792 - 2s - loss: 0.1904 - accuracy: 0.9983 - val_loss: 0.2003 - val_accuracy: 0.9928 - lr: 1.2500e-04 - 2s/epoch - 3ms/step
+Epoch 25/100
+
+Epoch 25: val_loss improved from 0.19271 to 0.19180, saving model to models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5
+792/792 - 2s - loss: 0.1902 - accuracy: 0.9981 - val_loss: 0.1918 - val_accuracy: 0.9942 - lr: 1.2500e-04 - 2s/epoch - 3ms/step
+Epoch 26/100
+
+Epoch 26: val_loss did not improve from 0.19180
+792/792 - 2s - loss: 0.1896 - accuracy: 0.9982 - val_loss: 0.1950 - val_accuracy: 0.9939 - lr: 1.2500e-04 - 2s/epoch - 3ms/step
+Epoch 27/100
+
+Epoch 27: val_loss did not improve from 0.19180
+792/792 - 2s - loss: 0.1898 - accuracy: 0.9982 - val_loss: 0.1978 - val_accuracy: 0.9937 - lr: 1.2500e-04 - 2s/epoch - 3ms/step
+Epoch 28/100
+
+Epoch 28: val_loss improved from 0.19180 to 0.18915, saving model to models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5
+792/792 - 3s - loss: 0.1888 - accuracy: 0.9981 - val_loss: 0.1892 - val_accuracy: 0.9953 - lr: 1.2500e-04 - 3s/epoch - 3ms/step
+Epoch 29/100
+
+Epoch 29: val_loss did not improve from 0.18915
+792/792 - 2s - loss: 0.1891 - accuracy: 0.9983 - val_loss: 0.1977 - val_accuracy: 0.9935 - lr: 1.2500e-04 - 2s/epoch - 3ms/step
+Epoch 30/100
+
+Epoch 30: val_loss did not improve from 0.18915
+792/792 - 3s - loss: 0.1892 - accuracy: 0.9981 - val_loss: 0.1997 - val_accuracy: 0.9917 - lr: 1.2500e-04 - 3s/epoch - 3ms/step
+Epoch 31/100
+
+Epoch 31: val_loss did not improve from 0.18915
+792/792 - 2s - loss: 0.1896 - accuracy: 0.9979 - val_loss: 0.2032 - val_accuracy: 0.9924 - lr: 1.2500e-04 - 2s/epoch - 3ms/step
+Epoch 32/100
+
+Epoch 32: val_loss did not improve from 0.18915
+792/792 - 2s - loss: 0.1877 - accuracy: 0.9981 - val_loss: 0.1953 - val_accuracy: 0.9937 - lr: 1.2500e-04 - 2s/epoch - 3ms/step
+Epoch 33/100
+
+Epoch 33: val_loss did not improve from 0.18915
+
+Epoch 33: ReduceLROnPlateau reducing learning rate to 6.25000029685907e-05.
+792/792 - 2s - loss: 0.1874 - accuracy: 0.9984 - val_loss: 0.2025 - val_accuracy: 0.9924 - lr: 1.2500e-04 - 2s/epoch - 3ms/step
+Epoch 34/100
+
+Epoch 34: val_loss did not improve from 0.18915
+792/792 - 2s - loss: 0.1865 - accuracy: 0.9987 - val_loss: 0.1975 - val_accuracy: 0.9933 - lr: 6.2500e-05 - 2s/epoch - 3ms/step
+Epoch 35/100
+
+Epoch 35: val_loss did not improve from 0.18915
+792/792 - 2s - loss: 0.1864 - accuracy: 0.9988 - val_loss: 0.1938 - val_accuracy: 0.9944 - lr: 6.2500e-05 - 2s/epoch - 3ms/step
+Epoch 36/100
+
+Epoch 36: val_loss did not improve from 0.18915
+792/792 - 2s - loss: 0.1857 - accuracy: 0.9989 - val_loss: 0.2001 - val_accuracy: 0.9928 - lr: 6.2500e-05 - 2s/epoch - 3ms/step
+Epoch 37/100
+
+Epoch 37: val_loss did not improve from 0.18915
+792/792 - 2s - loss: 0.1856 - accuracy: 0.9989 - val_loss: 0.2009 - val_accuracy: 0.9926 - lr: 6.2500e-05 - 2s/epoch - 3ms/step
+Epoch 38/100
+
+Epoch 38: val_loss did not improve from 0.18915
+
+Epoch 38: ReduceLROnPlateau reducing learning rate to 3.125000148429535e-05.
+792/792 - 2s - loss: 0.1860 - accuracy: 0.9989 - val_loss: 0.2065 - val_accuracy: 0.9912 - lr: 6.2500e-05 - 2s/epoch - 3ms/step
+Epoch 39/100
+
+Epoch 39: val_loss did not improve from 0.18915
+792/792 - 2s - loss: 0.1857 - accuracy: 0.9991 - val_loss: 0.1957 - val_accuracy: 0.9935 - lr: 3.1250e-05 - 2s/epoch - 3ms/step
+Epoch 40/100
+
+Epoch 40: val_loss did not improve from 0.18915
+792/792 - 2s - loss: 0.1850 - accuracy: 0.9989 - val_loss: 0.1956 - val_accuracy: 0.9935 - lr: 3.1250e-05 - 2s/epoch - 3ms/step
+Epoch 41/100
+
+Epoch 41: val_loss did not improve from 0.18915
+792/792 - 2s - loss: 0.1853 - accuracy: 0.9989 - val_loss: 0.1933 - val_accuracy: 0.9946 - lr: 3.1250e-05 - 2s/epoch - 3ms/step
+Epoch 42/100
+
+Epoch 42: val_loss did not improve from 0.18915
+792/792 - 3s - loss: 0.1852 - accuracy: 0.9989 - val_loss: 0.1939 - val_accuracy: 0.9942 - lr: 3.1250e-05 - 3s/epoch - 3ms/step
+Epoch 43/100
+
+Epoch 43: val_loss did not improve from 0.18915
+
+Epoch 43: ReduceLROnPlateau reducing learning rate to 1.5625000742147677e-05.
+792/792 - 2s - loss: 0.1845 - accuracy: 0.9993 - val_loss: 0.1944 - val_accuracy: 0.9942 - lr: 3.1250e-05 - 2s/epoch - 3ms/step
+Epoch 44/100
+
+Epoch 44: val_loss did not improve from 0.18915
+Restoring model weights from the end of the best epoch: 28.
+792/792 - 2s - loss: 0.1847 - accuracy: 0.9991 - val_loss: 0.1936 - val_accuracy: 0.9944 - lr: 1.5625e-05 - 2s/epoch - 3ms/step
+Epoch 44: early stopping
+[INFO] Loading P4 test NPZ for final evaluation only: datasets_m14_rgb64_stage2/activity/dataset_test.npz
+ 1/86 [..............................] - ETA: 14s66/86 [======================>.......] - ETA: 0s 86/86 [==============================] - 0s 1ms/step
+[DONE CLEAN P4]
+{
+  "accuracy": 0.9996343692870201,
+  "macro_f1": 0.9996338160076007,
+  "weighted_f1": 0.9996343605886969,
+  "n_eval": 2735,
+  "classes": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "model_params": 99139,
+  "task": "activity",
+  "modalities": [
+    "imu"
+  ],
+  "fusion": "single",
+  "best_model": "models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5",
+  "model_size_mb": 1.2244720458984375,
+  "test_npz": "datasets_m14_rgb64_stage2/activity/dataset_test.npz",
+  "p4_used_for_training": false,
+  "p4_used_for_validation": false,
+  "p4_used_for_checkpoint_selection": false,
+  "p4_used_for_final_eval_only": true,
+  "validation_split_method": "folder_level_internal_validation",
+  "validation_split_ratio": 0.15
+}

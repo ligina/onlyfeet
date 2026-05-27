@@ -1,0 +1,88 @@
+{
+  "task": "activity",
+  "modalities": "imu",
+  "fusion": "single",
+  "train_npz": "datasets_m14_rgb64_stage2/activity/dataset_train.npz",
+  "test_npz": "datasets_m14_rgb64_stage2/activity/dataset_test.npz",
+  "card": "datasets_m14_rgb64_stage2/activity/dataset_card.json",
+  "out_dir": "models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4",
+  "epochs": 100,
+  "batch": 32,
+  "lr": 0.0005,
+  "dropout": 0.35,
+  "l2": 0.0001,
+  "feature_dim": 128,
+  "patience": 16,
+  "label_smoothing": 0.05,
+  "seed": 42,
+  "no_imu_magnitude": false,
+  "monitor": "val_loss",
+  "validation_split_ratio": 0.15,
+  "modalities_parsed": [
+    "imu"
+  ],
+  "input_shapes": {
+    "imu": [
+      50,
+      8
+    ]
+  },
+  "class_names": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "internal_val_source": "train_npz only",
+  "train_samples_total_valid": 29788,
+  "internal_train_samples": 25343,
+  "internal_val_samples": 4445,
+  "internal_train_bincount": [
+    8740,
+    7843,
+    8760
+  ],
+  "internal_val_bincount": [
+    1559,
+    1497,
+    1389
+  ],
+  "validation_split_method": "folder_level_internal_validation",
+  "validation_group_key": "folder",
+  "validation_train_groups": 899,
+  "validation_val_groups": 159,
+  "validation_group_overlap_count": 0,
+  "validation_limitation": null,
+  "normalization_fit_source": "internal training partition only",
+  "callbacks": [
+    {
+      "name": "ModelCheckpoint",
+      "monitor": "val_loss",
+      "mode": "min",
+      "save_best_only": true,
+      "path": "models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5"
+    },
+    {
+      "name": "ReduceLROnPlateau",
+      "monitor": "val_loss",
+      "mode": "min",
+      "factor": 0.5,
+      "patience": 5,
+      "min_lr": 1e-06
+    },
+    {
+      "name": "EarlyStopping",
+      "monitor": "val_loss",
+      "mode": "min",
+      "patience": 16,
+      "restore_best_weights": true
+    },
+    {
+      "name": "CSVLogger",
+      "path": "models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/training_log.csv"
+    }
+  ],
+  "p4_used_for_training": false,
+  "p4_used_for_validation": false,
+  "p4_used_for_checkpoint_selection": false,
+  "p4_used_for_final_eval_only": true
+}

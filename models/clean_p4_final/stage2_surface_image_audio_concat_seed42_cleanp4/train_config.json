@@ -1,0 +1,101 @@
+{
+  "task": "surface",
+  "modalities": "image,audio",
+  "fusion": "concat",
+  "train_npz": "datasets_m14_rgb64_stage2/surface/dataset_train.npz",
+  "test_npz": "datasets_m14_rgb64_stage2/surface/dataset_test.npz",
+  "card": "datasets_m14_rgb64_stage2/surface/dataset_card.json",
+  "out_dir": "models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4",
+  "epochs": 100,
+  "batch": 32,
+  "lr": 0.0005,
+  "dropout": 0.4,
+  "l2": 0.0001,
+  "feature_dim": 128,
+  "patience": 16,
+  "label_smoothing": 0.05,
+  "seed": 42,
+  "no_imu_magnitude": false,
+  "monitor": "val_loss",
+  "validation_split_ratio": 0.15,
+  "modalities_parsed": [
+    "image",
+    "audio"
+  ],
+  "input_shapes": {
+    "image": [
+      64,
+      64,
+      6
+    ],
+    "audio": [
+      40,
+      40,
+      1
+    ]
+  },
+  "class_names": [
+    "asphalt",
+    "PVC",
+    "sand",
+    "gravel",
+    "grass"
+  ],
+  "internal_val_source": "train_npz only",
+  "train_samples_total_valid": 10299,
+  "internal_train_samples": 8709,
+  "internal_val_samples": 1590,
+  "internal_train_bincount": [
+    1414,
+    1485,
+    2524,
+    1769,
+    1517
+  ],
+  "internal_val_bincount": [
+    312,
+    288,
+    440,
+    269,
+    281
+  ],
+  "validation_split_method": "folder_level_internal_validation",
+  "validation_group_key": "folder",
+  "validation_train_groups": 315,
+  "validation_val_groups": 56,
+  "validation_group_overlap_count": 0,
+  "validation_limitation": null,
+  "normalization_fit_source": "internal training partition only",
+  "callbacks": [
+    {
+      "name": "ModelCheckpoint",
+      "monitor": "val_loss",
+      "mode": "min",
+      "save_best_only": true,
+      "path": "models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5"
+    },
+    {
+      "name": "ReduceLROnPlateau",
+      "monitor": "val_loss",
+      "mode": "min",
+      "factor": 0.5,
+      "patience": 5,
+      "min_lr": 1e-06
+    },
+    {
+      "name": "EarlyStopping",
+      "monitor": "val_loss",
+      "mode": "min",
+      "patience": 16,
+      "restore_best_weights": true
+    },
+    {
+      "name": "CSVLogger",
+      "path": "models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/training_log.csv"
+    }
+  ],
+  "p4_used_for_training": false,
+  "p4_used_for_validation": false,
+  "p4_used_for_checkpoint_selection": false,
+  "p4_used_for_final_eval_only": true
+}
