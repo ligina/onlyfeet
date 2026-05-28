@@ -3,15 +3,16 @@
 """
 Create a Clean-P4 composite Keras wrapper model.
 
-This script packages the two Clean-P4 task-specific final models behind one
-Keras Functional model with separate inputs and two independent outputs:
+This script packages two separately trained Clean-P4 task-specific final models
+behind one Keras Functional model with separate inputs and two independent
+outputs:
 
 * act_output: activity recognition from IMU-only input.
 * surface_output: walking-only surface recognition from image+audio inputs.
 
-Important scope note: this is an engineering wrapper around two already-trained
-specialist models. It is not a jointly trained unified model, does not change
-model weights or results, and does not broaden the walking-only scope of the
+Scope note:
+This is an engineering wrapper. It is not a jointly trained unified model, does
+not change any weights, and does not broaden the walking-only scope of the
 surface recognizer.
 """
 
@@ -23,6 +24,17 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    f1_score,
+    precision_recall_fscore_support,
+)
+from sklearn.model_selection import GroupShuffleSplit, StratifiedShuffleSplit
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -40,7 +52,27 @@ NPZ_KEYS = {
 
 
 class EvaluationSkipped(RuntimeError):
-    """Raised when a requested evaluation cannot be run without inventing metrics."""
+    """Raised when a requested evaluation cannot be run honestly."""
+
+
+@keras.utils.register_keras_serializable(package="OnlyFeetCompat")
+class LegacyGRU(keras.layers.GRU):
+    """Compatibility wrapper for old H5 models saved with time_major=False.
+
+    Keras 3 no longer accepts the legacy GRU config key `time_major`. Old H5
+    models may still contain it, so we discard that key during deserialization.
+    """
+
+    def __init__(self, *args, **kwargs):
+        kwargs.pop("time_major", None)
+        super().__init__(*args, **kwargs)
+
+
+LEGACY_CUSTOM_OBJECTS = {
+    "GRU": LegacyGRU,
+    "keras.layers.GRU": LegacyGRU,
+    "OnlyFeetCompat>LegacyGRU": LegacyGRU,
+}
 
 
 def repo_relative(path: Path) -> str:
@@ -51,6 +83,8 @@ def repo_relative(path: Path) -> str:
 
 
 def read_json(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        raise FileNotFoundError(f"JSON not found: {path}")
     return json.loads(path.read_text(encoding="utf-8"))
 
 
@@ -59,35 +93,56 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
 
 
+def get_class_names(config: dict[str, Any], task: str) -> list[str]:
+    candidates = ["class_names"]
+    if task == "activity":
+        candidates += ["activity_classes", "act_classes", "classes_activity"]
+    elif task == "surface":
+        candidates += ["surface_classes", "env_classes", "environment_classes", "classes_surface"]
+    for key in candidates:
+        value = config.get(key)
+        if isinstance(value, list) and value:
+            return [str(v) for v in value]
+    raise KeyError(f"Cannot find class names for task={task}. Tried: {candidates}")
+
+
 def ensure_audio_channel(x: np.ndarray) -> np.ndarray:
-    x = x.astype(np.float32)
+    x = np.nan_to_num(x.astype(np.float32), nan=0.0, posinf=0.0, neginf=0.0)
     if x.ndim == 3:
         x = x[..., np.newaxis]
-    return x
+    return x.astype(np.float32)
 
 
 def ensure_image_float(x: np.ndarray) -> np.ndarray:
-    x = x.astype(np.float32)
-    if np.nanmax(x) > 2.0:
+    x = np.nan_to_num(x.astype(np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+    if x.size > 0 and np.nanmax(x) > 2.0:
         x = x / 255.0
-    return np.nan_to_num(x, nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
+    return x.astype(np.float32)
 
 
 def add_imu_magnitudes(x: np.ndarray) -> np.ndarray:
     x = np.nan_to_num(x.astype(np.float32), nan=0.0, posinf=0.0, neginf=0.0)
-    if x.ndim != 3 or x.shape[-1] < 6 or x.shape[-1] >= 8:
+    if x.ndim != 3:
         return x
-    acc = x[..., 0:3]
-    gyro = x[..., 3:6]
-    acc_mag = np.sqrt(np.sum(acc**2, axis=-1, keepdims=True))
-    gyro_mag = np.sqrt(np.sum(gyro**2, axis=-1, keepdims=True))
-    return np.concatenate([x, acc_mag, gyro_mag], axis=-1).astype(np.float32)
+    if x.shape[-1] == 8:
+        return x
+    if x.shape[-1] == 7:
+        gyro = x[..., 3:6]
+        gyro_mag = np.sqrt(np.sum(gyro**2, axis=-1, keepdims=True))
+        return np.concatenate([x, gyro_mag], axis=-1).astype(np.float32)
+    if x.shape[-1] == 6:
+        acc = x[..., 0:3]
+        gyro = x[..., 3:6]
+        acc_mag = np.sqrt(np.sum(acc**2, axis=-1, keepdims=True))
+        gyro_mag = np.sqrt(np.sum(gyro**2, axis=-1, keepdims=True))
+        return np.concatenate([x, acc_mag, gyro_mag], axis=-1).astype(np.float32)
+    return x.astype(np.float32)
 
 
 def load_x(npz: np.lib.npyio.NpzFile, modality: str, imu_magnitude: bool = True) -> np.ndarray:
     key = NPZ_KEYS[modality]
     if key not in npz.files:
-        raise KeyError(f"Missing {key} for modality {modality}. Available keys: {npz.files}")
+        raise KeyError(f"Missing {key} for modality={modality}. Available keys: {npz.files}")
     x = npz[key]
     if modality == "audio":
         return ensure_audio_channel(x)
@@ -100,11 +155,14 @@ def load_x(npz: np.lib.npyio.NpzFile, modality: str, imu_magnitude: bool = True)
 
 def get_labels(npz: np.lib.npyio.NpzFile, class_names: list[str], task: str) -> tuple[np.ndarray, np.ndarray]:
     if task == "activity":
-        y = npz["y_act"].astype(np.int64)
+        key = "y_act"
     elif task == "surface":
-        y = npz["y_env"].astype(np.int64)
+        key = "y_env"
     else:
         raise ValueError(f"Unsupported task: {task}")
+    if key not in npz.files:
+        raise KeyError(f"Missing label key {key}. Available keys: {npz.files}")
+    y = npz[key].astype(np.int64)
     valid = (y >= 0) & (y < len(class_names))
     return y, valid
 
@@ -119,9 +177,10 @@ def choose_folder_split(
     if len(np.unique(folders)) < 2:
         return None
 
+    ratio = min(max(float(ratio), 0.01), 0.5)
     splitter = GroupShuffleSplit(n_splits=200, test_size=ratio, random_state=seed)
-    best = None
-    best_score = None
+    best: tuple[np.ndarray, np.ndarray] | None = None
+    best_score: tuple[int, float, int] | None = None
     indices = np.arange(len(y))
 
     for train_idx, val_idx in splitter.split(indices, y, groups=folders):
@@ -137,14 +196,14 @@ def choose_folder_split(
             best = (train_idx, val_idx)
             if missing == 0 and ratio_error <= 0.01:
                 break
-
     return best
 
 
 def choose_sample_split(y: np.ndarray, ratio: float, seed: int) -> tuple[np.ndarray, np.ndarray]:
     indices = np.arange(len(y))
-    class_counts = np.bincount(y)
-    if np.any(class_counts[class_counts > 0] < 2):
+    ratio = min(max(float(ratio), 0.01), 0.5)
+    class_counts = np.bincount(y) if len(y) else np.array([])
+    if len(y) < 2 or np.any(class_counts[class_counts > 0] < 2):
         rng = np.random.default_rng(seed)
         shuffled = indices.copy()
         rng.shuffle(shuffled)
@@ -161,10 +220,11 @@ def internal_train_indices(
     valid_mask: np.ndarray,
     y_valid: np.ndarray,
     config: dict[str, Any],
+    class_names: list[str],
 ) -> np.ndarray:
-    ratio = float(config.get("validation_split_ratio", 0.15))
+    ratio = float(config.get("validation_split_ratio", config.get("val_ratio", 0.15)))
     seed = int(config.get("seed", 42))
-    n_classes = len(config["class_names"])
+    n_classes = len(class_names)
 
     if "folder" in train_npz.files:
         folders = np.asarray(train_npz["folder"], dtype=object)[valid_mask].astype(str)
@@ -188,19 +248,21 @@ def normalization_from_internal_train(
             f"Training NPZ is required to recreate Clean-P4 normalization, but it was not found: {train_npz_path}"
         )
 
+    class_names = get_class_names(config, task)
     train_npz = np.load(train_npz_path, allow_pickle=True)
-    y_all, valid_mask = get_labels(train_npz, config["class_names"], task)
+    y_all, valid_mask = get_labels(train_npz, class_names, task)
     y_valid = y_all[valid_mask]
-    train_idx = internal_train_indices(train_npz, valid_mask, y_valid, config)
+    train_idx = internal_train_indices(train_npz, valid_mask, y_valid, config, class_names)
 
-    stats = {}
+    stats: dict[str, dict[str, np.ndarray]] = {}
+    imu_magnitude = not bool(config.get("no_imu_magnitude", False))
     for modality in modalities:
-        raw_valid = load_x(train_npz, modality, imu_magnitude=not bool(config.get("no_imu_magnitude", False)))[valid_mask]
+        raw_valid = load_x(train_npz, modality, imu_magnitude=imu_magnitude)[valid_mask]
         x_train = raw_valid[train_idx]
         axes = tuple(range(x_train.ndim - 1))
         stats[modality] = {
-            "mean": x_train.mean(axis=axes, keepdims=True),
-            "std": x_train.std(axis=axes, keepdims=True) + 1e-6,
+            "mean": x_train.mean(axis=axes, keepdims=True).astype(np.float32),
+            "std": (x_train.std(axis=axes, keepdims=True) + 1e-6).astype(np.float32),
         }
     return stats
 
@@ -220,32 +282,60 @@ def load_normalized_test_inputs(
     if not test_npz_path.exists():
         raise EvaluationSkipped(f"Test NPZ was requested but not found: {test_npz_path}")
 
+    class_names = get_class_names(config, task)
     stats = normalization_from_internal_train(train_npz_path, config, task, modalities)
     test_npz = np.load(test_npz_path, allow_pickle=True)
-    y_all, valid_mask = get_labels(test_npz, config["class_names"], task)
+    y_all, valid_mask = get_labels(test_npz, class_names, task)
     y_true = y_all[valid_mask]
 
-    x_by_modality = {}
+    x_by_modality: dict[str, np.ndarray] = {}
+    imu_magnitude = not bool(config.get("no_imu_magnitude", False))
     for modality in modalities:
-        raw = load_x(test_npz, modality, imu_magnitude=not bool(config.get("no_imu_magnitude", False)))[valid_mask]
+        raw = load_x(test_npz, modality, imu_magnitude=imu_magnitude)[valid_mask]
         x_by_modality[modality] = apply_normalization(raw, stats[modality])
     return x_by_modality, y_true
 
 
-def zeros_for(inputs: dict[str, tuple[int, ...]], n_samples: int) -> dict[str, np.ndarray]:
-    return {name: np.zeros((n_samples, *shape), dtype=np.float32) for name, shape in inputs.items()}
+def zero_array(shape: tuple[int, ...], n_samples: int) -> np.ndarray:
+    return np.zeros((n_samples, *shape), dtype=np.float32)
+
+
+def normalize_probabilities(prob: Any) -> np.ndarray:
+    """Normalize Keras prediction outputs to shape (N, C)."""
+    if isinstance(prob, dict):
+        if len(prob) != 1:
+            raise ValueError(f"Expected one probability array, got dict keys={list(prob.keys())}")
+        prob = next(iter(prob.values()))
+    if isinstance(prob, (list, tuple)):
+        if len(prob) != 1:
+            raise ValueError(f"Expected one probability array, got list/tuple length={len(prob)}")
+        prob = prob[0]
+
+    prob = np.asarray(prob)
+    if prob.ndim == 3 and prob.shape[0] == 1:
+        prob = prob[0]
+    if prob.ndim == 3 and prob.shape[1] == 1:
+        prob = prob[:, 0, :]
+    if prob.ndim != 2:
+        raise ValueError(f"Expected probability array with shape (N, C), got {prob.shape}")
+    return prob.astype(np.float32)
 
 
 def metrics_from_probabilities(
-    pred_prob: np.ndarray,
+    pred_prob: Any,
     y_true: np.ndarray,
     class_names: list[str],
     model_params: int,
     out_dir: Path,
     prefix: str,
 ) -> dict[str, Any]:
+    pred_prob = normalize_probabilities(pred_prob)
+    y_true = np.asarray(y_true, dtype=np.int64)
+    if len(y_true) != pred_prob.shape[0]:
+        raise ValueError(f"Inconsistent sample counts for {prefix}: y_true={len(y_true)}, pred_prob={pred_prob.shape}")
+
     out_dir.mkdir(parents=True, exist_ok=True)
-    y_pred = np.argmax(pred_prob, axis=1)
+    y_pred = np.argmax(pred_prob, axis=1).astype(np.int64)
     metrics = {
         "accuracy": float(accuracy_score(y_true, y_pred)),
         "macro_f1": float(f1_score(y_true, y_pred, average="macro", zero_division=0)),
@@ -256,7 +346,14 @@ def metrics_from_probabilities(
     }
     write_json(out_dir / f"{prefix}_metrics.json", metrics)
 
-    report_dict = classification_report(y_true, y_pred, target_names=class_names, digits=4, zero_division=0, output_dict=True)
+    report_dict = classification_report(
+        y_true,
+        y_pred,
+        target_names=class_names,
+        digits=4,
+        zero_division=0,
+        output_dict=True,
+    )
     write_json(out_dir / f"{prefix}_classification_report.json", report_dict)
     (out_dir / f"{prefix}_classification_report.txt").write_text(
         classification_report(y_true, y_pred, target_names=class_names, digits=4, zero_division=0),
@@ -272,8 +369,8 @@ def metrics_from_probabilities(
     with (out_dir / f"{prefix}_per_class_metrics.csv").open("w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["class", "precision", "recall", "f1", "support"])
-        for name, p, r, f, s in zip(class_names, precision, recall, f1, support):
-            writer.writerow([name, float(p), float(r), float(f), int(s)])
+        for name, p, r, f1_value, s in zip(class_names, precision, recall, f1, support):
+            writer.writerow([name, float(p), float(r), float(f1_value), int(s)])
 
     np.savez_compressed(out_dir / f"{prefix}_predictions.npz", y_true=y_true, y_pred=y_pred, pred_prob=pred_prob)
     with (out_dir / f"{prefix}_predictions.csv").open("w", newline="", encoding="utf-8") as f:
@@ -284,11 +381,27 @@ def metrics_from_probabilities(
     return metrics
 
 
-def build_composite_model(activity_model_path: Path, surface_model_path: Path):
-    from tensorflow import keras
+def load_legacy_model(model_path: Path) -> keras.Model:
+    if not model_path.exists():
+        raise FileNotFoundError(f"Model not found: {model_path}")
+    return keras.models.load_model(model_path, compile=False, custom_objects=LEGACY_CUSTOM_OBJECTS)
 
-    activity_model = keras.models.load_model(activity_model_path, compile=False)
-    surface_model = keras.models.load_model(surface_model_path, compile=False)
+
+def as_single_tensor(output: Any, name: str) -> Any:
+    if isinstance(output, dict):
+        if len(output) != 1:
+            raise ValueError(f"Nested {name} model returned multiple outputs: {list(output.keys())}")
+        return next(iter(output.values()))
+    if isinstance(output, (list, tuple)):
+        if len(output) != 1:
+            raise ValueError(f"Nested {name} model returned {len(output)} outputs; expected 1")
+        return output[0]
+    return output
+
+
+def build_composite_model(activity_model_path: Path, surface_model_path: Path):
+    activity_model = load_legacy_model(activity_model_path)
+    surface_model = load_legacy_model(surface_model_path)
     activity_model.trainable = False
     surface_model.trainable = False
 
@@ -296,8 +409,9 @@ def build_composite_model(activity_model_path: Path, surface_model_path: Path):
     surface_image_input = keras.Input(shape=tuple(surface_model.inputs[0].shape[1:]), name="surface_image_input")
     surface_audio_input = keras.Input(shape=tuple(surface_model.inputs[1].shape[1:]), name="surface_audio_input")
 
-    act_pred = activity_model(act_input)
-    surface_pred = surface_model([surface_image_input, surface_audio_input])
+    act_pred = as_single_tensor(activity_model(act_input, training=False), "activity")
+    surface_pred = as_single_tensor(surface_model([surface_image_input, surface_audio_input], training=False), "surface")
+
     act_output = keras.layers.Activation("linear", name="act_output")(act_pred)
     surface_output = keras.layers.Activation("linear", name="surface_output")(surface_pred)
 
@@ -309,19 +423,42 @@ def build_composite_model(activity_model_path: Path, surface_model_path: Path):
     return composite, activity_model, surface_model
 
 
-def load_evaluation_dependencies() -> None:
-    global np, accuracy_score, classification_report, f1_score, precision_recall_fscore_support
-    global GroupShuffleSplit, StratifiedShuffleSplit
+def predict_source_activity(activity_model: keras.Model, x_imu: np.ndarray, batch: int, verbose: int) -> np.ndarray:
+    return normalize_probabilities(activity_model.predict(x_imu, batch_size=batch, verbose=verbose))
 
-    import numpy as np
-    from sklearn.metrics import accuracy_score, classification_report, f1_score, precision_recall_fscore_support
-    from sklearn.model_selection import GroupShuffleSplit, StratifiedShuffleSplit
+
+def predict_source_surface(surface_model: keras.Model, x_image: np.ndarray, x_audio: np.ndarray, batch: int, verbose: int) -> np.ndarray:
+    return normalize_probabilities(surface_model.predict([x_image, x_audio], batch_size=batch, verbose=verbose))
+
+
+def predict_composite(
+    composite: keras.Model,
+    x_activity_imu: np.ndarray,
+    x_surface_image: np.ndarray,
+    x_surface_audio: np.ndarray,
+    batch: int,
+    verbose: int,
+) -> tuple[np.ndarray, np.ndarray]:
+    pred = composite.predict(
+        [x_activity_imu, x_surface_image, x_surface_audio],
+        batch_size=batch,
+        verbose=verbose,
+    )
+    if isinstance(pred, dict):
+        act = pred.get("act_output")
+        surf = pred.get("surface_output")
+        if act is None or surf is None:
+            raise ValueError(f"Composite dict outputs missing expected keys: {list(pred.keys())}")
+        return normalize_probabilities(act), normalize_probabilities(surf)
+    if isinstance(pred, (list, tuple)) and len(pred) == 2:
+        return normalize_probabilities(pred[0]), normalize_probabilities(pred[1])
+    raise ValueError(f"Composite prediction should have two outputs, got type={type(pred)}")
 
 
 def evaluate_composite(
-    composite,
-    activity_model,
-    surface_model,
+    composite: keras.Model,
+    activity_model: keras.Model,
+    surface_model: keras.Model,
     args: argparse.Namespace,
     activity_config: dict[str, Any],
     surface_config: dict[str, Any],
@@ -333,14 +470,11 @@ def evaluate_composite(
         "surface": {"status": "not_requested"},
     }
 
-    input_shapes = {
-        "activity_imu_input": tuple(composite.inputs[0].shape[1:]),
-        "surface_image_input": tuple(composite.inputs[1].shape[1:]),
-        "surface_audio_input": tuple(composite.inputs[2].shape[1:]),
-    }
+    act_shape = tuple(composite.inputs[0].shape[1:])
+    surface_image_shape = tuple(composite.inputs[1].shape[1:])
+    surface_audio_shape = tuple(composite.inputs[2].shape[1:])
 
-    if args.activity_test_npz or args.surface_test_npz:
-        load_evaluation_dependencies()
+    report_dir = Path(args.report_dir)
 
     if args.activity_test_npz:
         try:
@@ -352,18 +486,36 @@ def evaluate_composite(
                 ["imu"],
             )
             n = len(y_act)
-            inputs = zeros_for(input_shapes, n)
-            inputs["activity_imu_input"] = act_x["imu"]
-            pred_prob = composite.predict(inputs, batch_size=args.batch, verbose=args.verbose)[0]
+            zeros_img = zero_array(surface_image_shape, n)
+            zeros_audio = zero_array(surface_audio_shape, n)
+
+            composite_act_prob, _ = predict_composite(
+                composite,
+                act_x["imu"],
+                zeros_img,
+                zeros_audio,
+                args.batch,
+                args.verbose,
+            )
+            source_act_prob = predict_source_activity(activity_model, act_x["imu"], args.batch, args.verbose)
+            max_abs_diff = float(np.max(np.abs(composite_act_prob - source_act_prob)))
+
             metrics = metrics_from_probabilities(
-                pred_prob,
+                composite_act_prob,
                 y_act,
-                activity_config["class_names"],
+                get_class_names(activity_config, "activity"),
                 activity_model.count_params(),
-                Path(args.report_dir),
+                report_dir,
                 "activity_eval",
             )
-            metrics.update({"task": "activity", "modalities": ["imu"], "source_test_npz": args.activity_test_npz})
+            metrics.update(
+                {
+                    "task": "activity",
+                    "modalities": ["imu"],
+                    "source_test_npz": args.activity_test_npz,
+                    "original_vs_composite_max_abs_diff": max_abs_diff,
+                }
+            )
             summary["activity"] = {"status": "completed", "metrics": metrics}
         except EvaluationSkipped as exc:
             summary["activity"] = {"status": "skipped", "reason": str(exc)}
@@ -378,24 +530,42 @@ def evaluate_composite(
                 ["image", "audio"],
             )
             n = len(y_surface)
-            inputs = zeros_for(input_shapes, n)
-            inputs["surface_image_input"] = surface_x["image"]
-            inputs["surface_audio_input"] = surface_x["audio"]
-            pred_prob = composite.predict(inputs, batch_size=args.batch, verbose=args.verbose)[1]
+            zeros_imu = zero_array(act_shape, n)
+
+            _, composite_surface_prob = predict_composite(
+                composite,
+                zeros_imu,
+                surface_x["image"],
+                surface_x["audio"],
+                args.batch,
+                args.verbose,
+            )
+            source_surface_prob = predict_source_surface(
+                surface_model,
+                surface_x["image"],
+                surface_x["audio"],
+                args.batch,
+                args.verbose,
+            )
+            max_abs_diff = float(np.max(np.abs(composite_surface_prob - source_surface_prob)))
+
             metrics = metrics_from_probabilities(
-                pred_prob,
+                composite_surface_prob,
                 y_surface,
-                surface_config["class_names"],
+                get_class_names(surface_config, "surface"),
                 surface_model.count_params(),
-                Path(args.report_dir),
+                report_dir,
                 "surface_eval",
             )
-            metrics.update({
-                "task": "surface",
-                "modalities": ["image", "audio"],
-                "source_test_npz": args.surface_test_npz,
-                "scope": "walking-only surface samples",
-            })
+            metrics.update(
+                {
+                    "task": "surface",
+                    "modalities": ["image", "audio"],
+                    "source_test_npz": args.surface_test_npz,
+                    "scope": "walking-only surface samples",
+                    "original_vs_composite_max_abs_diff": max_abs_diff,
+                }
+            )
             summary["surface"] = {"status": "completed", "metrics": metrics}
         except EvaluationSkipped as exc:
             summary["surface"] = {"status": "skipped", "reason": str(exc)}
@@ -405,7 +575,10 @@ def evaluate_composite(
 
 def default_path_from_config(config: dict[str, Any], key: str) -> str:
     value = config.get(key)
-    return str(REPO_ROOT / value) if value and not Path(value).is_absolute() else str(value or "")
+    if not value:
+        return ""
+    path = Path(str(value))
+    return str(path if path.is_absolute() else REPO_ROOT / path)
 
 
 def parse_args() -> argparse.Namespace:
@@ -413,10 +586,10 @@ def parse_args() -> argparse.Namespace:
     surface_config = read_json(SURFACE_DIR / "train_config.json")
 
     parser = argparse.ArgumentParser(
-        description="Create a Clean-P4 composite Keras wrapper around the final activity and walking-only surface models."
+        description="Create a Clean-P4 composite Keras wrapper around final activity and walking-only surface models."
     )
-    parser.add_argument("--activity_model", default=str(ACTIVITY_DIR / "final_model.h5"))
-    parser.add_argument("--surface_model", default=str(SURFACE_DIR / "final_model.h5"))
+    parser.add_argument("--activity_model", default=str(ACTIVITY_DIR / "best_model.h5"))
+    parser.add_argument("--surface_model", default=str(SURFACE_DIR / "best_model.h5"))
     parser.add_argument("--model_out_dir", default=str(DEFAULT_MODEL_OUT_DIR))
     parser.add_argument("--report_dir", default=str(DEFAULT_REPORT_DIR))
     parser.add_argument("--activity_test_npz", default=None, help="Optional activity dataset_test.npz for wrapper evaluation.")
@@ -449,6 +622,21 @@ def write_report_markdown(report_dir: Path, metadata: dict[str, Any], evaluation
         f"- Activity evaluation status: `{evaluation_summary['activity']['status']}`",
         f"- Surface evaluation status: `{evaluation_summary['surface']['status']}`",
     ]
+
+    for task in ["activity", "surface"]:
+        item = evaluation_summary.get(task, {})
+        if item.get("status") == "completed":
+            metrics = item["metrics"]
+            lines += [
+                "",
+                f"### {task.capitalize()}",
+                "",
+                f"- Accuracy: `{metrics['accuracy']:.6f}`",
+                f"- Macro-F1: `{metrics['macro_f1']:.6f}`",
+                f"- N eval: `{metrics['n_eval']}`",
+                f"- Original vs composite max abs diff: `{metrics['original_vs_composite_max_abs_diff']:.12g}`",
+            ]
+
     report_dir.mkdir(parents=True, exist_ok=True)
     (report_dir / "README.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -485,21 +673,21 @@ def main() -> None:
             {"name": "surface_audio_input", "source_task": "surface", "modality": "audio", "shape": list(composite.inputs[2].shape[1:])},
         ],
         "outputs": [
-            {"name": "act_output", "classes": activity_config["class_names"]},
-            {"name": "surface_output", "classes": surface_config["class_names"], "scope": "walking-only"},
+            {"name": "act_output", "classes": get_class_names(activity_config, "activity")},
+            {"name": "surface_output", "classes": get_class_names(surface_config, "surface"), "scope": "walking-only"},
         ],
         "source_models": {
             "activity": {
                 "path": repo_relative(activity_model_path),
                 "task": "activity",
                 "modalities": ["imu"],
-                "class_names": activity_config["class_names"],
+                "class_names": get_class_names(activity_config, "activity"),
             },
             "surface": {
                 "path": repo_relative(surface_model_path),
                 "task": "surface",
                 "modalities": ["image", "audio"],
-                "class_names": surface_config["class_names"],
+                "class_names": get_class_names(surface_config, "surface"),
                 "scope": "walking-only surface samples",
             },
         },

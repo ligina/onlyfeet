@@ -1,0 +1,99 @@
+{
+  "version": "M14_RGB64_stage1",
+  "task": "activity",
+  "classes": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "class_map": {
+    "walk": 0,
+    "standing": 1,
+    "sitting": 2
+  },
+  "label_key": "y",
+  "activity_classes": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "env_classes": [
+    "asphalt",
+    "PVC",
+    "sand",
+    "gravel",
+    "grass"
+  ],
+  "activity_map": {
+    "walk": 0,
+    "standing": 1,
+    "sitting": 2
+  },
+  "env_map": {
+    "asphalt": 0,
+    "PVC": 1,
+    "sand": 2,
+    "gravel": 3,
+    "grass": 4
+  },
+  "step_ms": 40,
+  "win_sec": 2.0,
+  "stride_sec": 1.0,
+  "image_size": [
+    64,
+    64
+  ],
+  "image_channels": 6,
+  "image_description": "img RGB + mid RGB",
+  "audio_description": "log-mel spectrogram, 40x40, sr=16000",
+  "modalities": [
+    "imu",
+    "tof",
+    "mag",
+    "audio",
+    "image"
+  ],
+  "mask_order": [
+    "imu",
+    "tof",
+    "mag",
+    "audio",
+    "image"
+  ],
+  "eval_split_name": "val",
+  "split_description": {
+    "train": "P1and2",
+    "val": "P3"
+  },
+  "shapes": {
+    "imu_win": [
+      50,
+      6
+    ],
+    "tof_win": [
+      50,
+      2
+    ],
+    "mag_win": [
+      50,
+      3
+    ],
+    "audio_win": [
+      40,
+      40,
+      1
+    ],
+    "img_win": [
+      64,
+      64,
+      6
+    ]
+  },
+  "notes": [
+    "M14 final dataset.",
+    "No stair-direction task is generated.",
+    "Labels are taken from labels_all_m14.csv, not inferred from folder names.",
+    "Surface task uses walking samples only.",
+    "PVC is preserved as uppercase in label_env and class names."
+  ]
+}

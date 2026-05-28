@@ -1,0 +1,12 @@
+{
+  "accuracy": 0.9996343692870201,
+  "classes": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "macro_f1": 0.9996338160076007,
+  "model_params": 99139,
+  "n_eval": 2735,
+  "weighted_f1": 0.9996343605886969
+}

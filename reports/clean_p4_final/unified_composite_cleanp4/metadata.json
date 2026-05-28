@@ -1,0 +1,92 @@
+{
+  "artifact_type": "Clean-P4 composite Keras engineering wrapper",
+  "created_utc": "2026-05-28T16:58:33.837212+00:00",
+  "data_changed": false,
+  "inputs": [
+    {
+      "modality": "imu",
+      "name": "activity_imu_input",
+      "shape": [
+        50,
+        8
+      ],
+      "source_task": "activity"
+    },
+    {
+      "modality": "image",
+      "name": "surface_image_input",
+      "shape": [
+        64,
+        64,
+        6
+      ],
+      "source_task": "surface"
+    },
+    {
+      "modality": "audio",
+      "name": "surface_audio_input",
+      "shape": [
+        40,
+        40,
+        1
+      ],
+      "source_task": "surface"
+    }
+  ],
+  "not_jointly_trained": true,
+  "outputs": [
+    {
+      "classes": [
+        "walk",
+        "standing",
+        "sitting"
+      ],
+      "name": "act_output"
+    },
+    {
+      "classes": [
+        "asphalt",
+        "PVC",
+        "sand",
+        "gravel",
+        "grass"
+      ],
+      "name": "surface_output",
+      "scope": "walking-only"
+    }
+  ],
+  "saved_model": "models/clean_p4_final/unified_composite_cleanp4/unified_composite_cleanp4.keras",
+  "scope_note": "This wraps two task-specific final models; it is not a jointly trained unified model.",
+  "source_models": {
+    "activity": {
+      "class_names": [
+        "walk",
+        "standing",
+        "sitting"
+      ],
+      "modalities": [
+        "imu"
+      ],
+      "path": "models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5",
+      "task": "activity"
+    },
+    "surface": {
+      "class_names": [
+        "asphalt",
+        "PVC",
+        "sand",
+        "gravel",
+        "grass"
+      ],
+      "modalities": [
+        "image",
+        "audio"
+      ],
+      "path": "models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5",
+      "scope": "walking-only surface samples",
+      "task": "surface"
+    }
+  },
+  "surface_scope": "walking-only surface recognition only",
+  "weights_changed": false
+}
