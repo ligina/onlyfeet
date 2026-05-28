@@ -1,8 +1,10 @@
-# OnlyFeet M14 Final Experiments
+﻿# OnlyFeet M14 Clean-P4 Release
 
-This repository contains the final experiment release for the **OnlyFeet M14 bachelor thesis project**. It includes training scripts, evaluation scripts, result reports, selected trained models, logs, dataset/split documentation, and environment information.
+This repository contains the final experiment release for the **OnlyFeet M14 bachelor thesis project**. It includes training scripts, evaluation scripts, result reports, selected trained models, logs, dataset and split documentation, archived original artifacts, and environment information.
 
-The project investigates **multimodal human activity recognition (HAR)** and **surface/environment recognition** using a **foot-mounted sensor platform**. The available sensing modalities are:
+The current thesis main final evidence is the **Clean-P4 final evaluation**. Clean-P4 corrects the earlier Stage 2 checkpoint-selection risk by deriving training-time validation from the Stage 2 training data only and reserving P4 for final evaluation only.
+
+The project investigates **multimodal human activity recognition (HAR)** and **walking-only surface recognition** using the existing OnlyFeet foot-mounted acquisition prototype. The available sensing modalities are:
 
 * IMU
 * RGB image
@@ -10,7 +12,7 @@ The project investigates **multimodal human activity recognition (HAR)** and **s
 * Time-of-Flight (ToF)
 * magnetometer
 
-The main goal is to evaluate how different modalities and fusion strategies contribute to activity and surface recognition, with a focus on model performance, robustness, and deployment complexity.
+The main goal is to evaluate task-specific modality usefulness and fusion behavior under a controlled participant split. The release does not claim deployment readiness, measured latency, energy efficiency, battery runtime, or broad real-world robustness.
 
 ---
 
@@ -22,7 +24,13 @@ onlyfeet_m14_gitlab_release/
 ├── data_docs/
 ├── environment/
 ├── logs/
+│   ├── logs_clean_p4_final/
+│   ├── stage2/
+│   ├── robustness_trainnorm/
+│   └── fusion_strategy/
 ├── models/
+│   ├── clean_p4_final/
+│   └── final_stage2/
 ├── reports/
 └── scripts/
 ```
@@ -33,28 +41,28 @@ onlyfeet_m14_gitlab_release/
 scripts/
 ```
 
-Contains dataset preparation, model training, evaluation, result collection, robustness testing, folder-level evaluation, and sanity-check scripts.
+Contains dataset preparation, model training, evaluation, result collection, robustness testing, folder-level evaluation, sanity-check scripts, and the Clean-P4 rerun scripts.
 
 ```text
 reports/
 ```
 
-Contains final result tables, Stage 1 summaries, Stage 2 summaries, robustness reports, folder-level evaluation, fusion-strategy comparison, and split sanity checks.
+Contains Stage 1 summaries, original Stage 2 summaries, final-evaluation tables, robustness reports, folder-level evaluation, fusion-strategy comparison, non-overlap-window reports, and split sanity checks. Reports generated under the original Stage 2 protocol should be interpreted with the deprecated/original caveats below unless rerun under Clean-P4.
 
 ```text
 models/
 ```
 
-Contains the selected final trained Stage 2 models:
+Contains both the Clean-P4 final models and the older original Stage 2 models:
 
-* final activity model: IMU-only
-* final surface model: Image+Audio mid-level concat fusion
+* Clean-P4 main final models: `models/clean_p4_final/`
+* Deprecated/original Stage 2 traceability models: `models/final_stage2/`
 
 ```text
 logs/
 ```
 
-Contains key training and evaluation logs for Stage 2, robustness evaluation, and early/mid/late fusion comparison.
+Contains key training and evaluation logs, including Clean-P4 final rerun logs in `logs/logs_clean_p4_final/`.
 
 ```text
 data_docs/
@@ -70,19 +78,64 @@ Contains environment information, including Python version, installed packages, 
 
 ---
 
-## 2. Project Goal
+## 2. Clean-P4 Main Evidence Boundary
 
-The goal of this project is to design and evaluate a multimodal recognition system using the OnlyFeet foot-mounted sensor platform.
+Clean-P4 is the thesis main final-result evidence. Under Clean-P4:
+
+* Stage 2 training data are used to fit model parameters.
+* Internal validation is derived from the Stage 2 training NPZ only.
+* `ModelCheckpoint`, `ReduceLROnPlateau`, and `EarlyStopping` monitor internal validation metrics, not P4 metrics.
+* P4 is loaded only after training and checkpoint selection are complete.
+* P4 is used for final evaluation only.
+
+The original `final_stage2` outputs are retained in the release for traceability, but they are deprecated/original because P4 was used as Keras `validation_data` during training. That allowed P4-derived validation metrics to influence checkpoint selection, early stopping, or learning-rate scheduling.
+
+---
+
+## 3. Thesis Main Final Results
+
+The thesis main final evidence consists of two task-specific Clean-P4 final models.
+
+| Task | Clean-P4 final model | Modalities | Fusion | Rounded P4 result |
+|---|---|---|---|---|
+| Activity recognition | `stage2_activity_imu_single_seed42_cleanp4` | IMU | single | about 99.96% accuracy and about 99.96% macro-F1 |
+| Walking-only surface recognition | `stage2_surface_image_audio_concat_seed42_cleanp4` | image, audio | concat | about 95.06% accuracy and about 94.59% macro-F1 |
+
+These results should be interpreted as controlled subject-held-out P4 performance on the M14 dataset. Activity performance is very high, but it should not be described as perfect. Walking-only surface performance is strong, but it should not be described as near-perfect or generalized to non-walking activities.
+
+### Clean-P4 model locations
+
+```text
+models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/
+models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/
+```
+
+Each Clean-P4 model directory contains the trained model files, training configuration, training history, training log, final evaluation metrics, predictions, and evaluation reports.
+
+Important Clean-P4 support files:
+
+```text
+models/clean_p4_final/
+logs/logs_clean_p4_final/
+scripts/02_train_m14_task_model_clean_p4.py
+scripts/run_32_stage2_clean_p4_final_models.sh
+```
+
+---
+
+## 4. Project Goal
+
+The goal of this project is to evaluate multimodal recognition using the OnlyFeet foot-mounted acquisition prototype.
 
 The system targets two main tasks:
 
-1. **Regular Activity Recognition**
+1. **Regular activity recognition**
 
    * walk
    * standing
    * sitting
 
-2. **Surface Recognition**
+2. **Walking-only surface recognition**
 
    * asphalt
    * PVC
@@ -90,11 +143,11 @@ The system targets two main tasks:
    * gravel
    * grass
 
-Surface recognition is based on **walking-only samples**, because foot-ground interaction cues are primarily available during walking.
+Surface recognition is based on **walking-only samples**, because foot-ground interaction cues are primarily available during walking. Surface results in this release should not be interpreted as general surface recognition across standing, sitting, stair movement, or other untested activities.
 
 ---
 
-## 3. Dataset Summary
+## 5. Dataset Summary
 
 The cleaned M14 dataset contains:
 
@@ -134,7 +187,7 @@ img_*.jpg    camera image stream
 mid_*.jpg    second image stream
 ```
 
-The generated window datasets contain:
+The generated window datasets contain fields such as:
 
 ```text
 imu_win
@@ -151,7 +204,7 @@ start_ms
 
 ---
 
-## 4. Participant Definition
+## 6. Participant Definition
 
 The participant labels are defined as follows.
 
@@ -167,17 +220,15 @@ During early data collection, there were some recording issues, including batter
 
 ### P4
 
-`P4` is another separate participant recorded on a different date. P4 is used as the final held-out participant test set in Stage 2.
+`P4` is another separate participant recorded on a different date. P4 is used as the final held-out participant test set in Stage 2 and Clean-P4. Under Clean-P4, P4 is final-evaluation-only.
 
 ---
 
-## 5. Experimental Design
+## 7. Experimental Design
 
-The experiments are organized into two stages.
+The experiments are organized into Stage 1 model search, original Stage 2 traceability, and Clean-P4 final evaluation.
 
----
-
-## 5.1 Stage 1: Model Selection
+### 7.1 Stage 1: Model Search
 
 Stage 1 is used for model selection, modality comparison, and fusion-strategy comparison.
 
@@ -210,22 +261,32 @@ concat fusion
 gated fusion
 ```
 
-Stage 1 is the only stage used for systematic model search.
+Stage 1 is the systematic model-search stage.
 
----
+### 7.2 Original Stage 2: Deprecated/Original Traceability
 
-## 5.2 Stage 2: Final Held-Out Evaluation
-
-Stage 2 is used for final held-out evaluation.
+Original Stage 2 used:
 
 ```text
 Train: P1/P2 + P3
 Test: P4
 ```
 
-In Stage 2, only 12 pre-selected candidate models were evaluated on P4.
+It evaluated 12 pre-selected candidate models on P4. However, the original Stage 2 training script also used P4 `dataset_test.npz` as Keras `validation_data`. As a result, P4-derived `val_loss` could influence `ModelCheckpoint`, `ReduceLROnPlateau`, and `EarlyStopping`.
 
-P4 was **not** used for full model search. This avoids turning P4 into a second validation set.
+For this reason, original Stage 2 outputs are retained only as deprecated/original traceability artifacts. They should not be used as the thesis main final evidence and should not be described as clean held-out evaluation.
+
+### 7.3 Clean-P4 Final Evaluation
+
+Clean-P4 keeps the two selected final configurations but corrects the validation role:
+
+```text
+Training source: Stage 2 dataset_train.npz
+Internal validation: folder-level split from Stage 2 dataset_train.npz
+Final test: Stage 2 dataset_test.npz, corresponding to P4
+```
+
+P4 is not used for training, validation, checkpoint selection, early stopping, or learning-rate scheduling under Clean-P4.
 
 ### Stage 2 dataset sizes
 
@@ -236,7 +297,7 @@ Train: 29,788 windows, 1,058 folders
 Test: 2,735 windows, 105 folders
 ```
 
-Surface recognition:
+Walking-only surface recognition:
 
 ```text
 Train: 10,299 windows, 371 folders
@@ -245,85 +306,119 @@ Test: 951 windows, 36 folders
 
 ---
 
-## 6. Final Selected Models
+## 8. Clean-P4 Final Selected Models
 
----
+### 8.1 Clean-P4 Activity Model
 
-## 6.1 Final Activity Model
-
-The final activity model is:
+The Clean-P4 activity model is:
 
 ```text
 IMU-only
+single modality
+seed 42
 ```
 
-This model was selected because several multimodal models also achieved 100% on the P4 held-out test set, but none improved over IMU-only. Therefore, the lightweight IMU-only model is preferred for wearable and edge deployment.
-
-### P4 window-level result
+Clean-P4 P4 window-level result:
 
 ```text
-Accuracy: 100.00%
-Macro-F1: 100.00%
-Weighted-F1: 100.00%
+Accuracy: about 99.96%
+Macro-F1: about 99.96%
 ```
 
-### P4 folder-level majority-vote result
+The exact Clean-P4 metrics are stored in:
 
 ```text
-Accuracy: 100.00%
-Macro-F1: 100.00%
-Weighted-F1: 100.00%
-Folders: 105
+models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/eval_metrics.json
 ```
 
-### Complexity
+Complexity recorded for this model:
 
 ```text
 Parameters: 99,139
-Model size: 1.22 MB
+Model size: about 1.22 MB
 ```
 
----
+These values support discussion of model compactness, but they do not measure latency, energy consumption, battery runtime, or deployment readiness.
 
-## 6.2 Final Surface Model
+### 8.2 Clean-P4 Walking-Only Surface Model
 
-The final surface model is:
+The Clean-P4 walking-only surface model is:
 
 ```text
-Image + Audio mid-level concat fusion
+Image + Audio concat fusion
+seed 42
 ```
 
-This model was selected because it achieved the best P4 held-out performance among the Stage 2 final candidate models.
-
-### P4 window-level result
+Clean-P4 P4 window-level result:
 
 ```text
-Accuracy: 99.26%
-Macro-F1: 99.26%
-Weighted-F1: 99.26%
+Accuracy: about 95.06%
+Macro-F1: about 94.59%
 ```
 
-### P4 folder-level majority-vote result
+The exact Clean-P4 metrics are stored in:
 
 ```text
-Accuracy: 100.00%
-Macro-F1: 100.00%
-Weighted-F1: 100.00%
-Folders: 36
+models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/eval_metrics.json
 ```
 
-### Complexity
+Complexity recorded for this model:
 
 ```text
 Parameters: 280,613
-Model size: 3.38 MB
+Model size: about 3.38 MB
 ```
+
+This result is limited to walking-only surface recognition over the registered M14 surface classes.
 
 ---
 
-## 7. Main Result Tables
+## 9. Clean-P4 Training and Reproduction Files
 
-The main final evaluation tables are located in:
+Clean-P4 training script:
+
+```text
+scripts/02_train_m14_task_model_clean_p4.py
+```
+
+Clean-P4 runner:
+
+```text
+scripts/run_32_stage2_clean_p4_final_models.sh
+```
+
+Clean-P4 model outputs:
+
+```text
+models/clean_p4_final/
+```
+
+Clean-P4 logs:
+
+```text
+logs/logs_clean_p4_final/
+```
+
+The runner executes exactly the two thesis final configurations:
+
+```text
+activity, modalities=imu, fusion=single, dropout=0.35, seed=42
+surface, modalities=image,audio, fusion=concat, dropout=0.40, seed=42
+```
+
+A typical Clean-P4 rerun command is:
+
+```bash
+bash scripts/run_32_stage2_clean_p4_final_models.sh
+```
+
+A full rerun requires the prepared Stage 2 NPZ datasets, which are not included in this release.
+
+---
+
+## 10. Main Result Tables and Reports
+
+The original final-evaluation tables are located in:
 
 ```text
 reports/final_eval/
@@ -343,9 +438,11 @@ reports/final_eval/table_early_mid_late_extra.csv
 reports/final_eval/table_folder_level_summary.csv
 ```
 
+These tables were generated before the Clean-P4 correction unless explicitly regenerated under Clean-P4. Use the Clean-P4 model directories and logs as the main final-result evidence for the thesis. Treat original `final_stage2`, robustness, fusion, folder-level, and non-overlap outputs as deprecated/original diagnostics unless rerun under Clean-P4.
+
 ---
 
-## 8. Stage 1 Summary
+## 11. Stage 1 Summary
 
 Stage 1 includes the full model-selection experiment.
 
@@ -374,13 +471,13 @@ Stage 1 was used to compare:
 * different modality combinations
 * task-specific modality usefulness
 
+Stage 1 is model-search evidence, not final held-out P4 evidence.
+
 ---
 
-## 9. Stage 2 Summary
+## 12. Original Stage 2 Summary: Deprecated/Original
 
-Stage 2 contains the final held-out P4 candidate evaluation.
-
-Location:
+Original Stage 2 candidate reports are located in:
 
 ```text
 reports/stage2/
@@ -393,13 +490,15 @@ summary_stage2_final_candidates.csv
 summary_stage2_final_candidates.json
 ```
 
-Stage 2 evaluates 12 candidate models selected after Stage 1. It is not a full model search.
+Original Stage 2 evaluated 12 candidate models selected after Stage 1. These reports are deprecated/original for final-result purposes because P4 was used as Keras validation data during training-time callback decisions.
+
+Do not present the original 100.00% activity result or original 99.26% walking-only surface result as the thesis main final results.
 
 ---
 
-## 10. Robustness Evaluation
+## 13. Deprecated/Original Robustness Evaluation
 
-Missing-modality robustness was evaluated using train-normalized evaluation.
+Missing-modality robustness was evaluated using train-normalized evaluation under the original Stage 2 evidence chain.
 
 Location:
 
@@ -413,61 +512,19 @@ Important summary file:
 reports/robustness_trainnorm/summary_robustness_trainnorm_all.csv
 ```
 
----
+These robustness outputs are deprecated/original unless rerun under Clean-P4. They may be useful as traceability diagnostics, but they should not be presented as Clean-P4 robustness evidence.
 
-## 10.1 Activity Robustness
-
-A diagnostic multimodal activity fusion model was evaluated under missing-modality conditions.
-
-Model:
+Clean-P4 robustness diagnostics remain:
 
 ```text
-IMU + Image + Audio + ToF concat
+NEEDS_VERIFICATION unless recomputed
 ```
-
-Results:
-
-```text
-normal:   100.00% macro-F1
-no_imu:    16.66% macro-F1
-no_image: 100.00% macro-F1
-no_tof:   100.00% macro-F1
-no_audio:  68.22% macro-F1
-```
-
-Interpretation:
-
-Activity recognition is mainly driven by IMU motion cues. Removing IMU causes severe degradation.
 
 ---
 
-## 10.2 Surface Robustness
+## 14. Deprecated/Original Fusion Strategy Comparison
 
-The final Image+Audio surface model was evaluated under missing-modality conditions.
-
-Model:
-
-```text
-Image + Audio concat
-```
-
-Results:
-
-```text
-normal:   99.26% macro-F1
-no_image: 47.62% macro-F1
-no_audio:  8.79% macro-F1
-```
-
-Interpretation:
-
-Surface recognition relies strongly on the audio cue, while image provides complementary terrain context.
-
----
-
-## 11. Fusion Strategy Comparison
-
-Early fusion, mid-level fusion, and late fusion were compared.
+Early fusion, mid-level fusion, and late fusion were compared under the original diagnostic evidence chain.
 
 Location:
 
@@ -482,161 +539,41 @@ summary_stage2_early_late.csv
 summary_stage2_early_late.json
 ```
 
----
-
-## 11.1 Activity Fusion Strategy
-
-Task:
-
-```text
-Activity recognition
-```
-
-Modalities:
-
-```text
-IMU + Image + Audio + ToF
-```
-
-Results:
-
-```text
-early-flat fusion: 100.00% macro-F1
-mid-level concat:  100.00% macro-F1
-late-average:       98.19% macro-F1
-```
-
-Observation:
-
-Although early-flat fusion reaches 100%, it is much larger than the selected IMU-only activity model and is not suitable as the final deployment model.
+These fusion reports are deprecated/original unless rerun under Clean-P4. They can document the development path, but they should not be used to claim Clean-P4 fusion superiority.
 
 ---
 
-## 11.2 Surface Fusion Strategy
+## 15. Deprecated/Original Folder-Level and Non-Overlap Diagnostics
 
-Task:
-
-```text
-Surface recognition
-```
-
-Modalities:
-
-```text
-Image + Audio
-```
-
-Results:
-
-```text
-early-flat fusion: 75.59% macro-F1
-mid-level concat:  99.26% macro-F1
-late-average:      96.92% macro-F1
-```
-
-Interpretation:
-
-Surface recognition is not solved well by simple raw flattening and concatenation. Learning modality-specific representations first and then fusing them at the feature level is more effective.
-
----
-
-## 12. Folder-Level Majority-Vote Evaluation
-
-Folder-level majority-vote evaluation was added because window-level samples from the same recording are temporally correlated.
-
-Location:
+Folder-level majority-vote reports are located in:
 
 ```text
 reports/folder_level/
 ```
 
-Summary file:
-
-```text
-reports/folder_level/summary_folder_level.csv
-```
-
-Results:
-
-```text
-Activity IMU-only:
-105 P4 folders
-Accuracy: 100.00%
-Macro-F1: 100.00%
-
-Surface Image+Audio:
-36 P4 folders
-Accuracy: 100.00%
-Macro-F1: 100.00%
-```
-
-Interpretation:
-
-The high P4 results are not only caused by isolated window-level predictions. The predictions are also stable after aggregation at the recording/folder level.
-
----
-
-## 12.1 Non-Overlapping-Window Evaluation
-
-The original preprocessing pipeline used 2-second windows with 1-second stride, resulting in 50% temporal overlap between adjacent windows.
-
-To further evaluate whether the high performance was primarily caused by overlapping-window redundancy, an additional non-overlapping-window evaluation was performed on the held-out P4 participant.
-
-For each recording folder, only windows separated by at least 2 seconds were retained.
-
-Location:
+Non-overlapping-window reports are located in:
 
 ```text
 reports/nonoverlap_windows/
 ```
 
-Main script:
+These diagnostics were not recomputed as Clean-P4 main final diagnostics in this release. They are retained as deprecated/original traceability evidence unless rerun under Clean-P4.
+
+Clean-P4 folder-level diagnostics remain:
 
 ```text
-scripts/09_eval_nonoverlap_windows.py
+NEEDS_VERIFICATION unless recomputed
 ```
 
-Summary file:
+Clean-P4 non-overlap diagnostics remain:
 
 ```text
-reports/nonoverlap_windows/summary_nonoverlap_windows.csv
+NEEDS_VERIFICATION unless recomputed
 ```
-
-### Results
-
-Activity:
-
-```text
-Original windows:         2,735
-Non-overlapping windows:  1,417
-P4 folders:                 105
-
-Accuracy:     100.00%
-Macro-F1:     100.00%
-Weighted-F1:  100.00%
-```
-
-Surface:
-
-```text
-Original windows:           951
-Non-overlapping windows:    493
-P4 folders:                  36
-
-Accuracy:      98.99%
-Macro-F1:      98.94%
-Weighted-F1:   98.98%
-```
-
-Interpretation:
-
-The strong performance remains even after removing overlapping temporal windows. This suggests that the high results are not solely explained by overlapping-window redundancy.
-
-However, the evaluation should still be interpreted under a controlled subject-held-out setting rather than fully unconstrained real-world deployment.
 
 ---
 
-## 13. Split Sanity Checks
+## 16. Split Sanity Checks
 
 Sanity checks were performed to verify split integrity and folder overlap.
 
@@ -659,29 +596,25 @@ Key findings:
 
 ```text
 Stage 2 activity train/test folder overlap: 0
-Stage 2 surface train/test folder overlap: 0
+Stage 2 walking-only surface train/test folder overlap: 0
 ```
 
-The activity and surface datasets overlap within the same split because surface recognition is constructed as the walking-only subset of the activity dataset. This is expected and is not train/test leakage.
+The activity and walking-only surface datasets overlap within the same split because walking-only surface recognition is constructed as the walking subset of the activity dataset. This is expected and is not train/test leakage.
+
+These folder-overlap checks support the intended participant split. They do not by themselves establish broad generalization, Clean-P4 folder-level performance, Clean-P4 non-overlap performance, or real-world robustness.
 
 ---
 
-## 14. Trained Models
+## 17. Trained Models
 
-The selected final Stage 2 models are stored in:
-
-```text
-models/final_stage2/
-```
-
-Included final models:
+### Clean-P4 main final models
 
 ```text
-models/final_stage2/stage2_activity_imu_single_seed42/
-models/final_stage2/stage2_surface_image_audio_concat_seed42/
+models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/
+models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/
 ```
 
-Each model directory contains:
+Each Clean-P4 model directory contains:
 
 ```text
 best_model.h5
@@ -699,19 +632,18 @@ eval_confusion_matrix.png
 eval_confusion_matrix_normalized.png
 ```
 
-The two final selected models are:
+### Deprecated/original Stage 2 models
 
 ```text
-Activity:
-stage2_activity_imu_single_seed42
-
-Surface:
-stage2_surface_image_audio_concat_seed42
+models/final_stage2/stage2_activity_imu_single_seed42/
+models/final_stage2/stage2_surface_image_audio_concat_seed42/
 ```
+
+These directories are retained for traceability. They are not the thesis main final evidence because the original Stage 2 training used P4-derived validation metrics for checkpoint selection, early stopping, or learning-rate scheduling.
 
 ---
 
-## 15. Logs
+## 18. Logs
 
 Logs are stored in:
 
@@ -719,23 +651,20 @@ Logs are stored in:
 logs/
 ```
 
-Subdirectories:
+Important subdirectories:
 
 ```text
+logs/logs_clean_p4_final/
 logs/stage2/
 logs/robustness_trainnorm/
 logs/fusion_strategy/
 ```
 
-These logs document:
-
-* Stage 2 final-candidate training
-* robustness evaluation
-* early/mid/late fusion comparison
+Use `logs/logs_clean_p4_final/` for the Clean-P4 final rerun. The other log directories document original Stage 2, robustness, and fusion diagnostics and should be interpreted with the deprecated/original caveats above.
 
 ---
 
-## 16. Scripts
+## 19. Scripts
 
 The main scripts are located in:
 
@@ -743,9 +672,7 @@ The main scripts are located in:
 scripts/
 ```
 
----
-
-## 16.1 Dataset Preparation
+### 19.1 Dataset Preparation
 
 ```text
 scripts/01_prepare_task_datasets_m14_rgb64.py
@@ -753,40 +680,41 @@ scripts/01_prepare_task_datasets_m14_rgb64.py
 
 Builds Stage 1 and Stage 2 RGB64 task datasets from labeled raw folders.
 
----
-
-## 16.2 Main Training
+### 19.2 Original Main Training
 
 ```text
 scripts/02_train_m14_task_model.py
 ```
 
-Main training script for single-modality, concat fusion, and gated fusion models.
+Original training script for single-modality, concat fusion, and gated fusion models. Original Stage 2 outputs from this path are deprecated/original for final-result purposes where P4 was used as validation data.
 
----
+### 19.3 Clean-P4 Main Training
 
-## 16.3 Early/Late Fusion Training
+```text
+scripts/02_train_m14_task_model_clean_p4.py
+scripts/run_32_stage2_clean_p4_final_models.sh
+```
+
+These are the Clean-P4 scripts for the thesis main final evidence.
+
+### 19.4 Early/Late Fusion Training
 
 ```text
 scripts/02b_train_m14_early_late_fusion.py
 ```
 
-Extra script for early-flat and late-average fusion experiments.
+Extra script for early-flat and late-average fusion experiments. Treat related outputs as deprecated/original unless rerun under Clean-P4.
 
----
-
-## 16.4 Robustness Evaluation
+### 19.5 Robustness Evaluation
 
 ```text
 scripts/03_eval_m14_model_robustness.py
 scripts/03b_eval_m14_model_robustness_trainnorm.py
 ```
 
-The `03b` version uses train-set normalization and is the final version used for the reported robustness tables.
+The `03b` version was used for the reported original robustness tables. These outputs are deprecated/original unless rerun under Clean-P4.
 
----
-
-## 16.5 Result Collection
+### 19.6 Result Collection
 
 ```text
 scripts/04_collect_m14_results.py
@@ -794,29 +722,23 @@ scripts/04_collect_m14_results.py
 
 Collects model metrics into CSV/JSON summary tables.
 
----
-
-## 16.6 Folder-Level Evaluation
+### 19.7 Folder-Level Evaluation
 
 ```text
 scripts/06_eval_folder_level_majority.py
 ```
 
-Performs folder-level majority-vote evaluation from window-level predictions.
+Performs folder-level majority-vote evaluation from window-level predictions. Existing folder-level outputs are deprecated/original unless rerun under Clean-P4.
 
----
-
-## 16.7 Final Table Generation
+### 19.8 Final Table Generation
 
 ```text
 scripts/07_make_final_evaluation_tables.py
 ```
 
-Generates final thesis-ready evaluation tables.
+Generates thesis-ready evaluation tables for the original report set. Use Clean-P4 outputs as the thesis main final evidence.
 
----
-
-## 16.8 Sanity Checks
+### 19.9 Sanity Checks
 
 ```text
 scripts/08_sanity_check_m14_final.py
@@ -824,9 +746,7 @@ scripts/08_sanity_check_m14_final.py
 
 Checks dataset split summaries and folder overlap.
 
----
-
-## 16.9 Batch Runner Scripts
+### 19.10 Batch Runner Scripts
 
 ```text
 scripts/run_10_stage1_single_modality.sh
@@ -835,14 +755,11 @@ scripts/run_22_stage1_fusion_range.sh
 scripts/run_23_one_fusion_job.sh
 scripts/run_24_fusion_jobs_loop.sh
 scripts/run_31_stage2_final_candidates.sh
+scripts/run_32_stage2_clean_p4_final_models.sh
 scripts/run_40_robustness_template.sh
 ```
 
-These scripts were used to run Stage 1 model search, Stage 2 final candidates, and robustness evaluations.
-
----
-
-## 16.10 Data Inspection Scripts
+### 19.11 Data Inspection Scripts
 
 ```text
 scripts/check_m14_no_window_folders.py
@@ -856,7 +773,7 @@ These scripts were used for data quality inspection and debugging.
 
 ---
 
-## 17. Environment
+## 20. Environment
 
 Environment information is stored in:
 
@@ -877,34 +794,30 @@ The main experiments were run on a cloud machine with an RTX 5090 GPU.
 
 ---
 
-## 18. Reproducing the Experiments
+## 21. Reproducing the Experiments
 
-The raw dataset is not included in this GitLab release due to size and privacy/storage constraints.
+The raw dataset is not included in this release due to size and privacy/storage constraints.
 
 However, the included scripts and reports allow review of:
 
 * split logic
 * training setup
-* evaluation setup
-* model summaries
+* Clean-P4 final evaluation setup
+* original Stage 1 and Stage 2 summaries
 * logs
-* trained final models
-* final metrics
+* trained final Clean-P4 models
+* deprecated/original diagnostics
 * sanity checks
 
 A typical full reproduction would require the original raw dataset or prepared `.npz` datasets.
 
----
-
-## 18.1 Stage 1 Single-Modality Baselines
+### 21.1 Stage 1 Single-Modality Baselines
 
 ```bash
 bash scripts/run_10_stage1_single_modality.sh
 ```
 
----
-
-## 18.2 Stage 1 Full Fusion Search
+### 21.2 Stage 1 Full Fusion Search
 
 ```bash
 bash scripts/run_20_stage1_full_fusion.sh
@@ -916,37 +829,37 @@ For more stable execution on limited GPU memory, jobs can be executed sequential
 bash scripts/run_24_fusion_jobs_loop.sh 1 104
 ```
 
----
-
-## 18.3 Stage 2 Final Candidate Evaluation
+### 21.3 Original Stage 2 Final Candidate Evaluation
 
 ```bash
 bash scripts/run_31_stage2_final_candidates.sh
 ```
 
----
+This reproduces original Stage 2 candidate evaluation, which is deprecated/original for final-result purposes because P4 was used as validation data during training-time callback decisions.
 
-## 18.4 Robustness Evaluation
+### 21.4 Clean-P4 Final Models
 
-The final robustness results are generated with:
+```bash
+bash scripts/run_32_stage2_clean_p4_final_models.sh
+```
+
+This is the runner for the thesis main final Clean-P4 models.
+
+### 21.5 Deprecated/Original Robustness Evaluation
 
 ```bash
 python scripts/03b_eval_m14_model_robustness_trainnorm.py
 ```
 
-The exact commands are documented in logs and runner scripts.
+The exact commands are documented in logs and runner scripts. Treat these robustness outputs as deprecated/original unless rerun under Clean-P4.
 
----
-
-## 18.5 Final Tables
+### 21.6 Original Final Tables
 
 ```bash
 python scripts/07_make_final_evaluation_tables.py
 ```
 
----
-
-## 18.6 Sanity Checks
+### 21.7 Sanity Checks
 
 ```bash
 python scripts/08_sanity_check_m14_final.py
@@ -954,54 +867,70 @@ python scripts/08_sanity_check_m14_final.py
 
 ---
 
-## 19. Important Caveats and Limitations
+## 22. Important Caveats and Limitations
 
-The final P4 results are very high:
+The Clean-P4 final P4 results are high:
 
 ```text
-Activity: 100.00% macro-F1
-Surface: 99.26% macro-F1
+Activity: about 99.96% accuracy and about 99.96% macro-F1
+Walking-only surface: about 95.06% accuracy and about 94.59% macro-F1
 ```
 
-Sanity checks found no train/test folder overlap. However, the data was collected in a relatively controlled setting.
+These are the thesis main final results. Do not replace them with the older original Stage 2 100.00% activity or 99.26% walking-only surface values.
+
+Sanity checks found no Stage 2 train/test folder overlap. However, the data were collected in a relatively controlled setting.
 
 Potential limitations:
 
 1. The number of participants is limited.
 2. P1/P2 is a merged group rather than two fully separable participants.
 3. Window-level samples from the same recording are temporally correlated.
-4. The P4 data may be more standardized than fully unconstrained real-world data.
-5. Participants may have performed actions more carefully and consistently during data collection.
-6. The results should therefore be interpreted as controlled subject-held-out performance rather than full real-world generalization.
+4. Walking-only surface recognition is limited to walking samples.
+5. P4 data may be more standardized than fully unconstrained real-world data.
+6. Participants may have performed actions more carefully and consistently during data collection.
+7. Location-specific visual or acoustic cues cannot be ruled out for walking-only surface recognition.
+8. Clean-P4 folder-level, non-overlap, and robustness diagnostics remain `NEEDS_VERIFICATION` unless recomputed.
 
-For this reason, both window-level and folder-level metrics are reported.
+For these reasons, the Clean-P4 results should be interpreted as controlled subject-held-out performance rather than full real-world generalization.
 
 ---
 
-## 20. Recommended Interpretation
+## 23. Recommended Interpretation
 
-The current results support the following conclusions:
+The current Clean-P4 results support the following cautious conclusions:
 
-1. **Activity recognition is IMU-dominant.**
-   A lightweight IMU-only model is sufficient for walk/standing/sitting recognition in the current controlled dataset.
+1. **Activity recognition is strongly supported by IMU in this controlled M14 task.**
+   The Clean-P4 final activity model is an IMU-only model and performs very strongly on held-out P4 activity windows.
 
-2. **Surface recognition benefits from multimodal fusion.**
-   Image+Audio mid-level fusion performs best among the final Stage 2 candidate models.
+2. **Walking-only surface recognition benefits from image and audio in the selected final model.**
+   The Clean-P4 final walking-only surface model uses image+audio concat fusion.
 
-3. **Mid-level fusion is more effective than early-flat fusion for surface recognition.**
-   Early-flat Image+Audio fusion performs much worse than mid-level feature fusion.
+3. **Clean-P4 is the main final evidence boundary.**
+   P4 is final-evaluation-only, and training-time validation is derived from Stage 2 training data.
 
-4. **Robustness analysis confirms modality importance.**
-   Removing IMU strongly damages activity recognition, while removing audio strongly damages surface recognition.
+4. **Original Stage 2 and diagnostic outputs remain useful only as traceability unless rerun.**
+   Original final_stage2, robustness, fusion, folder-level, and non-overlap diagnostics are deprecated/original unless rerun under Clean-P4.
 
 5. **The final results should be reported with caution.**
-   The evaluation is subject-held-out and folder-level checked, but the dataset remains controlled and limited in participant diversity.
+   The evaluation is controlled and participant-held-out, but the dataset remains limited in participant diversity and recording context.
 
 ---
 
-## 21. Key Files for Review
+## 24. Key Files for Review
 
-For a quick review, start with:
+For Clean-P4 thesis main final evidence, start with:
+
+```text
+models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/train_config.json
+models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/eval_metrics.json
+models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/train_config.json
+models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/eval_metrics.json
+logs/logs_clean_p4_final/
+scripts/02_train_m14_task_model_clean_p4.py
+scripts/run_32_stage2_clean_p4_final_models.sh
+```
+
+For original traceability reports, review:
 
 ```text
 reports/final_eval/table_final_selected_models.csv
@@ -1014,21 +943,9 @@ reports/sanity_checks/folder_overlap_summary.csv
 reports/sanity_checks/dataset_split_summary.csv
 ```
 
-For final trained models:
+For deprecated/original trained models:
 
 ```text
 models/final_stage2/stage2_activity_imu_single_seed42/
 models/final_stage2/stage2_surface_image_audio_concat_seed42/
-```
-
-For core scripts:
-
-```text
-scripts/01_prepare_task_datasets_m14_rgb64.py
-scripts/02_train_m14_task_model.py
-scripts/03b_eval_m14_model_robustness_trainnorm.py
-scripts/06_eval_folder_level_majority.py
-scripts/07_make_final_evaluation_tables.py
-scripts/08_sanity_check_m14_final.py
-scripts/09_eval_nonoverlap_windows.py
 ```
