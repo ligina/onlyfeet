@@ -1,0 +1,11 @@
+              precision    recall  f1-score   support
+
+     asphalt     0.9744    0.8172    0.8889        93
+         PVC     0.9783    1.0000    0.9890        90
+        sand     0.8736    0.9870    0.9268        77
+      gravel     0.9653    1.0000    0.9823       139
+       grass     1.0000    0.9787    0.9892        94
+
+    accuracy                         0.9594       493
+   macro avg     0.9583    0.9566    0.9553       493
+weighted avg     0.9617    0.9594    0.9586       493

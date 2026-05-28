@@ -1,0 +1,58 @@
+{
+  "note": "Supplementary modality robustness evaluation. No retraining; surface task is walking-only.",
+  "model_path": "models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5",
+  "test_npz": "datasets_m14_rgb64_stage2/surface/dataset_test.npz",
+  "conditions": {
+    "normal": {
+      "condition": "normal",
+      "task": "surface",
+      "surface_scope": "walking-only",
+      "accuracy": 0.9505783385909569,
+      "macro_f1": 0.9458577752905943,
+      "weighted_f1": 0.9496640939385093,
+      "n_eval": 951,
+      "classes": [
+        "asphalt",
+        "PVC",
+        "sand",
+        "gravel",
+        "grass"
+      ],
+      "model_params": 280613
+    },
+    "no_image": {
+      "condition": "no_image",
+      "task": "surface",
+      "surface_scope": "walking-only",
+      "accuracy": 0.3301787592008412,
+      "macro_f1": 0.2924717309105246,
+      "weighted_f1": 0.24747867634778672,
+      "n_eval": 951,
+      "classes": [
+        "asphalt",
+        "PVC",
+        "sand",
+        "gravel",
+        "grass"
+      ],
+      "model_params": 280613
+    },
+    "no_audio": {
+      "condition": "no_audio",
+      "task": "surface",
+      "surface_scope": "walking-only",
+      "accuracy": 0.29652996845425866,
+      "macro_f1": 0.19171834122752823,
+      "weighted_f1": 0.23117475903751716,
+      "n_eval": 951,
+      "classes": [
+        "asphalt",
+        "PVC",
+        "sand",
+        "gravel",
+        "grass"
+      ],
+      "model_params": 280613
+    }
+  }
+}

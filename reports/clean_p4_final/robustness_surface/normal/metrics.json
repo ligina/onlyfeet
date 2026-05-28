@@ -1,0 +1,17 @@
+{
+  "condition": "normal",
+  "task": "surface",
+  "surface_scope": "walking-only",
+  "accuracy": 0.9505783385909569,
+  "macro_f1": 0.9458577752905943,
+  "weighted_f1": 0.9496640939385093,
+  "n_eval": 951,
+  "classes": [
+    "asphalt",
+    "PVC",
+    "sand",
+    "gravel",
+    "grass"
+  ],
+  "model_params": 280613
+}

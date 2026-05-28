@@ -1,0 +1,33 @@
+{
+  "walk": {
+    "precision": 0.9979757085020243,
+    "recall": 1.0,
+    "f1-score": 0.9989868287740629,
+    "support": 493.0
+  },
+  "standing": {
+    "precision": 1.0,
+    "recall": 0.9977876106194691,
+    "f1-score": 0.9988925802879292,
+    "support": 452.0
+  },
+  "sitting": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 472.0
+  },
+  "accuracy": 0.9992942836979535,
+  "macro avg": {
+    "precision": 0.9993252361673415,
+    "recall": 0.9992625368731564,
+    "f1-score": 0.9992931363539973,
+    "support": 1417.0
+  },
+  "weighted avg": {
+    "precision": 0.9992957122734636,
+    "recall": 0.9992942836979535,
+    "f1-score": 0.9992942504416068,
+    "support": 1417.0
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "note": "Supplementary non-overlapping-window evaluation. No retraining; no data modification.",
+  "min_gap_ms": 2000.0,
+  "activity": {
+    "task": "activity",
+    "modalities": [
+      "imu"
+    ],
+    "model_path": "models/clean_p4_final/stage2_activity_imu_single_seed42_cleanp4/best_model.h5",
+    "train_npz": "/home/jovyan/work/onlyfeet/datasets_m14_rgb64_stage2/activity/dataset_train.npz",
+    "test_npz": "/home/jovyan/work/onlyfeet/datasets_m14_rgb64_stage2/activity/dataset_test.npz",
+    "original_n_eval": 2735,
+    "non_overlap_n_eval": 1417,
+    "min_gap_ms": 2000.0,
+    "model_params": 99139,
+    "accuracy": 0.9992942836979535,
+    "macro_f1": 0.9992931363539973,
+    "weighted_f1": 0.9992942504416068,
+    "n_eval": 1417,
+    "classes": [
+      "walk",
+      "standing",
+      "sitting"
+    ]
+  },
+  "surface": {
+    "task": "surface",
+    "modalities": [
+      "image",
+      "audio"
+    ],
+    "model_path": "models/clean_p4_final/stage2_surface_image_audio_concat_seed42_cleanp4/best_model.h5",
+    "train_npz": "/home/jovyan/work/onlyfeet/datasets_m14_rgb64_stage2/surface/dataset_train.npz",
+    "test_npz": "/home/jovyan/work/onlyfeet/datasets_m14_rgb64_stage2/surface/dataset_test.npz",
+    "original_n_eval": 951,
+    "non_overlap_n_eval": 493,
+    "min_gap_ms": 2000.0,
+    "model_params": 280613,
+    "accuracy": 0.9594320486815415,
+    "macro_f1": 0.9552617226995099,
+    "weighted_f1": 0.9585738869357558,
+    "n_eval": 493,
+    "classes": [
+      "asphalt",
+      "PVC",
+      "sand",
+      "gravel",
+      "grass"
+    ]
+  }
+}
