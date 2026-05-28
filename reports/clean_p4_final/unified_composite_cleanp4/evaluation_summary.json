@@ -1,0 +1,50 @@
+{
+  "activity": {
+    "metrics": {
+      "accuracy": 0.9996343692870201,
+      "classes": [
+        "walk",
+        "standing",
+        "sitting"
+      ],
+      "macro_f1": 0.9996338160076007,
+      "modalities": [
+        "imu"
+      ],
+      "model_params": 99139,
+      "n_eval": 2735,
+      "original_vs_composite_max_abs_diff": 0.0,
+      "source_test_npz": "datasets_m14_rgb64_stage2/activity/dataset_test.npz",
+      "task": "activity",
+      "weighted_f1": 0.9996343605886969
+    },
+    "status": "completed"
+  },
+  "scope_note": "Evaluation uses the composite wrapper outputs independently; the source task models remain separately trained.",
+  "surface": {
+    "metrics": {
+      "accuracy": 0.9505783385909569,
+      "classes": [
+        "asphalt",
+        "PVC",
+        "sand",
+        "gravel",
+        "grass"
+      ],
+      "macro_f1": 0.9458577752905943,
+      "modalities": [
+        "image",
+        "audio"
+      ],
+      "model_params": 280613,
+      "n_eval": 951,
+      "original_vs_composite_max_abs_diff": 0.0030138492584228516,
+      "scope": "walking-only surface samples",
+      "source_test_npz": "datasets_m14_rgb64_stage2/surface/dataset_test.npz",
+      "task": "surface",
+      "weighted_f1": 0.9496640939385093
+    },
+    "status": "completed"
+  },
+  "surface_scope": "walking-only surface recognition"
+}
