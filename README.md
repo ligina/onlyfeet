@@ -1,8 +1,8 @@
-﻿# OnlyFeet M14 Clean-P4 Release
+﻿# OnlyFeet Final Experiment Release
 
-This repository contains the final experiment release for the **OnlyFeet M14 bachelor thesis project**. It includes training scripts, evaluation scripts, result reports, selected trained models, logs, dataset and split documentation, archived original artifacts, and environment information.
+This repository contains the final experiment release for the **OnlyFeet bachelor thesis project**. It includes training scripts, evaluation scripts, result reports, selected trained models, logs, dataset and split documentation, archived original artifacts, and environment information.
 
-The current thesis main final evidence is the **Clean-P4 final evaluation**. Clean-P4 corrects the earlier Stage 2 checkpoint-selection risk by deriving training-time validation from the Stage 2 training data only and reserving P4 for final evaluation only.
+Internally, the final held-out P4 evaluation protocol is named Clean-P4. The current thesis main final evidence is the **Clean-P4 final evaluation**. Clean-P4 corrects the earlier Stage 2 checkpoint-selection risk by deriving training-time validation from the Stage 2 training data only and reserving P4 for final evaluation only.
 
 The project investigates **multimodal human activity recognition (HAR)** and **walking-only surface recognition** using the existing OnlyFeet foot-mounted acquisition prototype. The available sensing modalities are:
 
@@ -120,6 +120,39 @@ logs/logs_clean_p4_final/
 scripts/02_train_m14_task_model_clean_p4.py
 scripts/run_32_stage2_clean_p4_final_models.sh
 ```
+
+---
+
+## Clean-P4 Supplementary Diagnostics
+
+The following supplementary diagnostics were recomputed under the Clean-P4 evidence chain:
+
+* Non-overlapping-window evaluation:
+  * Activity: 2,735 -> 1,417 windows, 99.93% macro-F1
+  * Surface: 951 -> 493 windows, 95.53% macro-F1
+
+* Surface missing-modality ablation:
+  * Normal image+audio: 94.59% macro-F1
+  * No image: 29.25% macro-F1
+  * No audio: 19.17% macro-F1
+
+* Model complexity:
+  * Activity IMU specialist: 99,139 parameters
+  * Surface image+audio specialist: 280,613 parameters
+  * Composite wrapper: 379,752 parameters
+
+These diagnostics are supplementary and do not replace the Clean-P4 main final models.
+
+Report locations:
+
+```text
+Non-overlap report: reports/clean_p4_final/non_overlap/
+Surface robustness report: reports/clean_p4_final/robustness_surface/
+Model complexity report: reports/clean_p4_final/model_complexity/
+Composite wrapper report: reports/clean_p4_final/unified_composite_cleanp4/
+```
+
+Interpretation boundary: Non-overlap supports that the high result is not solely caused by overlapping-window redundancy. Surface ablation shows image and audio are both important, but the current model is not robust to complete single-modality failure. The composite wrapper is an engineering packaging artifact, not a jointly trained multitask model.
 
 ---
 
@@ -438,7 +471,7 @@ reports/final_eval/table_early_mid_late_extra.csv
 reports/final_eval/table_folder_level_summary.csv
 ```
 
-These tables were generated before the Clean-P4 correction unless explicitly regenerated under Clean-P4. Use the Clean-P4 model directories and logs as the main final-result evidence for the thesis. Treat original `final_stage2`, robustness, fusion, folder-level, and non-overlap outputs as deprecated/original diagnostics unless rerun under Clean-P4.
+These tables were generated before the Clean-P4 correction unless explicitly regenerated under Clean-P4. Use the Clean-P4 model directories and logs as the main final-result evidence for the thesis. Treat original `final_stage2`, fusion, folder-level, robustness, and non-overlap outputs as deprecated/original diagnostics. Clean-P4 supplementary non-overlap, surface robustness, and model-complexity diagnostics are available under `reports/clean_p4_final/`.
 
 ---
 
@@ -514,10 +547,10 @@ reports/robustness_trainnorm/summary_robustness_trainnorm_all.csv
 
 These robustness outputs are deprecated/original unless rerun under Clean-P4. They may be useful as traceability diagnostics, but they should not be presented as Clean-P4 robustness evidence.
 
-Clean-P4 robustness diagnostics remain:
+Clean-P4 surface missing-modality robustness diagnostics are now available as supplementary evidence under:
 
 ```text
-NEEDS_VERIFICATION unless recomputed
+reports/clean_p4_final/robustness_surface/
 ```
 
 ---
@@ -557,7 +590,7 @@ Non-overlapping-window reports are located in:
 reports/nonoverlap_windows/
 ```
 
-These diagnostics were not recomputed as Clean-P4 main final diagnostics in this release. They are retained as deprecated/original traceability evidence unless rerun under Clean-P4.
+The folder-level and original non-overlapping-window reports in these legacy locations are retained as deprecated/original traceability evidence. They do not replace the Clean-P4 main final models.
 
 Clean-P4 folder-level diagnostics remain:
 
@@ -565,10 +598,16 @@ Clean-P4 folder-level diagnostics remain:
 NEEDS_VERIFICATION unless recomputed
 ```
 
-Clean-P4 non-overlap diagnostics remain:
+Clean-P4 non-overlap diagnostics are now available as supplementary evidence under:
 
 ```text
-NEEDS_VERIFICATION unless recomputed
+reports/clean_p4_final/non_overlap/
+```
+
+Clean-P4 model-complexity diagnostics are now available as supplementary evidence under:
+
+```text
+reports/clean_p4_final/model_complexity/
 ```
 
 ---
@@ -889,7 +928,7 @@ Potential limitations:
 5. P4 data may be more standardized than fully unconstrained real-world data.
 6. Participants may have performed actions more carefully and consistently during data collection.
 7. Location-specific visual or acoustic cues cannot be ruled out for walking-only surface recognition.
-8. Clean-P4 folder-level, non-overlap, and robustness diagnostics remain `NEEDS_VERIFICATION` unless recomputed.
+8. Clean-P4 folder-level diagnostics remain `NEEDS_VERIFICATION` unless recomputed; Clean-P4 non-overlap, surface robustness, and model-complexity diagnostics are available as supplementary evidence under `reports/clean_p4_final/`.
 
 For these reasons, the Clean-P4 results should be interpreted as controlled subject-held-out performance rather than full real-world generalization.
 
@@ -908,8 +947,8 @@ The current Clean-P4 results support the following cautious conclusions:
 3. **Clean-P4 is the main final evidence boundary.**
    P4 is final-evaluation-only, and training-time validation is derived from Stage 2 training data.
 
-4. **Original Stage 2 and diagnostic outputs remain useful only as traceability unless rerun.**
-   Original final_stage2, robustness, fusion, folder-level, and non-overlap diagnostics are deprecated/original unless rerun under Clean-P4.
+4. **Original Stage 2 and original diagnostic outputs remain useful only as traceability unless rerun.**
+   Original final_stage2, fusion, and folder-level diagnostics remain deprecated/original unless rerun under Clean-P4. Clean-P4 supplementary non-overlap, surface robustness, and model-complexity diagnostics are available under `reports/clean_p4_final/`.
 
 5. **The final results should be reported with caution.**
    The evaluation is controlled and participant-held-out, but the dataset remains limited in participant diversity and recording context.
