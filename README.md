@@ -19,7 +19,7 @@ The main goal is to evaluate task-specific modality usefulness and fusion behavi
 ## 1. Repository Structure
 
 ```text
-onlyfeet_m14_gitlab_release/
+onlyfeet/
 ├── archive_manifest.txt
 ├── data_docs/
 ├── environment/
@@ -152,7 +152,7 @@ Model complexity report: reports/clean_p4_final/model_complexity/
 Composite wrapper report: reports/clean_p4_final/unified_composite_cleanp4/
 ```
 
-Interpretation boundary: Non-overlap supports that the high result is not solely caused by overlapping-window redundancy. Surface ablation shows image and audio are both important, but the current model is not robust to complete single-modality failure. The composite wrapper is an engineering packaging artifact, not a jointly trained multitask model.
+Interpretation boundary: Non-overlap supports that the high result is not solely caused by overlapping-window redundancy. Surface ablation shows image and audio are both important, but the current model is not robust to complete single-modality failure. The composite wrapper is an engineering packaging artifact and is not a jointly trained multitask model.
 
 ---
 
@@ -234,6 +234,12 @@ folder
 participant
 start_ms
 ```
+
+### Feature Representation Notes
+
+The raw IMU window stored in the prepared dataset is `imu_win` with shape `[50, 6]`, corresponding to accelerometer and gyroscope axes. During model loading, the training and evaluation scripts append two derived magnitude channels: accelerometer norm and gyroscope norm. Therefore the model-side IMU input has shape `[50, 8]`. This is expected and does not indicate a dataset/model mismatch.
+
+This expansion is performed by `add_imu_magnitudes()` in the training and evaluation scripts.
 
 ---
 
@@ -336,6 +342,20 @@ Walking-only surface recognition:
 Train: 10,299 windows, 371 folders
 Test: 951 windows, 36 folders
 ```
+
+---
+
+## Training and Evaluation Architecture
+
+Dataset preparation converts raw multimodal recording folders into window-level NPZ datasets. Each 2-second window contains synchronized modality representations. Activity labels are used for walk, standing, and sitting. Surface labels are evaluated only for walking windows.
+
+The model-search stage uses P1/P2 for training and P3 for validation. It compares single-modality baselines and multimodal fusion candidates. This stage supports model and modality selection, but it is not the final thesis evidence.
+
+In the final training stage, P1/P2 and P3 are combined as training data and the selected final configurations are retrained. Under Clean-P4, internal validation is derived only from the training data using a folder-level internal split.
+
+For final held-out evaluation, P4 is loaded only after training and checkpoint selection are complete. P4 is used only for final evaluation. The two final task-specific models are the activity specialist, which is IMU-only, and the walking-only surface specialist, which uses image+audio concat fusion.
+
+Supplementary diagnostics are reported separately from the main final models. Non-overlap evaluation checks whether high performance is mainly caused by overlapping windows. Surface modality ablation checks how much the image/audio surface model depends on each modality. Model complexity reports parameter counts and file sizes. The composite wrapper is an engineering packaging artifact and is not a jointly trained multitask model.
 
 ---
 
@@ -592,11 +612,7 @@ reports/nonoverlap_windows/
 
 The folder-level and original non-overlapping-window reports in these legacy locations are retained as deprecated/original traceability evidence. They do not replace the Clean-P4 main final models.
 
-Clean-P4 folder-level diagnostics remain:
-
-```text
-NEEDS_VERIFICATION unless recomputed
-```
+Clean-P4 folder-level majority-vote evaluation was not recomputed and is therefore not included in the supplementary diagnostics.
 
 Clean-P4 non-overlap diagnostics are now available as supplementary evidence under:
 
@@ -664,12 +680,19 @@ history.json
 training_log.csv
 eval_metrics.json
 eval_predictions.csv
-eval_predictions.npz
 eval_classification_report.txt
 eval_confusion_matrix.csv
 eval_confusion_matrix.png
 eval_confusion_matrix_normalized.png
 ```
+
+### Clean-P4 composite wrapper
+
+```text
+models/clean_p4_final/unified_composite_cleanp4/
+```
+
+The composite wrapper is an engineering packaging artifact and is not a jointly trained multitask model. It wraps the two final task-specific models and should not be reported as a separate scientific result.
 
 ### Deprecated/original Stage 2 models
 
@@ -785,7 +808,24 @@ scripts/08_sanity_check_m14_final.py
 
 Checks dataset split summaries and folder overlap.
 
-### 19.10 Batch Runner Scripts
+### 19.10 Supplementary Clean-P4 Diagnostic Scripts
+
+```text
+scripts/94_eval_clean_p4_non_overlap.py
+scripts/95_eval_clean_p4_surface_robustness.py
+scripts/96_collect_clean_p4_model_complexity.py
+scripts/create_clean_p4_composite_model.py
+```
+
+`scripts/94_eval_clean_p4_non_overlap.py` runs the Clean-P4 non-overlapping-window diagnostic and outputs to `reports/clean_p4_final/non_overlap/`.
+
+`scripts/95_eval_clean_p4_surface_robustness.py` runs the Clean-P4 surface missing-modality ablation and outputs to `reports/clean_p4_final/robustness_surface/`.
+
+`scripts/96_collect_clean_p4_model_complexity.py` collects the Clean-P4 model complexity summary and outputs to `reports/clean_p4_final/model_complexity/`.
+
+`scripts/create_clean_p4_composite_model.py` creates the composite wrapper and outputs to `models/clean_p4_final/unified_composite_cleanp4/` and `reports/clean_p4_final/unified_composite_cleanp4/`.
+
+### 19.11 Batch Runner Scripts
 
 ```text
 scripts/run_10_stage1_single_modality.sh
@@ -798,7 +838,7 @@ scripts/run_32_stage2_clean_p4_final_models.sh
 scripts/run_40_robustness_template.sh
 ```
 
-### 19.11 Data Inspection Scripts
+### 19.12 Data Inspection Scripts
 
 ```text
 scripts/check_m14_no_window_folders.py
@@ -928,7 +968,7 @@ Potential limitations:
 5. P4 data may be more standardized than fully unconstrained real-world data.
 6. Participants may have performed actions more carefully and consistently during data collection.
 7. Location-specific visual or acoustic cues cannot be ruled out for walking-only surface recognition.
-8. Clean-P4 folder-level diagnostics remain `NEEDS_VERIFICATION` unless recomputed; Clean-P4 non-overlap, surface robustness, and model-complexity diagnostics are available as supplementary evidence under `reports/clean_p4_final/`.
+8. Clean-P4 folder-level evaluation was not recomputed and is therefore not included in the supplementary diagnostics. Window-level Clean-P4 non-overlap, surface robustness, and model-complexity diagnostics are available under `reports/clean_p4_final/`.
 
 For these reasons, the Clean-P4 results should be interpreted as controlled subject-held-out performance rather than full real-world generalization.
 
