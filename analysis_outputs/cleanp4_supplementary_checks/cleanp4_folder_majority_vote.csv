@@ -1,0 +1,3 @@
+task,n,accuracy,macro_f1,class_names,level,n_windows,n_folders,prediction_source,dataset_npz,tie_breaking,n_prediction_tie_folders,n_inconsistent_true_label_folders
+activity,105,1.0,1.0,walk|standing|sitting,folder_majority_vote,2735,105,D:\thl_thesis\onlyfeet\models\clean_p4_final\stage2_activity_imu_single_seed42_cleanp4\eval_predictions.csv,D:\thl_thesis\onlyfeet\datasets_m14_rgb64_stage2\activity\dataset_test.npz,smallest class index,0,0
+surface,36,1.0,1.0,asphalt|PVC|sand|gravel|grass,folder_majority_vote,951,36,D:\thl_thesis\onlyfeet\models\clean_p4_final\stage2_surface_image_audio_concat_seed42_cleanp4\eval_predictions.csv,D:\thl_thesis\onlyfeet\datasets_m14_rgb64_stage2\surface\dataset_test.npz,smallest class index,0,0

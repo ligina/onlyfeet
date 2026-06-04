@@ -1,0 +1,9 @@
+dataset,class,window_count,window_pct,folder_count,folder_pct
+activity,sitting,911,0.333090,34,0.323810
+activity,standing,873,0.319196,35,0.333333
+activity,walk,951,0.347715,36,0.342857
+surface,PVC,174,0.182965,6,0.166667
+surface,asphalt,179,0.188223,7,0.194444
+surface,grass,181,0.190326,7,0.194444
+surface,gravel,268,0.281809,10,0.277778
+surface,sand,149,0.156677,6,0.166667

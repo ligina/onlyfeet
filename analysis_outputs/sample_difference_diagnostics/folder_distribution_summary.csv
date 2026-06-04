@@ -1,0 +1,11 @@
+dataset,class,folder_count,window_count,windows_per_folder_min,windows_per_folder_max,windows_per_folder_mean,windows_per_folder_median
+activity,ALL,105,2735,4,29,26.047619,29.000000
+activity,sitting,34,911,6,29,26.794118,29.000000
+activity,standing,35,873,4,29,24.942857,29.000000
+activity,walk,36,951,4,29,26.416667,29.000000
+surface,ALL,36,951,4,29,26.416667,29.000000
+surface,PVC,6,174,29,29,29.000000,29.000000
+surface,asphalt,7,179,5,29,25.571429,29.000000
+surface,grass,7,181,7,29,25.857143,29.000000
+surface,gravel,10,268,7,29,26.800000,29.000000
+surface,sand,6,149,4,29,24.833333,29.000000

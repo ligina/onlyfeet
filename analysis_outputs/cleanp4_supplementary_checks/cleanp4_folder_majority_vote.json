@@ -1,0 +1,2595 @@
+{
+  "activity": {
+    "task": "activity",
+    "n": 105,
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "class_names": "walk|standing|sitting",
+    "level": "folder_majority_vote",
+    "n_windows": 2735,
+    "n_folders": 105,
+    "prediction_source": "D:\\thl_thesis\\onlyfeet\\models\\clean_p4_final\\stage2_activity_imu_single_seed42_cleanp4\\eval_predictions.csv",
+    "dataset_npz": "D:\\thl_thesis\\onlyfeet\\datasets_m14_rgb64_stage2\\activity\\dataset_test.npz",
+    "tie_breaking": "smallest class index",
+    "n_prediction_tie_folders": 0,
+    "n_inconsistent_true_label_folders": 0,
+    "per_folder": [
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/sitting/P4_pvc_sit_0001",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/sitting/P4_pvc_sit_0002",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/sitting/P4_pvc_sit_0003",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/sitting/P4_pvc_sit_0004",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/sitting/P4_pvc_sit_0005",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/sitting/P4_pvc_sit_0006",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/sitting/P4_pvc_sit_0007",
+        "n_windows": 6,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 6
+        },
+        "true_counts": {
+          "2": 6
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/standing/P4_pvc_stand_0001",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/standing/P4_pvc_stand_0002",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/standing/P4_pvc_stand_0003",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/standing/P4_pvc_stand_0004",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/standing/P4_pvc_stand_0005",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/standing/P4_pvc_stand_0006",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/standing/P4_pvc_stand_0007",
+        "n_windows": 11,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 11
+        },
+        "true_counts": {
+          "1": 11
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0001",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0002",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0003",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0004",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0005",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0006",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/sitting/P4_asphalt_sit_0001",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/sitting/P4_asphalt_sit_0002",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/sitting/P4_asphalt_sit_0003",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/sitting/P4_asphalt_sit_0004",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/sitting/P4_asphalt_sit_0005",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/sitting/P4_asphalt_sit_0006",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/sitting/P4_asphalt_sit_0007",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/sitting/P4_asphalt_sit_0008",
+        "n_windows": 17,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 17
+        },
+        "true_counts": {
+          "2": 17
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/standing/P4_asphalt_stand_0001",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/standing/P4_asphalt_stand_0002",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/standing/P4_asphalt_stand_0003",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/standing/P4_asphalt_stand_0004",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/standing/P4_asphalt_stand_0005",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/standing/P4_asphalt_stand_0006",
+        "n_windows": 8,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 8
+        },
+        "true_counts": {
+          "1": 8
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/standing/P4_asphalt_stand_0007",
+        "n_windows": 12,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 12
+        },
+        "true_counts": {
+          "1": 12
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0001",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0002",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0003",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0004",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0005",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0006",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0007",
+        "n_windows": 5,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 5
+        },
+        "true_counts": {
+          "0": 5
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/sitting/P4_grass_sit_0001",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/sitting/P4_grass_sit_0002",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/sitting/P4_grass_sit_0003",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/sitting/P4_grass_sit_0004",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/sitting/P4_grass_sit_0005",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/sitting/P4_grass_sit_0006",
+        "n_windows": 27,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 27
+        },
+        "true_counts": {
+          "2": 27
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/standing/P4_grass_stand_0001",
+        "n_windows": 10,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 10
+        },
+        "true_counts": {
+          "1": 10
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/standing/P4_grass_stand_0002",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/standing/P4_grass_stand_0003",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/standing/P4_grass_stand_0004",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/standing/P4_grass_stand_0005",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/standing/P4_grass_stand_0006",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/standing/P4_grass_stand_0007",
+        "n_windows": 9,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 9
+        },
+        "true_counts": {
+          "1": 9
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0001",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0002",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0003",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0004",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0005",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0006",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0007",
+        "n_windows": 7,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 7
+        },
+        "true_counts": {
+          "0": 7
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/sitting/P4_gravel_sit_0001",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/sitting/P4_gravel_sit_0002",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/sitting/P4_gravel_sit_0003",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/sitting/P4_gravel_sit_0004",
+        "n_windows": 13,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 13
+        },
+        "true_counts": {
+          "2": 13
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/sitting/P4_gravel_sit_0005",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/sitting/P4_gravel_sit_0006",
+        "n_windows": 27,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 27
+        },
+        "true_counts": {
+          "2": 27
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/standing/P4_gravel_stand_0001",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/standing/P4_gravel_stand_0002",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/standing/P4_gravel_stand_0003",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/standing/P4_gravel_stand_0004",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/standing/P4_gravel_stand_0005",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/standing/P4_gravel_stand_0006",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/standing/P4_gravel_stand_0007",
+        "n_windows": 7,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.8571428571428571,
+        "pred_counts": {
+          "0": 1,
+          "1": 6
+        },
+        "true_counts": {
+          "1": 7
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0001",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0002",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0003",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0004",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0005",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0006",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0007",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0008",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0009",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0010",
+        "n_windows": 7,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 7
+        },
+        "true_counts": {
+          "0": 7
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/sitting/P4_sand_sit_0001",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/sitting/P4_sand_sit_0002",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/sitting/P4_sand_sit_0003",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/sitting/P4_sand_sit_0004",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/sitting/P4_sand_sit_0005",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/sitting/P4_sand_sit_0006",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/sitting/P4_sand_sit_0007",
+        "n_windows": 9,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sitting",
+        "y_pred_name": "sitting",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 9
+        },
+        "true_counts": {
+          "2": 9
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/standing/P4_sand_stand_0001",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/standing/P4_sand_stand_0002",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/standing/P4_sand_stand_0003",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/standing/P4_sand_stand_0004",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/standing/P4_sand_stand_0005",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/standing/P4_sand_stand_0006",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/standing/P4_sand_stand_0007",
+        "n_windows": 4,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "standing",
+        "y_pred_name": "standing",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 4
+        },
+        "true_counts": {
+          "1": 4
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0001",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0002",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0003",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0004",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0005",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 29
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "activity",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0006",
+        "n_windows": 4,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "walk",
+        "y_pred_name": "walk",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 4
+        },
+        "true_counts": {
+          "0": 4
+        },
+        "prediction_tie": false
+      }
+    ]
+  },
+  "surface": {
+    "task": "surface",
+    "n": 36,
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "class_names": "asphalt|PVC|sand|gravel|grass",
+    "level": "folder_majority_vote",
+    "n_windows": 951,
+    "n_folders": 36,
+    "prediction_source": "D:\\thl_thesis\\onlyfeet\\models\\clean_p4_final\\stage2_surface_image_audio_concat_seed42_cleanp4\\eval_predictions.csv",
+    "dataset_npz": "D:\\thl_thesis\\onlyfeet\\datasets_m14_rgb64_stage2\\surface\\dataset_test.npz",
+    "tie_breaking": "smallest class index",
+    "n_prediction_tie_folders": 0,
+    "n_inconsistent_true_label_folders": 0,
+    "per_folder": [
+      {
+        "task": "surface",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0001",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "PVC",
+        "y_pred_name": "PVC",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0002",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "PVC",
+        "y_pred_name": "PVC",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0003",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "PVC",
+        "y_pred_name": "PVC",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0004",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "PVC",
+        "y_pred_name": "PVC",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0005",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "PVC",
+        "y_pred_name": "PVC",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/PVC/walking/P4_pvc_walk_0006",
+        "n_windows": 29,
+        "y_true": 1,
+        "y_pred": 1,
+        "y_true_name": "PVC",
+        "y_pred_name": "PVC",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "1": 29
+        },
+        "true_counts": {
+          "1": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0001",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "asphalt",
+        "y_pred_name": "asphalt",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.9655172413793104,
+        "pred_counts": {
+          "0": 28,
+          "3": 1
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0002",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "asphalt",
+        "y_pred_name": "asphalt",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.5517241379310345,
+        "pred_counts": {
+          "0": 16,
+          "1": 2,
+          "2": 6,
+          "3": 5
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0003",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "asphalt",
+        "y_pred_name": "asphalt",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.8620689655172413,
+        "pred_counts": {
+          "0": 25,
+          "2": 2,
+          "3": 2
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0004",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "asphalt",
+        "y_pred_name": "asphalt",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.8275862068965517,
+        "pred_counts": {
+          "0": 24,
+          "2": 2,
+          "3": 3
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0005",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "asphalt",
+        "y_pred_name": "asphalt",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.8275862068965517,
+        "pred_counts": {
+          "0": 24,
+          "2": 5
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0006",
+        "n_windows": 29,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "asphalt",
+        "y_pred_name": "asphalt",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.7241379310344828,
+        "pred_counts": {
+          "0": 21,
+          "1": 2,
+          "2": 5,
+          "3": 1
+        },
+        "true_counts": {
+          "0": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/asphalt/walking/P4_asphalt_walk_0007",
+        "n_windows": 5,
+        "y_true": 0,
+        "y_pred": 0,
+        "y_true_name": "asphalt",
+        "y_pred_name": "asphalt",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "0": 5
+        },
+        "true_counts": {
+          "0": 5
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0001",
+        "n_windows": 29,
+        "y_true": 4,
+        "y_pred": 4,
+        "y_true_name": "grass",
+        "y_pred_name": "grass",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.9310344827586207,
+        "pred_counts": {
+          "2": 2,
+          "4": 27
+        },
+        "true_counts": {
+          "4": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0002",
+        "n_windows": 29,
+        "y_true": 4,
+        "y_pred": 4,
+        "y_true_name": "grass",
+        "y_pred_name": "grass",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.9655172413793104,
+        "pred_counts": {
+          "2": 1,
+          "4": 28
+        },
+        "true_counts": {
+          "4": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0003",
+        "n_windows": 29,
+        "y_true": 4,
+        "y_pred": 4,
+        "y_true_name": "grass",
+        "y_pred_name": "grass",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.9655172413793104,
+        "pred_counts": {
+          "2": 1,
+          "4": 28
+        },
+        "true_counts": {
+          "4": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0004",
+        "n_windows": 29,
+        "y_true": 4,
+        "y_pred": 4,
+        "y_true_name": "grass",
+        "y_pred_name": "grass",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.9310344827586207,
+        "pred_counts": {
+          "0": 1,
+          "2": 1,
+          "4": 27
+        },
+        "true_counts": {
+          "4": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0005",
+        "n_windows": 29,
+        "y_true": 4,
+        "y_pred": 4,
+        "y_true_name": "grass",
+        "y_pred_name": "grass",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "4": 29
+        },
+        "true_counts": {
+          "4": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0006",
+        "n_windows": 29,
+        "y_true": 4,
+        "y_pred": 4,
+        "y_true_name": "grass",
+        "y_pred_name": "grass",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "4": 29
+        },
+        "true_counts": {
+          "4": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/grass/walking/P4_grass_walk_0007",
+        "n_windows": 7,
+        "y_true": 4,
+        "y_pred": 4,
+        "y_true_name": "grass",
+        "y_pred_name": "grass",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "4": 7
+        },
+        "true_counts": {
+          "4": 7
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0001",
+        "n_windows": 29,
+        "y_true": 3,
+        "y_pred": 3,
+        "y_true_name": "gravel",
+        "y_pred_name": "gravel",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "3": 29
+        },
+        "true_counts": {
+          "3": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0002",
+        "n_windows": 29,
+        "y_true": 3,
+        "y_pred": 3,
+        "y_true_name": "gravel",
+        "y_pred_name": "gravel",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "3": 29
+        },
+        "true_counts": {
+          "3": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0003",
+        "n_windows": 29,
+        "y_true": 3,
+        "y_pred": 3,
+        "y_true_name": "gravel",
+        "y_pred_name": "gravel",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "3": 29
+        },
+        "true_counts": {
+          "3": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0004",
+        "n_windows": 29,
+        "y_true": 3,
+        "y_pred": 3,
+        "y_true_name": "gravel",
+        "y_pred_name": "gravel",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "3": 29
+        },
+        "true_counts": {
+          "3": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0005",
+        "n_windows": 29,
+        "y_true": 3,
+        "y_pred": 3,
+        "y_true_name": "gravel",
+        "y_pred_name": "gravel",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "3": 29
+        },
+        "true_counts": {
+          "3": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0006",
+        "n_windows": 29,
+        "y_true": 3,
+        "y_pred": 3,
+        "y_true_name": "gravel",
+        "y_pred_name": "gravel",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "3": 29
+        },
+        "true_counts": {
+          "3": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0007",
+        "n_windows": 29,
+        "y_true": 3,
+        "y_pred": 3,
+        "y_true_name": "gravel",
+        "y_pred_name": "gravel",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "3": 29
+        },
+        "true_counts": {
+          "3": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0008",
+        "n_windows": 29,
+        "y_true": 3,
+        "y_pred": 3,
+        "y_true_name": "gravel",
+        "y_pred_name": "gravel",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "3": 29
+        },
+        "true_counts": {
+          "3": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0009",
+        "n_windows": 29,
+        "y_true": 3,
+        "y_pred": 3,
+        "y_true_name": "gravel",
+        "y_pred_name": "gravel",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "3": 29
+        },
+        "true_counts": {
+          "3": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/gravel/walking/P4_gravel_walk_0010",
+        "n_windows": 7,
+        "y_true": 3,
+        "y_pred": 3,
+        "y_true_name": "gravel",
+        "y_pred_name": "gravel",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "3": 7
+        },
+        "true_counts": {
+          "3": 7
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0001",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sand",
+        "y_pred_name": "sand",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0002",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sand",
+        "y_pred_name": "sand",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.8620689655172413,
+        "pred_counts": {
+          "0": 2,
+          "2": 25,
+          "3": 2
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0003",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sand",
+        "y_pred_name": "sand",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0004",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sand",
+        "y_pred_name": "sand",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 29
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0005",
+        "n_windows": 29,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sand",
+        "y_pred_name": "sand",
+        "correct": 1,
+        "window_accuracy_in_folder": 0.9655172413793104,
+        "pred_counts": {
+          "0": 1,
+          "2": 28
+        },
+        "true_counts": {
+          "2": 29
+        },
+        "prediction_tie": false
+      },
+      {
+        "task": "surface",
+        "folder": "data/P4/sand/walking/P4_sand_walk_0006",
+        "n_windows": 4,
+        "y_true": 2,
+        "y_pred": 2,
+        "y_true_name": "sand",
+        "y_pred_name": "sand",
+        "correct": 1,
+        "window_accuracy_in_folder": 1.0,
+        "pred_counts": {
+          "2": 4
+        },
+        "true_counts": {
+          "2": 4
+        },
+        "prediction_tie": false
+      }
+    ]
+  }
+}

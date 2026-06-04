@@ -1,0 +1,5 @@
+task,n,accuracy,macro_f1,class_names,level,majority_class,majority_class_name,n_windows,n_folders,dataset_npz
+activity,2735,0.34771480804387567,0.17200217037438958,walk|standing|sitting,window_majority_class_baseline,0,walk,2735,105,D:\thl_thesis\onlyfeet\datasets_m14_rgb64_stage2\activity\dataset_test.npz
+activity,105,0.34285714285714286,0.1702127659574468,walk|standing|sitting,folder_majority_class_baseline,0,walk,2735,105,D:\thl_thesis\onlyfeet\datasets_m14_rgb64_stage2\activity\dataset_test.npz
+surface,951,0.28180862250262884,0.08794093519278098,asphalt|PVC|sand|gravel|grass,window_majority_class_baseline,3,gravel,951,36,D:\thl_thesis\onlyfeet\datasets_m14_rgb64_stage2\surface\dataset_test.npz
+surface,36,0.2777777777777778,0.08695652173913045,asphalt|PVC|sand|gravel|grass,folder_majority_class_baseline,3,gravel,951,36,D:\thl_thesis\onlyfeet\datasets_m14_rgb64_stage2\surface\dataset_test.npz

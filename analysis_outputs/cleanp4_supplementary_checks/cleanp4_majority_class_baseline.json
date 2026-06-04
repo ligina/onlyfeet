@@ -1,0 +1,58 @@
+{
+  "activity": [
+    {
+      "task": "activity",
+      "n": 2735,
+      "accuracy": 0.34771480804387567,
+      "macro_f1": 0.17200217037438958,
+      "class_names": "walk|standing|sitting",
+      "level": "window_majority_class_baseline",
+      "majority_class": 0,
+      "majority_class_name": "walk",
+      "n_windows": 2735,
+      "n_folders": 105,
+      "dataset_npz": "D:\\thl_thesis\\onlyfeet\\datasets_m14_rgb64_stage2\\activity\\dataset_test.npz"
+    },
+    {
+      "task": "activity",
+      "n": 105,
+      "accuracy": 0.34285714285714286,
+      "macro_f1": 0.1702127659574468,
+      "class_names": "walk|standing|sitting",
+      "level": "folder_majority_class_baseline",
+      "majority_class": 0,
+      "majority_class_name": "walk",
+      "n_windows": 2735,
+      "n_folders": 105,
+      "dataset_npz": "D:\\thl_thesis\\onlyfeet\\datasets_m14_rgb64_stage2\\activity\\dataset_test.npz"
+    }
+  ],
+  "surface": [
+    {
+      "task": "surface",
+      "n": 951,
+      "accuracy": 0.28180862250262884,
+      "macro_f1": 0.08794093519278098,
+      "class_names": "asphalt|PVC|sand|gravel|grass",
+      "level": "window_majority_class_baseline",
+      "majority_class": 3,
+      "majority_class_name": "gravel",
+      "n_windows": 951,
+      "n_folders": 36,
+      "dataset_npz": "D:\\thl_thesis\\onlyfeet\\datasets_m14_rgb64_stage2\\surface\\dataset_test.npz"
+    },
+    {
+      "task": "surface",
+      "n": 36,
+      "accuracy": 0.2777777777777778,
+      "macro_f1": 0.08695652173913045,
+      "class_names": "asphalt|PVC|sand|gravel|grass",
+      "level": "folder_majority_class_baseline",
+      "majority_class": 3,
+      "majority_class_name": "gravel",
+      "n_windows": 951,
+      "n_folders": 36,
+      "dataset_npz": "D:\\thl_thesis\\onlyfeet\\datasets_m14_rgb64_stage2\\surface\\dataset_test.npz"
+    }
+  ]
+}
