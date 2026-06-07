@@ -18,6 +18,26 @@ The main goal is to evaluate task-specific modality usefulness and fusion behavi
 
 ---
 
+## Dataset Availability
+
+The public OnlyFeet dataset archive is hosted on Hugging Face:
+
+[OnlyFeet Dataset on Hugging Face](https://huggingface.co/datasets/ligina592/onlyfeet/tree/main)
+
+Code and experiment scripts are hosted in this GitHub repository. The large dataset archive is hosted separately on Hugging Face. This separation keeps the Git repository lightweight and avoids storing large binary data in Git.
+
+The GitHub repository does not store the large raw/final dataset archive directly. Dataset metadata such as `dataset_card.json` and `build_stats.json` may be included in the repository for traceability, while the full uploaded dataset archive is available from the Hugging Face dataset repository.
+
+Current Hugging Face dataset contents include `data_makeup.zip` (approximately 1.13 GB). The license shown on Hugging Face is MIT. Users should download the dataset archive from Hugging Face and place or extract it according to the expected local project/data layout before running the dataset-preparation or training scripts.
+
+```bash
+# Download the dataset archive from Hugging Face, then extract it into
+# the expected local data directory before running scripts.
+huggingface-cli download ligina592/onlyfeet data_makeup.zip --repo-type dataset --local-dir data_external/onlyfeet
+```
+
+---
+
 ## 1. Repository Structure
 
 ```text

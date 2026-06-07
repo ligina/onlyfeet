@@ -18,6 +18,26 @@
 
 ---
 
+## 数据集可用性
+
+公开的 OnlyFeet 数据集归档托管在 Hugging Face：
+
+[OnlyFeet Dataset on Hugging Face](https://huggingface.co/datasets/ligina592/onlyfeet/tree/main)
+
+代码和实验脚本托管在本 GitHub 仓库中，大型数据集归档单独托管在 Hugging Face。这样的分离方式可以保持 Git 仓库轻量，并避免在 Git 中存储大型二进制数据。
+
+本 GitHub 仓库不直接存储大型 raw/final dataset archive。仓库中可包含 `dataset_card.json` 和 `build_stats.json` 等数据集元数据，用于可追溯性；完整上传的数据集归档应从 Hugging Face dataset repository 获取。
+
+当前 Hugging Face 数据集内容包括 `data_makeup.zip`，大小约 1.13 GB。Hugging Face 页面显示的 license 为 MIT。用户应从 Hugging Face 下载数据集归档，并按项目预期的本地 data layout 放置或解压，然后再运行数据集准备或训练脚本。
+
+```bash
+# Download the dataset archive from Hugging Face, then extract it into
+# the expected local data directory before running scripts.
+huggingface-cli download ligina592/onlyfeet data_makeup.zip --repo-type dataset --local-dir data_external/onlyfeet
+```
+
+---
+
 ## 1. 仓库结构
 
 ```text
