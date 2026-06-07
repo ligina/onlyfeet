@@ -1,5 +1,7 @@
 ﻿# OnlyFeet Final Experiment Release
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 This repository contains the final experiment release for the **OnlyFeet bachelor thesis project**. It includes training scripts, evaluation scripts, result reports, selected trained models, logs, dataset and split documentation, archived original artifacts, and environment information.
 
 Internally, the final held-out P4 evaluation protocol is named Clean-P4. The current thesis main final evidence is the **Clean-P4 final evaluation**. Clean-P4 corrects the earlier Stage 2 checkpoint-selection risk by deriving training-time validation from the Stage 2 training data only and reserving P4 for final evaluation only.
@@ -21,6 +23,9 @@ The main goal is to evaluate task-specific modality usefulness and fusion behavi
 ```text
 onlyfeet/
 ├── archive_manifest.txt
+├── analysis_outputs/
+├── datasets_m14_rgb64_stage1/
+├── datasets_m14_rgb64_stage2/
 ├── data_docs/
 ├── environment/
 ├── logs/
@@ -31,8 +36,11 @@ onlyfeet/
 ├── models/
 │   ├── clean_p4_final/
 │   └── final_stage2/
+├── requirement/
 ├── reports/
-└── scripts/
+├── scripts/
+├── README.md
+└── README.zh-CN.md
 ```
 
 ### Main directories
@@ -42,6 +50,19 @@ scripts/
 ```
 
 Contains dataset preparation, model training, evaluation, result collection, robustness testing, folder-level evaluation, sanity-check scripts, and the Clean-P4 rerun scripts.
+
+```text
+analysis_outputs/
+```
+
+Contains supplementary analysis outputs that are useful for traceability, including Clean-P4 supplementary-check summaries and sample-difference diagnostics. These files are supporting diagnostics and do not replace the main Clean-P4 final evidence.
+
+```text
+datasets_m14_rgb64_stage1/
+datasets_m14_rgb64_stage2/
+```
+
+Contain dataset metadata cards and build statistics for the generated M14 RGB64 Stage 1 and Stage 2 datasets. The large `.npz` array files required for full training reruns are not included in this release.
 
 ```text
 reports/
@@ -71,10 +92,16 @@ data_docs/
 Contains dataset and split documentation, including participant definitions and split rules.
 
 ```text
+requirement/
+```
+
+Contains thesis requirement or submission-reference material, including `requirement/Ziang Liu.pdf`.
+
+```text
 environment/
 ```
 
-Contains environment information, including Python version, installed packages, GPU information, and storage information.
+Contains environment information, including Python version, installed packages, GPU-environment export files, and storage information.
 
 ---
 
@@ -811,11 +838,14 @@ Checks dataset split summaries and folder overlap.
 ### 19.10 Supplementary Clean-P4 Diagnostic Scripts
 
 ```text
+scripts/run_cleanp4_supplementary_checks.py
 scripts/94_eval_clean_p4_non_overlap.py
 scripts/95_eval_clean_p4_surface_robustness.py
 scripts/96_collect_clean_p4_model_complexity.py
 scripts/create_clean_p4_composite_model.py
 ```
+
+`scripts/run_cleanp4_supplementary_checks.py` is a convenience runner for the Clean-P4 supplementary diagnostics and related consistency checks.
 
 `scripts/94_eval_clean_p4_non_overlap.py` runs the Clean-P4 non-overlapping-window diagnostic and outputs to `reports/clean_p4_final/non_overlap/`.
 
@@ -829,10 +859,12 @@ scripts/create_clean_p4_composite_model.py
 
 ```text
 scripts/run_10_stage1_single_modality.sh
+scripts/run_20_stage1_fusion.sh
 scripts/run_20_stage1_full_fusion.sh
 scripts/run_22_stage1_fusion_range.sh
 scripts/run_23_one_fusion_job.sh
 scripts/run_24_fusion_jobs_loop.sh
+scripts/run_30_stage2_template.sh
 scripts/run_31_stage2_final_candidates.sh
 scripts/run_32_stage2_clean_p4_final_models.sh
 scripts/run_40_robustness_template.sh
@@ -843,12 +875,13 @@ scripts/run_40_robustness_template.sh
 ```text
 scripts/check_m14_no_window_folders.py
 scripts/inspect_p4_bad_walk_folders.py
+scripts/09_eval_nonoverlap_windows.py
 scripts/scan_p12_p3_imu_missing.py
 scripts/scan_p4_all_activity_imu.py
 scripts/scan_p4_all_imu_packets.py
 ```
 
-These scripts were used for data quality inspection and debugging.
+These scripts were used for data quality inspection, legacy non-overlap diagnostics, and debugging.
 
 ---
 
