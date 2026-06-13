@@ -19,6 +19,7 @@ Thumbs.db
 
 # Post-feedback LOPGO experiments: keep lightweight metrics and summaries only
 thesis_results_complete_no_dataset/**/*.h5
+thesis_results_complete_no_dataset/**/*.keras
 thesis_results_complete_no_dataset/**/*predictions.csv
 thesis_results_complete_no_dataset/**/*.png
 thesis_results_complete_no_dataset/**/*.npy

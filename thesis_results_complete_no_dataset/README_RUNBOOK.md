@@ -1,292 +1,229 @@
-# OnlyFeet Post-Feedback LOPGO Experiment Package
+# Thesis Results Complete - No Dataset
 
-This pack is designed for the post-feedback experiment upgrade:
+## Purpose
 
-- main generalization evaluation: 3-fold leave-one-participant-group-out (LOPGO)
-- full model search: 342 trainings = 3 folds × 2 tasks × 57 configurations
-- final-candidate stability: extra seeds for selected models
-- diagnostics: majority baseline, non-overlapping windows, folder-level vote, zero-input modality diagnostic, optional label-shuffle training
-- optional repeated random folder-level split diagnostics
+This folder is the lightweight final evidence bundle for the OnlyFeet
+three-fold LOPGO thesis evaluation. It supports inspection and traceability
+without including raw data, prepared datasets, trained models, predictions, or
+other large generated artifacts.
 
-It does **not** claim strict four-fold LOSO, because P1 and P2 are assumed to be irreversibly merged.
+The final thesis protocol and results are represented by the files in this
+folder. Earlier P4-only and Clean-P4 artifacts elsewhere in the repository are
+historical or traceability material, not the final thesis result.
 
-## Repository contents
+## Protocol Summary
 
-The Git package intentionally keeps lightweight material needed to audit the
-experiment:
+The evaluation uses three recoverable participant groups:
 
-- `scripts/`: split generation, dataset preparation, training, orchestration,
-  and aggregation code.
-- `splits_lopgo/`: recoverable participant-group definitions, LOPGO folds, and
-  supplementary random-folder split definitions.
-- `reports_lopgo_summary/`: complete run index, cross-fold summaries, selected
-  model details, stability results, label-shuffle results, and thesis tables.
-- `experiments_lopgo/`: per-run configurations, compact summaries, core metric
-  JSON files, and small confusion-matrix/per-class CSV files.
+- `P1P2`
+- `P3`
+- `P4`
 
-The following generated artifacts remain local and are intentionally excluded
-from Git: trained `.h5` models, prepared `.npz` datasets, per-window prediction
-CSVs, PNG plots, NumPy matrix files, caches, training histories, epoch logs,
-model summaries, classification-report duplicates, and runtime logs. They are
-not required to inspect the aggregate claims and would add more than 1 GB to
-the repository.
+One group is held out in each fold. P1 and P2 cannot be separated reliably in
+the recoverable early-recording metadata, so `P1P2` is treated as one group.
+This is three-fold leave-one-recoverable-participant-group-out evaluation, not
+strict four-subject LOSO.
 
-## Completed result evidence
+The experiment sequence was:
 
-The completed aggregate outputs report:
+1. A seed-42 full model search.
+2. Three folds x two tasks x 57 configurations, for 342 search runs.
+3. Selection of the final task-specific models.
+4. Final stability evaluation with seeds 42, 43, and 44 across all three folds.
+5. Supporting label-shuffle, non-overlap, folder-vote, majority-baseline, and
+   zero-input diagnostics.
 
-- Activity recognition selected model: gated IMU+audio, 9 runs across three
-  recoverable participant-group folds and three seeds, mean test macro-F1
-  94.81% with standard deviation 6.58 percentage points.
-- Walking-only surface selected model: image+audio concatenation, 9 runs,
-  mean test macro-F1 97.26% with standard deviation 1.16 percentage points.
-- Mean non-overlap macro-F1 remains 94.79% for activity and 97.26% for surface.
-- Label-shuffle mean macro-F1 falls to 42.04% for activity and 22.53% for
-  surface.
+## Final Selected Models
 
-These values are copied from
-`reports_lopgo_summary/thesis_tables/table1_final_selected_models.csv` and
-`table3_label_shuffle_sanity.csv`; those CSV files remain the authoritative
-machine-readable source.
+| Task | Selected model | Mean macro-F1 | Mean accuracy | Notes |
+| --- | --- | ---: | ---: | --- |
+| Activity recognition | Gated IMU+audio | 94.81% | 94.88% | Three folds and three seeds |
+| Walking-only surface recognition | Audio+image concatenation | 97.26% | 97.25% | Walking samples only; three folds and three seeds |
 
-## Expected project structure on the server
-
-Example:
+The authoritative aggregate table is:
 
 ```text
-/workspace/onlyfeet/
-  data/
-    labels_all_m14_clean.csv
-    ... raw recording folders ...
-  scripts/
-    00_make_lopgo_and_random_split_csvs.py
-    01_prepare_task_datasets_rgb.py
-    01b_prepare_all_split_csvs.py
-    02_train_task_cv_model.py
-    03_run_full_lopgo_search.py
-    04_run_final_stability_and_diagnostics.py
-    05_run_random_folder_final_models.py
-    06_aggregate_experiment_results.py
+reports_lopgo_summary/thesis_tables/table1_final_selected_models.csv
 ```
 
-Copy all files in `scripts/` from this pack into your project `scripts/` folder.
+## Fold-Level Results
 
-## Environment
+| Task | Held-out group | Mean macro-F1 |
+| --- | --- | ---: |
+| Activity recognition | P1P2 | 86.13% |
+| Activity recognition | P3 | 98.39% |
+| Activity recognition | P4 | 99.89% |
+| Walking-only surface recognition | P1P2 | 98.00% |
+| Walking-only surface recognition | P3 | 95.81% |
+| Walking-only surface recognition | P4 | 97.98% |
 
-Use a TensorFlow GPU environment. Minimal packages:
-
-```bash
-pip install tensorflow scikit-learn pandas numpy matplotlib pillow librosa soundfile audioread
-```
-
-Recommended runtime style:
-
-```bash
-tmux new -s onlyfeet_lopgo
-export TF_FORCE_GPU_ALLOW_GROWTH=true
-export PYTHONUNBUFFERED=1
-```
-
-## Step 1: Create split CSVs
-
-```bash
-cd /workspace/onlyfeet
-
-python scripts/00_make_lopgo_and_random_split_csvs.py \
-  --labels_csv data/labels_all_m14_clean.csv \
-  --out_dir splits_lopgo \
-  --random_seeds 42,43,44,45,46 \
-  --random_test_frac 0.20
-```
-
-If participant group cannot be inferred automatically, provide the column explicitly:
-
-```bash
-python scripts/00_make_lopgo_and_random_split_csvs.py \
-  --labels_csv data/labels_all_m14_clean.csv \
-  --out_dir splits_lopgo \
-  --participant_col participant
-```
-
-Output:
+Detailed fold-level accuracy, macro-F1, ranges, and non-overlap values are in:
 
 ```text
-splits_lopgo/lopgo/lopgo_test_p1p2.csv
-splits_lopgo/lopgo/lopgo_test_p3.csv
-splits_lopgo/lopgo/lopgo_test_p4.csv
-splits_lopgo/random_folder/random_folder_seed42.csv
-...
+reports_lopgo_summary/thesis_tables/table2_per_fold_selected_models.csv
+reports_lopgo_summary/selected_final_3seed_results.csv
 ```
 
-## Step 2: Prepare NPZ datasets for all LOPGO folds
+The activity result varies substantially by held-out group, with P1P2 being
+the most difficult fold. The surface result is more consistent across folds.
 
-```bash
-python scripts/01b_prepare_all_split_csvs.py \
-  --split_root splits_lopgo \
-  --data_root data \
-  --out_root datasets_lopgo_rgb64 \
-  --prepare_script scripts/01_prepare_task_datasets_rgb.py
-```
+## Diagnostics
 
-To also prepare random-folder splits:
+### Label Shuffle
 
-```bash
-python scripts/01b_prepare_all_split_csvs.py \
-  --split_root splits_lopgo \
-  --data_root data \
-  --out_root datasets_lopgo_rgb64 \
-  --prepare_script scripts/01_prepare_task_datasets_rgb.py \
-  --include_random
-```
-
-Each fold will contain:
+The label-shuffle sanity check reduces mean macro-F1 from 94.81% to 42.04% for
+activity and from 97.26% to 22.53% for surface. The corresponding drops are
+52.76 and 74.74 percentage points.
 
 ```text
-datasets_lopgo_rgb64/lopgo/test_p1p2/regular/dataset_train.npz
-datasets_lopgo_rgb64/lopgo/test_p1p2/regular/dataset_val.npz
+reports_lopgo_summary/label_shuffle_results.csv
+reports_lopgo_summary/thesis_tables/table3_label_shuffle_sanity.csv
+experiments_lopgo/label_shuffle/
 ```
 
-Important: `dataset_val.npz` is the held-out test group for that fold. The training script creates internal validation from `dataset_train.npz` by folder, so test data is not used for checkpoint selection.
+This check argues against obvious train-label leakage. It does not by itself
+prove the absence of every possible confound.
 
-## Step 3: Dry-run the full experiment matrix
+### Non-Overlap
 
-Before renting a long run, verify commands:
+The selected models retain mean non-overlap macro-F1 values of 94.79% for
+activity and 97.26% for surface.
 
-```bash
-python scripts/03_run_full_lopgo_search.py \
-  --datasets_root datasets_lopgo_rgb64 \
-  --out_root experiments_lopgo \
-  --train_script scripts/02_train_task_cv_model.py \
-  --epochs 80 \
-  --batch 32 \
-  --seed 42 \
-  --dry_run
+Per-run values are stored in `test_nonoverlap_metrics.json`, with aggregate
+values in the thesis tables. The diagnostic reduces direct 50% window-overlap
+concerns but does not prove participant-, session-, location-, protocol-, or
+real-world independence.
+
+### Single-Modality Results
+
+Single-modality configurations are included in the full search summaries:
+
+```text
+reports_lopgo_summary/cv_summary_by_config.csv
+reports_lopgo_summary/top10_by_task.csv
+reports_lopgo_summary/all_runs.csv
 ```
 
-## Step 4: Run the full 342-training search
+They are comparison baselines within the same controlled protocol, not
+independent deployment studies.
 
-```bash
-nohup python scripts/03_run_full_lopgo_search.py \
-  --datasets_root datasets_lopgo_rgb64 \
-  --out_root experiments_lopgo \
-  --train_script scripts/02_train_task_cv_model.py \
-  --epochs 80 \
-  --batch 32 \
-  --seed 42 \
-  --resume \
-  > full_lopgo_search.nohup.log 2>&1 &
+### Zero-Input Perturbation
+
+Available runs include `zero_input_metrics.json` for modality perturbation
+inspection. Zero-input perturbation diagnostics are not retrained ablations
+and are not causal estimates of modality importance. They show model behavior
+under artificial input replacement only.
+
+Additional per-run diagnostics include:
+
+```text
+majority_baseline_metrics.json
+folder_majority_metrics.json
+test_metrics.json
+test_nonoverlap_metrics.json
+test_per_class.csv
+test_nonoverlap_per_class.csv
 ```
 
-Monitor:
+## Included Files
 
-```bash
-tail -f full_lopgo_search.nohup.log
-find experiments_lopgo/full_lopgo_search -name summary.json | wc -l
-```
-
-Expected completed run count: `342`.
-
-## Step 5: Run final-candidate stability and label-shuffle diagnostics
-
-Default candidates:
-
-- Activity: `single:imu`
-- Surface: `concat:image,audio`
-
-```bash
-nohup python scripts/04_run_final_stability_and_diagnostics.py \
-  --datasets_root datasets_lopgo_rgb64 \
-  --out_root experiments_lopgo \
-  --train_script scripts/02_train_task_cv_model.py \
-  --seeds 42,43,44 \
-  --epochs 100 \
-  --batch 32 \
-  --run_label_shuffle \
-  --resume \
-  > final_stability.nohup.log 2>&1 &
-```
-
-This produces normal stability runs and one label-shuffle sanity run per fold/task candidate.
-
-## Step 6: Optional random folder-level diagnostics
-
-Only do this after LOPGO is finished. It is a supplementary within-distribution diagnostic, not participant-independent evidence.
-
-```bash
-nohup python scripts/05_run_random_folder_final_models.py \
-  --datasets_root datasets_lopgo_rgb64 \
-  --out_root experiments_lopgo \
-  --train_script scripts/02_train_task_cv_model.py \
-  --epochs 80 \
-  --batch 32 \
-  --resume \
-  > random_folder_final.nohup.log 2>&1 &
-```
-
-## Step 7: Aggregate results
-
-```bash
-python scripts/06_aggregate_experiment_results.py \
-  --results_root experiments_lopgo \
-  --out_dir reports_lopgo_summary
-```
-
-Key outputs:
+### Aggregate Summaries
 
 ```text
 reports_lopgo_summary/all_runs.csv
 reports_lopgo_summary/cv_summary_by_config.csv
-reports_lopgo_summary/top10_by_task.csv
-reports_lopgo_summary/selected_config_fold_details.csv
 reports_lopgo_summary/cv_summary_formatted.csv
-reports_lopgo_summary/selected_final_3seed_results.csv
+reports_lopgo_summary/final_stability_only.csv
 reports_lopgo_summary/label_shuffle_results.csv
-reports_lopgo_summary/thesis_tables/
+reports_lopgo_summary/selected_config_fold_details.csv
+reports_lopgo_summary/selected_final_3seed_results.csv
+reports_lopgo_summary/top10_by_task.csv
 ```
 
-## What to use in the thesis
+### Thesis Tables
 
-Main evidence:
+```text
+reports_lopgo_summary/thesis_tables/table1_final_selected_models.csv
+reports_lopgo_summary/thesis_tables/table2_per_fold_selected_models.csv
+reports_lopgo_summary/thesis_tables/table3_label_shuffle_sanity.csv
+```
 
-- `cv_summary_by_config.csv`
-- `top10_by_task.csv`
-- `selected_config_fold_details.csv`
-- `selected_final_3seed_results.csv`
-- `thesis_tables/table1_final_selected_models.csv`
-- `thesis_tables/table2_per_fold_selected_models.csv`
+### Split Definitions
 
-Diagnostics:
+```text
+splits_lopgo/labels_with_recoverable_participant_group.csv
+splits_lopgo/participant_group_row_counts.csv
+splits_lopgo/lopgo/lopgo_summary.csv
+splits_lopgo/lopgo/lopgo_summary.json
+splits_lopgo/lopgo/lopgo_test_p1p2.csv
+splits_lopgo/lopgo/lopgo_test_p3.csv
+splits_lopgo/lopgo/lopgo_test_p4.csv
+splits_lopgo/random_folder/random_folder_seed42.csv
+splits_lopgo/random_folder/random_folder_seed43.csv
+splits_lopgo/random_folder/random_folder_seed44.csv
+splits_lopgo/random_folder/random_folder_seed45.csv
+splits_lopgo/random_folder/random_folder_seed46.csv
+splits_lopgo/random_folder/random_folder_summary.csv
+splits_lopgo/random_folder/random_folder_summary.json
+```
 
-- per-run `majority_baseline_metrics.json`
-- per-run `folder_majority_metrics.json`
-- per-run `test_nonoverlap_metrics.json`
-- per-run `zero_input_metrics.json`
-- `label_shuffle_results.csv`
-- `thesis_tables/table3_label_shuffle_sanity.csv`
+The random-folder splits are supplementary within-distribution diagnostics.
+They are not participant-independent evidence.
 
-Recommended claim boundary:
+### Scripts
 
-> Since P1 and P2 were irreversibly merged in the available metadata, strict four-fold LOSO cross-validation could not be reconstructed. Therefore, the evaluation uses a three-fold leave-one-participant-group-out protocol over the recoverable groups P1/P2, P3, and P4. Repeated random folder-level splits are reported only as supplementary within-distribution diagnostics and are not treated as participant-independent evidence.
+```text
+scripts/00_make_lopgo_and_random_split_csvs.py
+scripts/01_prepare_task_datasets_rgb.py
+scripts/01b_prepare_all_split_csvs.py
+scripts/02_train_task_cv_model.py
+scripts/02_train_task_cv_model_v2.py
+scripts/03_run_full_lopgo_search.py
+scripts/04_run_final_stability_and_diagnostics.py
+scripts/05_run_random_folder_final_models.py
+scripts/06_aggregate_experiment_results.py
+```
 
-## Expected full experiment count
+### Per-Run Evidence
 
-Full model search:
+The `experiments_lopgo/` tree retains lightweight configurations, summaries,
+JSON metrics, and small CSV reports for:
 
-- 5 single-modality configurations
-- 26 multimodal combinations × 2 fusion strategies = 52
-- 57 configurations per task
-- 2 tasks
-- 3 folds
+```text
+experiments_lopgo/full_lopgo_search/
+experiments_lopgo/final_stability/
+experiments_lopgo/label_shuffle/
+experiments_lopgo/full_lopgo_search_manifest.json
+```
 
-Total: 342 training runs.
+## Excluded Files
 
-Final stability:
+Repository `.gitignore` rules intentionally exclude:
 
-- 3 folds × 2 final task candidates × 3 seeds = 18 runs
-- label shuffle if enabled: 3 folds × 2 candidates = 6 extra runs
+- Raw data and prepared `.npz` datasets.
+- Trained `.h5` and `.keras` models.
+- Full `*predictions.csv` files.
+- Runtime and training `.log` files.
+- PNG plots and NPY matrices.
+- Training histories and epoch-level training logs.
+- Model summaries and duplicate classification reports.
+- Python caches, notebook checkpoints, and script backup files.
+- Archives and local virtual environments.
 
-Random folder final diagnostics:
+These artifacts remain local where available and are not deleted by the ignore
+policy.
 
-- 5 random splits × 2 candidates = 10 runs
+## Reproduction Notes
 
-Total if all enabled: 342 + 18 + 6 + 10 = 376 runs.
+This bundle supports:
+
+- Inspection of final and fold-level result tables.
+- Verification of split definitions.
+- Review of model configurations and metric JSON files.
+- Inspection of the scripts used for preparation, training, orchestration, and
+  aggregation.
+
+The scripts document the expected workflow, but a full rerun requires the
+original raw recordings or prepared `.npz` datasets, the required software
+environment, and sufficient compute resources. The Git bundle alone is not a
+self-contained training dataset or model release.
