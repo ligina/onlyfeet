@@ -1,0 +1,4 @@
+class,precision,recall,f1,support
+walk,1.0,1.0,1.0,493
+standing,1.0,1.0,1.0,452
+sitting,1.0,1.0,1.0,472

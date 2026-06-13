@@ -1,0 +1,105 @@
+{
+  "fold": "test_p1p2",
+  "task": "surface",
+  "modalities": [
+    "imu",
+    "tof",
+    "image"
+  ],
+  "fusion": "gated",
+  "seed": 42,
+  "data_dir": "datasets_lopgo_rgb64/lopgo/test_p1p2",
+  "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-tof-image__seed42",
+  "classes": [
+    "asphalt",
+    "pvc",
+    "sand",
+    "gravel",
+    "grass"
+  ],
+  "n_classes": 5,
+  "n_train_internal": 3402,
+  "n_internal_val": 824,
+  "n_test_heldout": 7024,
+  "input_shapes": {
+    "imu": [
+      50,
+      8
+    ],
+    "tof": [
+      50,
+      2
+    ],
+    "image": [
+      64,
+      64,
+      6
+    ]
+  },
+  "shuffle_train_labels": false,
+  "args": {
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p1p2",
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-tof-image__seed42",
+    "fold": "test_p1p2",
+    "task": "surface",
+    "modalities": "imu,tof,image",
+    "fusion": "gated",
+    "seed": 42,
+    "epochs": 80,
+    "batch": 32,
+    "lr": 0.0005,
+    "dropout": 0.35,
+    "feature_dim": 96,
+    "label_smoothing": 0.05,
+    "internal_val_frac": 0.2,
+    "patience": 12,
+    "shuffle_train_labels": false,
+    "no_zero_input_eval": false
+  },
+  "normalization_stats_summary": {
+    "imu": {
+      "mean_shape": [
+        1,
+        1,
+        8
+      ],
+      "std_shape": [
+        1,
+        1,
+        8
+      ],
+      "train_mean_global": 23.227924346923828,
+      "train_std_global": 93.5363540649414
+    },
+    "tof": {
+      "mean_shape": [
+        1,
+        1,
+        2
+      ],
+      "std_shape": [
+        1,
+        1,
+        2
+      ],
+      "train_mean_global": 580.3530883789062,
+      "train_std_global": 1008.0892333984375
+    },
+    "image": {
+      "mean_shape": [
+        1,
+        1,
+        1,
+        6
+      ],
+      "std_shape": [
+        1,
+        1,
+        1,
+        6
+      ],
+      "train_mean_global": 0.4965144395828247,
+      "train_std_global": 0.21176213026046753
+    }
+  }
+}

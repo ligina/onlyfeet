@@ -1,0 +1,84 @@
+{
+  "fold": "test_p4",
+  "task": "activity",
+  "modalities": [
+    "imu",
+    "audio"
+  ],
+  "fusion": "gated",
+  "seed": 99,
+  "data_dir": "datasets_lopgo_rgb64/lopgo/test_p4",
+  "out_dir": "experiments_lopgo/label_shuffle/test_p4__activity__gated__imu-audio__seed99_shuffle",
+  "classes": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "n_classes": 3,
+  "n_train_internal": 23783,
+  "n_internal_val": 6005,
+  "n_test_heldout": 2735,
+  "input_shapes": {
+    "imu": [
+      50,
+      8
+    ],
+    "audio": [
+      40,
+      40,
+      1
+    ]
+  },
+  "shuffle_train_labels": true,
+  "args": {
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p4",
+    "out_dir": "experiments_lopgo/label_shuffle/test_p4__activity__gated__imu-audio__seed99_shuffle",
+    "fold": "test_p4",
+    "task": "activity",
+    "modalities": "imu,audio",
+    "fusion": "gated",
+    "seed": 99,
+    "epochs": 40,
+    "batch": 32,
+    "lr": 0.0005,
+    "dropout": 0.35,
+    "feature_dim": 96,
+    "label_smoothing": 0.05,
+    "internal_val_frac": 0.2,
+    "patience": 8,
+    "shuffle_train_labels": true,
+    "no_zero_input_eval": false
+  },
+  "normalization_stats_summary": {
+    "imu": {
+      "mean_shape": [
+        1,
+        1,
+        8
+      ],
+      "std_shape": [
+        1,
+        1,
+        8
+      ],
+      "train_mean_global": 10.324738502502441,
+      "train_std_global": 58.489830017089844
+    },
+    "audio": {
+      "mean_shape": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "std_shape": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "train_mean_global": 1.5746873804900474e-09,
+      "train_std_global": 0.999579906463623
+    }
+  }
+}

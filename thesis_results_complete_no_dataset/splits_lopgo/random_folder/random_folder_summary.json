@@ -1,0 +1,47 @@
+[
+  {
+    "seed": 42,
+    "csv": "splits_lopgo/random_folder/random_folder_seed42.csv",
+    "test_frac": 0.2,
+    "train_rows": 933,
+    "test_rows_as_val": 233,
+    "train_folders": 933,
+    "test_folders": 233
+  },
+  {
+    "seed": 43,
+    "csv": "splits_lopgo/random_folder/random_folder_seed43.csv",
+    "test_frac": 0.2,
+    "train_rows": 933,
+    "test_rows_as_val": 233,
+    "train_folders": 933,
+    "test_folders": 233
+  },
+  {
+    "seed": 44,
+    "csv": "splits_lopgo/random_folder/random_folder_seed44.csv",
+    "test_frac": 0.2,
+    "train_rows": 933,
+    "test_rows_as_val": 233,
+    "train_folders": 933,
+    "test_folders": 233
+  },
+  {
+    "seed": 45,
+    "csv": "splits_lopgo/random_folder/random_folder_seed45.csv",
+    "test_frac": 0.2,
+    "train_rows": 933,
+    "test_rows_as_val": 233,
+    "train_folders": 933,
+    "test_folders": 233
+  },
+  {
+    "seed": 46,
+    "csv": "splits_lopgo/random_folder/random_folder_seed46.csv",
+    "test_frac": 0.2,
+    "train_rows": 933,
+    "test_rows_as_val": 233,
+    "train_folders": 933,
+    "test_folders": 233
+  }
+]

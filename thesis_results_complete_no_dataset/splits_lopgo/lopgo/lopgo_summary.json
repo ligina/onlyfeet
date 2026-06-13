@@ -1,0 +1,35 @@
+[
+  {
+    "fold": "test_P1P2",
+    "csv": "splits_lopgo/lopgo/lopgo_test_p1p2.csv",
+    "train_rows": 475,
+    "test_rows_as_val": 691,
+    "train_groups": [
+      "P3",
+      "P4"
+    ],
+    "test_group": "P1P2"
+  },
+  {
+    "fold": "test_P3",
+    "csv": "splits_lopgo/lopgo/lopgo_test_p3.csv",
+    "train_rows": 797,
+    "test_rows_as_val": 369,
+    "train_groups": [
+      "P1P2",
+      "P4"
+    ],
+    "test_group": "P3"
+  },
+  {
+    "fold": "test_P4",
+    "csv": "splits_lopgo/lopgo/lopgo_test_p4.csv",
+    "train_rows": 1060,
+    "test_rows_as_val": 106,
+    "train_groups": [
+      "P1P2",
+      "P3"
+    ],
+    "test_group": "P4"
+  }
+]

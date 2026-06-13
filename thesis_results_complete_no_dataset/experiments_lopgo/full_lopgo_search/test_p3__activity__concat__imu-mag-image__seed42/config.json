@@ -1,0 +1,103 @@
+{
+  "fold": "test_p3",
+  "task": "activity",
+  "modalities": [
+    "imu",
+    "mag",
+    "image"
+  ],
+  "fusion": "concat",
+  "seed": 42,
+  "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+  "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-mag-image__seed42",
+  "classes": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "n_classes": 3,
+  "n_train_internal": 17720,
+  "n_internal_val": 4430,
+  "n_test_heldout": 10373,
+  "input_shapes": {
+    "imu": [
+      50,
+      8
+    ],
+    "mag": [
+      50,
+      3
+    ],
+    "image": [
+      64,
+      64,
+      6
+    ]
+  },
+  "shuffle_train_labels": false,
+  "args": {
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-mag-image__seed42",
+    "fold": "test_p3",
+    "task": "activity",
+    "modalities": "imu,mag,image",
+    "fusion": "concat",
+    "seed": 42,
+    "epochs": 80,
+    "batch": 32,
+    "lr": 0.0005,
+    "dropout": 0.35,
+    "feature_dim": 96,
+    "label_smoothing": 0.05,
+    "internal_val_frac": 0.2,
+    "patience": 12,
+    "shuffle_train_labels": false,
+    "no_zero_input_eval": false
+  },
+  "normalization_stats_summary": {
+    "imu": {
+      "mean_shape": [
+        1,
+        1,
+        8
+      ],
+      "std_shape": [
+        1,
+        1,
+        8
+      ],
+      "train_mean_global": 10.179012298583984,
+      "train_std_global": 56.78374099731445
+    },
+    "mag": {
+      "mean_shape": [
+        1,
+        1,
+        3
+      ],
+      "std_shape": [
+        1,
+        1,
+        3
+      ],
+      "train_mean_global": 0.8444117903709412,
+      "train_std_global": 34.08358383178711
+    },
+    "image": {
+      "mean_shape": [
+        1,
+        1,
+        1,
+        6
+      ],
+      "std_shape": [
+        1,
+        1,
+        1,
+        6
+      ],
+      "train_mean_global": 0.4721061587333679,
+      "train_std_global": 0.21390962600708008
+    }
+  }
+}

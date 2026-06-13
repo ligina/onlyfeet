@@ -1,0 +1,84 @@
+{
+  "fold": "test_p4",
+  "task": "activity",
+  "modalities": [
+    "imu",
+    "audio"
+  ],
+  "fusion": "gated",
+  "seed": 44,
+  "data_dir": "datasets_lopgo_rgb64/lopgo/test_p4",
+  "out_dir": "experiments_lopgo/final_stability/test_p4__activity__gated__imu-audio__seed44",
+  "classes": [
+    "walk",
+    "standing",
+    "sitting"
+  ],
+  "n_classes": 3,
+  "n_train_internal": 23796,
+  "n_internal_val": 5992,
+  "n_test_heldout": 2735,
+  "input_shapes": {
+    "imu": [
+      50,
+      8
+    ],
+    "audio": [
+      40,
+      40,
+      1
+    ]
+  },
+  "shuffle_train_labels": false,
+  "args": {
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p4",
+    "out_dir": "experiments_lopgo/final_stability/test_p4__activity__gated__imu-audio__seed44",
+    "fold": "test_p4",
+    "task": "activity",
+    "modalities": "imu,audio",
+    "fusion": "gated",
+    "seed": 44,
+    "epochs": 80,
+    "batch": 32,
+    "lr": 0.0005,
+    "dropout": 0.35,
+    "feature_dim": 96,
+    "label_smoothing": 0.05,
+    "internal_val_frac": 0.2,
+    "patience": 12,
+    "shuffle_train_labels": false,
+    "no_zero_input_eval": false
+  },
+  "normalization_stats_summary": {
+    "imu": {
+      "mean_shape": [
+        1,
+        1,
+        8
+      ],
+      "std_shape": [
+        1,
+        1,
+        8
+      ],
+      "train_mean_global": 10.196422576904297,
+      "train_std_global": 58.29721450805664
+    },
+    "audio": {
+      "mean_shape": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "std_shape": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "train_mean_global": 1.3257499542618234e-09,
+      "train_std_global": 0.9995790719985962
+    }
+  }
+}

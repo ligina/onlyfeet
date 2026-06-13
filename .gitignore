@@ -16,3 +16,16 @@ venv/
 
 Thumbs.db
 .DS_Store
+
+# Post-feedback LOPGO experiments: keep lightweight metrics and summaries only
+thesis_results_complete_no_dataset/**/*.h5
+thesis_results_complete_no_dataset/**/*predictions.csv
+thesis_results_complete_no_dataset/**/*.png
+thesis_results_complete_no_dataset/**/*.npy
+thesis_results_complete_no_dataset/**/*.log
+thesis_results_complete_no_dataset/**/history.json
+thesis_results_complete_no_dataset/**/training_log.csv
+thesis_results_complete_no_dataset/**/model_summary.txt
+thesis_results_complete_no_dataset/**/*classification_report.json
+thesis_results_complete_no_dataset/**/*classification_report.txt
+thesis_results_complete_no_dataset/scripts/*.bak_*

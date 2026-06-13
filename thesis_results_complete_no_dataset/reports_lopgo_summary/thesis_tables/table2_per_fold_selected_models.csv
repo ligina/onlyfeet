@@ -1,0 +1,7 @@
+Task,Selected model,Fold,Seeds,Runs,Mean test accuracy (%),Std test accuracy (%),Mean test macro-F1 (%),Std test macro-F1 (%),Min test macro-F1 (%),Max test macro-F1 (%),Mean non-overlap macro-F1 (%),Std non-overlap macro-F1 (%)
+Activity recognition,Gated IMU+audio,test_p1p2,3,3,86.36,0.65,86.13,0.58,85.56,86.72,86.13,0.63
+Activity recognition,Gated IMU+audio,test_p3,3,3,98.39,1.43,98.39,1.39,96.83,99.51,98.37,1.43
+Activity recognition,Gated IMU+audio,test_p4,3,3,99.89,0.06,99.89,0.06,99.86,99.96,99.86,0.12
+Walking-only surface recognition,Image-audio concatenation,test_p1p2,3,3,98.09,0.42,98.0,0.47,97.57,98.5,97.96,0.58
+Walking-only surface recognition,Image-audio concatenation,test_p3,3,3,95.69,0.24,95.81,0.25,95.52,96.01,95.63,0.17
+Walking-only surface recognition,Image-audio concatenation,test_p4,3,3,97.97,0.47,97.98,0.55,97.42,98.52,98.2,0.6

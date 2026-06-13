@@ -1,0 +1,3 @@
+Task,Selected model,Normal runs,Label-shuffle runs,Normal mean test macro-F1 (%),Normal std test macro-F1 (%),Label-shuffle mean test macro-F1 (%),Label-shuffle std test macro-F1 (%),Macro-F1 drop (percentage points),Normal mean non-overlap macro-F1 (%),Label-shuffle mean non-overlap macro-F1 (%),Interpretation
+Activity recognition,Gated IMU+audio,9,3,94.81,6.58,42.04,14.14,52.76,94.79,42.23,Performance collapses under shuffled training labels; sanity check against obvious label leakage.
+Walking-only surface recognition,Image-audio concatenation,9,3,97.26,1.16,22.53,2.8,74.74,97.26,22.93,Performance collapses under shuffled training labels; sanity check against obvious label leakage.

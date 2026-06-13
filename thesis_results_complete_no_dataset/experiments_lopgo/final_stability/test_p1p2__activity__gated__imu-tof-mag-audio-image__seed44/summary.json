@@ -1,0 +1,205 @@
+{
+  "config": {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "fusion": "gated",
+    "seed": 44,
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p1p2",
+    "out_dir": "experiments_lopgo/final_stability/test_p1p2__activity__gated__imu-tof-mag-audio-image__seed44",
+    "classes": [
+      "walk",
+      "standing",
+      "sitting"
+    ],
+    "n_classes": 3,
+    "n_train_internal": 10468,
+    "n_internal_val": 2640,
+    "n_test_heldout": 19415,
+    "input_shapes": {
+      "imu": [
+        50,
+        8
+      ],
+      "tof": [
+        50,
+        2
+      ],
+      "mag": [
+        50,
+        3
+      ],
+      "audio": [
+        40,
+        40,
+        1
+      ],
+      "image": [
+        64,
+        64,
+        6
+      ]
+    },
+    "shuffle_train_labels": false,
+    "args": {
+      "data_dir": "datasets_lopgo_rgb64/lopgo/test_p1p2",
+      "out_dir": "experiments_lopgo/final_stability/test_p1p2__activity__gated__imu-tof-mag-audio-image__seed44",
+      "fold": "test_p1p2",
+      "task": "activity",
+      "modalities": "imu,tof,mag,audio,image",
+      "fusion": "gated",
+      "seed": 44,
+      "epochs": 80,
+      "batch": 32,
+      "lr": 0.0005,
+      "dropout": 0.35,
+      "feature_dim": 96,
+      "label_smoothing": 0.05,
+      "internal_val_frac": 0.2,
+      "patience": 12,
+      "shuffle_train_labels": false,
+      "no_zero_input_eval": false
+    },
+    "normalization_stats_summary": {
+      "imu": {
+        "mean_shape": [
+          1,
+          1,
+          8
+        ],
+        "std_shape": [
+          1,
+          1,
+          8
+        ],
+        "train_mean_global": 7.546231746673584,
+        "train_std_global": 53.785118103027344
+      },
+      "tof": {
+        "mean_shape": [
+          1,
+          1,
+          2
+        ],
+        "std_shape": [
+          1,
+          1,
+          2
+        ],
+        "train_mean_global": 723.3768920898438,
+        "train_std_global": 1140.1314697265625
+      },
+      "mag": {
+        "mean_shape": [
+          1,
+          1,
+          3
+        ],
+        "std_shape": [
+          1,
+          1,
+          3
+        ],
+        "train_mean_global": -0.161155104637146,
+        "train_std_global": 31.300670623779297
+      },
+      "audio": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "train_mean_global": -1.1260427035253429e-09,
+        "train_std_global": 1.000000238418579
+      },
+      "image": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "train_mean_global": 0.4935024678707123,
+        "train_std_global": 0.1982421725988388
+      }
+    }
+  },
+  "test": {
+    "accuracy": 0.8473860417203194,
+    "macro_f1": 0.8457442123022947,
+    "weighted_f1": 0.846765713465063,
+    "n": 19415
+  },
+  "nonoverlap": {
+    "accuracy": 0.8480494861817819,
+    "macro_f1": 0.8463767775482146,
+    "weighted_f1": 0.8474145150830591,
+    "n": 10023
+  },
+  "folder_majority": {
+    "accuracy": 0.8563134978229318,
+    "macro_f1": 0.8547457283308747,
+    "weighted_f1": 0.8555337512243286,
+    "n": 689
+  },
+  "majority_baseline": {
+    "accuracy": 0.3617821272212207,
+    "macro_f1": 0.17711209450685225,
+    "weighted_f1": 0.19222797092188465,
+    "n": 19415,
+    "majority_class": "walk"
+  },
+  "zero_input": {
+    "zero_imu": {
+      "accuracy": 0.5761009528714911,
+      "macro_f1": 0.4998727910647427,
+      "weighted_f1": 0.5097871826520762,
+      "n": 19415
+    },
+    "zero_tof": {
+      "accuracy": 0.8465104300798352,
+      "macro_f1": 0.8444864537836693,
+      "weighted_f1": 0.8455626174261444,
+      "n": 19415
+    },
+    "zero_mag": {
+      "accuracy": 0.8471285088848828,
+      "macro_f1": 0.8446502709044962,
+      "weighted_f1": 0.8457971209585895,
+      "n": 19415
+    },
+    "zero_audio": {
+      "accuracy": 0.8454287921710018,
+      "macro_f1": 0.8441767710559597,
+      "weighted_f1": 0.8451199765433014,
+      "n": 19415
+    },
+    "zero_image": {
+      "accuracy": 0.8471285088848828,
+      "macro_f1": 0.8459074160240424,
+      "weighted_f1": 0.8468479833330925,
+      "n": 19415
+    }
+  },
+  "model_params": 276840,
+  "best_model_size_mb": 3.4698715209960938
+}

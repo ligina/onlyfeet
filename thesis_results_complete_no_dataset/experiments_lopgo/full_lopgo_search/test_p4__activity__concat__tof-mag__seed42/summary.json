@@ -1,0 +1,124 @@
+{
+  "config": {
+    "fold": "test_p4",
+    "task": "activity",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "fusion": "concat",
+    "seed": 42,
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p4",
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__tof-mag__seed42",
+    "classes": [
+      "walk",
+      "standing",
+      "sitting"
+    ],
+    "n_classes": 3,
+    "n_train_internal": 23783,
+    "n_internal_val": 6005,
+    "n_test_heldout": 2735,
+    "input_shapes": {
+      "tof": [
+        50,
+        2
+      ],
+      "mag": [
+        50,
+        3
+      ]
+    },
+    "shuffle_train_labels": false,
+    "args": {
+      "data_dir": "datasets_lopgo_rgb64/lopgo/test_p4",
+      "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__tof-mag__seed42",
+      "fold": "test_p4",
+      "task": "activity",
+      "modalities": "tof,mag",
+      "fusion": "concat",
+      "seed": 42,
+      "epochs": 80,
+      "batch": 32,
+      "lr": 0.0005,
+      "dropout": 0.35,
+      "feature_dim": 96,
+      "label_smoothing": 0.05,
+      "internal_val_frac": 0.2,
+      "patience": 12,
+      "shuffle_train_labels": false,
+      "no_zero_input_eval": false
+    },
+    "normalization_stats_summary": {
+      "tof": {
+        "mean_shape": [
+          1,
+          1,
+          2
+        ],
+        "std_shape": [
+          1,
+          1,
+          2
+        ],
+        "train_mean_global": 524.6783447265625,
+        "train_std_global": 983.963623046875
+      },
+      "mag": {
+        "mean_shape": [
+          1,
+          1,
+          3
+        ],
+        "std_shape": [
+          1,
+          1,
+          3
+        ],
+        "train_mean_global": 0.03743426129221916,
+        "train_std_global": 32.80354690551758
+      }
+    }
+  },
+  "test": {
+    "accuracy": 0.8639853747714809,
+    "macro_f1": 0.8504784997355218,
+    "weighted_f1": 0.85362310121,
+    "n": 2735
+  },
+  "nonoverlap": {
+    "accuracy": 0.8673253352152435,
+    "macro_f1": 0.854589429949615,
+    "weighted_f1": 0.8576752606169796,
+    "n": 1417
+  },
+  "folder_majority": {
+    "accuracy": 0.8571428571428571,
+    "macro_f1": 0.8444888444888444,
+    "weighted_f1": 0.8448694162979877,
+    "n": 105
+  },
+  "majority_baseline": {
+    "accuracy": 0.34771480804387567,
+    "macro_f1": 0.17200217037438958,
+    "weighted_f1": 0.17942310496458264,
+    "n": 2735,
+    "majority_class": "walk"
+  },
+  "zero_input": {
+    "zero_tof": {
+      "accuracy": 0.6702010968921389,
+      "macro_f1": 0.6449476348109108,
+      "weighted_f1": 0.6434651787148118,
+      "n": 2735
+    },
+    "zero_mag": {
+      "accuracy": 0.6808043875685558,
+      "macro_f1": 0.6658255585383667,
+      "weighted_f1": 0.6728664860576238,
+      "n": 2735
+    }
+  },
+  "model_params": 58179,
+  "best_model_size_mb": 0.7886886596679688
+}

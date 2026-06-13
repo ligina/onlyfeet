@@ -1,0 +1,3 @@
+Task,Classes,Selected model,Modalities,Fusion,Folds,Seeds,Runs,Mean test accuracy (%),Std test accuracy (%),Mean test macro-F1 (%),Std test macro-F1 (%),Min test macro-F1 (%),Max test macro-F1 (%),Mean non-overlap macro-F1 (%),Std non-overlap macro-F1 (%),Parameters,Model size (MB)
+Activity recognition,walk / standing / sitting,Gated IMU+audio,imu+audio,gated,3,3,9,94.88,6.47,94.81,6.58,85.56,99.96,94.79,6.57,,
+Walking-only surface recognition,asphalt / PVC / sand / gravel / grass,Image-audio concatenation,audio+image,concat,3,3,9,97.25,1.22,97.26,1.16,95.52,98.52,97.26,1.3,,

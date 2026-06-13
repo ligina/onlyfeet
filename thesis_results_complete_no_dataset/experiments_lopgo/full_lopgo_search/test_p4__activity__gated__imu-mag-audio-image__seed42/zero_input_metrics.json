@@ -1,0 +1,26 @@
+{
+  "zero_imu": {
+    "accuracy": 0.373308957952468,
+    "macro_f1": 0.2432437898299867,
+    "weighted_f1": 0.24536553331061303,
+    "n": 2735
+  },
+  "zero_mag": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0,
+    "n": 2735
+  },
+  "zero_audio": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0,
+    "n": 2735
+  },
+  "zero_image": {
+    "accuracy": 0.9985374771480804,
+    "macro_f1": 0.9985114890191692,
+    "weighted_f1": 0.9985367956394731,
+    "n": 2735
+  }
+}

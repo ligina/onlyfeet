@@ -1,0 +1,4 @@
+fold,csv,train_rows,test_rows_as_val,train_groups,test_group
+test_P1P2,splits_lopgo/lopgo/lopgo_test_p1p2.csv,475,691,"['P3', 'P4']",P1P2
+test_P3,splits_lopgo/lopgo/lopgo_test_p3.csv,797,369,"['P1P2', 'P4']",P3
+test_P4,splits_lopgo/lopgo/lopgo_test_p4.csv,1060,106,"['P1P2', 'P3']",P4

@@ -1,0 +1,157 @@
+{
+  "config": {
+    "fold": "test_p4",
+    "task": "surface",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "fusion": "concat",
+    "seed": 42,
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p4",
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__tof-audio-image__seed42",
+    "classes": [
+      "asphalt",
+      "pvc",
+      "sand",
+      "gravel",
+      "grass"
+    ],
+    "n_classes": 5,
+    "n_train_internal": 8248,
+    "n_internal_val": 2051,
+    "n_test_heldout": 951,
+    "input_shapes": {
+      "tof": [
+        50,
+        2
+      ],
+      "audio": [
+        40,
+        40,
+        1
+      ],
+      "image": [
+        64,
+        64,
+        6
+      ]
+    },
+    "shuffle_train_labels": false,
+    "args": {
+      "data_dir": "datasets_lopgo_rgb64/lopgo/test_p4",
+      "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__tof-audio-image__seed42",
+      "fold": "test_p4",
+      "task": "surface",
+      "modalities": "tof,audio,image",
+      "fusion": "concat",
+      "seed": 42,
+      "epochs": 80,
+      "batch": 32,
+      "lr": 0.0005,
+      "dropout": 0.35,
+      "feature_dim": 96,
+      "label_smoothing": 0.05,
+      "internal_val_frac": 0.2,
+      "patience": 12,
+      "shuffle_train_labels": false,
+      "no_zero_input_eval": false
+    },
+    "normalization_stats_summary": {
+      "tof": {
+        "mean_shape": [
+          1,
+          1,
+          2
+        ],
+        "std_shape": [
+          1,
+          1,
+          2
+        ],
+        "train_mean_global": 464.641357421875,
+        "train_std_global": 905.633544921875
+      },
+      "audio": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "train_mean_global": -7.908744215079366e-10,
+        "train_std_global": 0.9987869262695312
+      },
+      "image": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "train_mean_global": 0.4887855648994446,
+        "train_std_global": 0.2219904363155365
+      }
+    }
+  },
+  "test": {
+    "accuracy": 0.9737118822292324,
+    "macro_f1": 0.972077300493949,
+    "weighted_f1": 0.9730127461219519,
+    "n": 951
+  },
+  "nonoverlap": {
+    "accuracy": 0.9675456389452333,
+    "macro_f1": 0.9648707958000233,
+    "weighted_f1": 0.9664902332569938,
+    "n": 493
+  },
+  "folder_majority": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0,
+    "n": 36
+  },
+  "majority_baseline": {
+    "accuracy": 0.28180862250262884,
+    "macro_f1": 0.08794093519278097,
+    "weighted_f1": 0.12391256904135278,
+    "n": 951,
+    "majority_class": "gravel"
+  },
+  "zero_input": {
+    "zero_tof": {
+      "accuracy": 0.814931650893796,
+      "macro_f1": 0.7835345571426875,
+      "weighted_f1": 0.7971705296158569,
+      "n": 951
+    },
+    "zero_audio": {
+      "accuracy": 0.28180862250262884,
+      "macro_f1": 0.08794093519278097,
+      "weighted_f1": 0.12391256904135278,
+      "n": 951
+    },
+    "zero_image": {
+      "accuracy": 0.5299684542586751,
+      "macro_f1": 0.47247972071128147,
+      "weighted_f1": 0.4654587327700413,
+      "n": 951
+    }
+  },
+  "model_params": 187973,
+  "best_model_size_mb": 2.3473663330078125
+}

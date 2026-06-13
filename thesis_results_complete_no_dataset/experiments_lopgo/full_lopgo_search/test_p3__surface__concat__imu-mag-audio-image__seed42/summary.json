@@ -1,0 +1,182 @@
+{
+  "config": {
+    "fold": "test_p3",
+    "task": "surface",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "fusion": "concat",
+    "seed": 42,
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-mag-audio-image__seed42",
+    "classes": [
+      "asphalt",
+      "pvc",
+      "sand",
+      "gravel",
+      "grass"
+    ],
+    "n_classes": 5,
+    "n_train_internal": 6349,
+    "n_internal_val": 1626,
+    "n_test_heldout": 3275,
+    "input_shapes": {
+      "imu": [
+        50,
+        8
+      ],
+      "mag": [
+        50,
+        3
+      ],
+      "audio": [
+        40,
+        40,
+        1
+      ],
+      "image": [
+        64,
+        64,
+        6
+      ]
+    },
+    "shuffle_train_labels": false,
+    "args": {
+      "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+      "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-mag-audio-image__seed42",
+      "fold": "test_p3",
+      "task": "surface",
+      "modalities": "imu,mag,audio,image",
+      "fusion": "concat",
+      "seed": 42,
+      "epochs": 80,
+      "batch": 32,
+      "lr": 0.0005,
+      "dropout": 0.35,
+      "feature_dim": 96,
+      "label_smoothing": 0.05,
+      "internal_val_frac": 0.2,
+      "patience": 12,
+      "shuffle_train_labels": false,
+      "no_zero_input_eval": false
+    },
+    "normalization_stats_summary": {
+      "imu": {
+        "mean_shape": [
+          1,
+          1,
+          8
+        ],
+        "std_shape": [
+          1,
+          1,
+          8
+        ],
+        "train_mean_global": 17.146984100341797,
+        "train_std_global": 78.45378112792969
+      },
+      "mag": {
+        "mean_shape": [
+          1,
+          1,
+          3
+        ],
+        "std_shape": [
+          1,
+          1,
+          3
+        ],
+        "train_mean_global": 0.37013646960258484,
+        "train_std_global": 32.598690032958984
+      },
+      "audio": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "train_mean_global": -4.004561127146644e-09,
+        "train_std_global": 0.9984232783317566
+      },
+      "image": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "train_mean_global": 0.47828495502471924,
+        "train_std_global": 0.22733472287654877
+      }
+    }
+  },
+  "test": {
+    "accuracy": 0.9377099236641221,
+    "macro_f1": 0.9365319706318835,
+    "weighted_f1": 0.9369611324990748,
+    "n": 3275
+  },
+  "nonoverlap": {
+    "accuracy": 0.9398809523809524,
+    "macro_f1": 0.9388055850770625,
+    "weighted_f1": 0.9392381237463918,
+    "n": 1680
+  },
+  "folder_majority": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0,
+    "n": 118
+  },
+  "majority_baseline": {
+    "accuracy": 0.28458015267175574,
+    "macro_f1": 0.08861421440456382,
+    "weighted_f1": 0.12608923332069233,
+    "n": 3275,
+    "majority_class": "sand"
+  },
+  "zero_input": {
+    "zero_imu": {
+      "accuracy": 0.8265648854961832,
+      "macro_f1": 0.8379430469169489,
+      "weighted_f1": 0.8191644652183785,
+      "n": 3275
+    },
+    "zero_mag": {
+      "accuracy": 0.9642748091603054,
+      "macro_f1": 0.9638072446960109,
+      "weighted_f1": 0.9647791496791785,
+      "n": 3275
+    },
+    "zero_audio": {
+      "accuracy": 0.17923664122137403,
+      "macro_f1": 0.060797514241325734,
+      "weighted_f1": 0.054485711236119394,
+      "n": 3275
+    },
+    "zero_image": {
+      "accuracy": 0.32580152671755724,
+      "macro_f1": 0.2162081288296763,
+      "weighted_f1": 0.2659442047993476,
+      "n": 3275
+    }
+  },
+  "model_params": 268229,
+  "best_model_size_mb": 3.3256607055664062
+}

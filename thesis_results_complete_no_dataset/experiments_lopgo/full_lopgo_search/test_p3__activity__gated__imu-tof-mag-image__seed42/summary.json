@@ -1,0 +1,177 @@
+{
+  "config": {
+    "fold": "test_p3",
+    "task": "activity",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "fusion": "gated",
+    "seed": 42,
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-tof-mag-image__seed42",
+    "classes": [
+      "walk",
+      "standing",
+      "sitting"
+    ],
+    "n_classes": 3,
+    "n_train_internal": 17720,
+    "n_internal_val": 4430,
+    "n_test_heldout": 10373,
+    "input_shapes": {
+      "imu": [
+        50,
+        8
+      ],
+      "tof": [
+        50,
+        2
+      ],
+      "mag": [
+        50,
+        3
+      ],
+      "image": [
+        64,
+        64,
+        6
+      ]
+    },
+    "shuffle_train_labels": false,
+    "args": {
+      "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+      "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-tof-mag-image__seed42",
+      "fold": "test_p3",
+      "task": "activity",
+      "modalities": "imu,tof,mag,image",
+      "fusion": "gated",
+      "seed": 42,
+      "epochs": 80,
+      "batch": 32,
+      "lr": 0.0005,
+      "dropout": 0.35,
+      "feature_dim": 96,
+      "label_smoothing": 0.05,
+      "internal_val_frac": 0.2,
+      "patience": 12,
+      "shuffle_train_labels": false,
+      "no_zero_input_eval": false
+    },
+    "normalization_stats_summary": {
+      "imu": {
+        "mean_shape": [
+          1,
+          1,
+          8
+        ],
+        "std_shape": [
+          1,
+          1,
+          8
+        ],
+        "train_mean_global": 10.179012298583984,
+        "train_std_global": 56.78374099731445
+      },
+      "tof": {
+        "mean_shape": [
+          1,
+          1,
+          2
+        ],
+        "std_shape": [
+          1,
+          1,
+          2
+        ],
+        "train_mean_global": 379.9109802246094,
+        "train_std_global": 831.4435424804688
+      },
+      "mag": {
+        "mean_shape": [
+          1,
+          1,
+          3
+        ],
+        "std_shape": [
+          1,
+          1,
+          3
+        ],
+        "train_mean_global": 0.8444117903709412,
+        "train_std_global": 34.08358383178711
+      },
+      "image": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "train_mean_global": 0.4721061587333679,
+        "train_std_global": 0.21390962600708008
+      }
+    }
+  },
+  "test": {
+    "accuracy": 0.9901667791381471,
+    "macro_f1": 0.990032224570285,
+    "weighted_f1": 0.9901876782527667,
+    "n": 10373
+  },
+  "nonoverlap": {
+    "accuracy": 0.9902785567395775,
+    "macro_f1": 0.9901506020945302,
+    "weighted_f1": 0.9902988342400099,
+    "n": 5349
+  },
+  "folder_majority": {
+    "accuracy": 0.997289972899729,
+    "macro_f1": 0.9973378727375896,
+    "weighted_f1": 0.997290490269715,
+    "n": 369
+  },
+  "majority_baseline": {
+    "accuracy": 0.36103345223175554,
+    "macro_f1": 0.17684280115219342,
+    "weighted_f1": 0.1915385010069308,
+    "n": 10373,
+    "majority_class": "sitting"
+  },
+  "zero_input": {
+    "zero_imu": {
+      "accuracy": 0.3617082811144317,
+      "macro_f1": 0.17835242422916775,
+      "weighted_f1": 0.19298029607042577,
+      "n": 10373
+    },
+    "zero_tof": {
+      "accuracy": 0.9860214017159934,
+      "macro_f1": 0.985797844697367,
+      "weighted_f1": 0.9860255306861228,
+      "n": 10373
+    },
+    "zero_mag": {
+      "accuracy": 0.9878530801118288,
+      "macro_f1": 0.987647239517135,
+      "weighted_f1": 0.9878729170448685,
+      "n": 10373
+    },
+    "zero_image": {
+      "accuracy": 0.9697291044056685,
+      "macro_f1": 0.9693769463895033,
+      "weighted_f1": 0.9694768925021386,
+      "n": 10373
+    }
+  },
+  "model_params": 246359,
+  "best_model_size_mb": 3.0885009765625
+}

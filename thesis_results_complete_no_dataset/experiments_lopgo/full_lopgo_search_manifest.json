@@ -1,0 +1,4010 @@
+[
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "imu"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__single__imu__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__single__tof__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__single__mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__single__audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__single__image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__tof-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__tof-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__concat__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__activity__gated__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "imu"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__single__imu__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__single__tof__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__single__mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__single__audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__single__image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__tof-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__tof-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__concat__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p1p2",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p1p2__surface__gated__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "imu"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__single__imu__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__single__tof__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__single__mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__single__audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__single__image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__tof-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__tof-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__gated__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "imu"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__single__imu__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__single__tof__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__single__mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__single__audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__single__image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__tof-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__tof-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p3",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__gated__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "imu"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__single__imu__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__single__tof__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__single__mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__single__audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "single",
+    "modalities": [
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__single__image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__tof-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__tof-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__concat__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "activity",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__activity__gated__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "imu"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__single__imu__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__single__tof__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__single__mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__single__audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "single",
+    "modalities": [
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__single__image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-tof__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__tof-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__tof-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__tof-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__tof-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-tof-mag__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-tof-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-tof-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-tof-mag-audio__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-tof-mag-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-tof-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "concat",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__concat__imu-tof-mag-audio-image__seed42"
+  },
+  {
+    "fold": "test_p4",
+    "task": "surface",
+    "fusion": "gated",
+    "modalities": [
+      "imu",
+      "tof",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "seed": 42,
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p4__surface__gated__imu-tof-mag-audio-image__seed42"
+  }
+]

@@ -2,7 +2,7 @@
 
 [English](README.md) | [中文](README.zh-CN.md)
 
-This repository contains the final experiment release for the **OnlyFeet bachelor thesis project**. It includes training scripts, evaluation scripts, result reports, selected trained models, logs, dataset and split documentation, archived original artifacts, and environment information.
+This repository contains the final experiment release for the **OnlyFeet bachelor thesis project**. It includes training scripts, evaluation scripts, result reports, selected trained models, logs, dataset and split documentation, archived original artifacts, environment information, and a lightweight post-feedback LOPGO experiment package.
 
 Internally, the final held-out P4 evaluation protocol is named Clean-P4. The current thesis main final evidence is the **Clean-P4 final evaluation**. Clean-P4 corrects the earlier Stage 2 checkpoint-selection risk by deriving training-time validation from the Stage 2 training data only and reserving P4 for final evaluation only.
 
@@ -15,6 +15,22 @@ The project investigates **multimodal human activity recognition (HAR)** and **w
 * magnetometer
 
 The main goal is to evaluate task-specific modality usefulness and fusion behavior under a controlled participant split. The release does not claim deployment readiness, measured latency, energy efficiency, battery runtime, or broad real-world robustness.
+
+### Post-Feedback LOPGO Extension
+
+The later `thesis_results_complete_no_dataset/` package extends the evaluation
+with three-fold leave-one-participant-group-out testing over the recoverable
+groups P1/P2, P3, and P4. Across three folds and three seeds, its selected
+gated IMU+audio activity model reports 94.81% mean test macro-F1, while the
+selected image+audio concat surface model reports 97.26%. Non-overlap and
+label-shuffle diagnostics are included as supporting checks.
+
+This extension improves cross-group evidence but does not reconstruct strict
+four-participant LOSO because P1 and P2 cannot be separated reliably. It also
+does not establish session-, location-, protocol-, or real-world independence.
+The aggregate CSV files under
+`thesis_results_complete_no_dataset/reports_lopgo_summary/` are authoritative
+for these post-feedback values.
 
 ---
 
@@ -59,6 +75,7 @@ onlyfeet/
 ├── requirement/
 ├── reports/
 ├── scripts/
+├── thesis_results_complete_no_dataset/
 ├── README.md
 └── README.zh-CN.md
 ```
@@ -122,6 +139,19 @@ environment/
 ```
 
 Contains environment information, including Python version, installed packages, GPU-environment export files, and storage information.
+
+```text
+thesis_results_complete_no_dataset/
+```
+
+Contains the post-feedback three-fold leave-one-participant-group-out (LOPGO)
+experiment package over the recoverable groups P1/P2, P3, and P4. Git retains
+the scripts, split definitions, aggregate thesis tables, experiment
+configuration, and lightweight per-run metrics. Prepared datasets, trained
+models, per-window predictions, plots, NumPy binaries, caches, and detailed
+training logs are intentionally excluded. See
+`thesis_results_complete_no_dataset/README_RUNBOOK.md` for the protocol,
+result files, reproduction steps, and interpretation boundary.
 
 ---
 

@@ -1,0 +1,180 @@
+{
+  "config": {
+    "fold": "test_p3",
+    "task": "activity",
+    "modalities": [
+      "imu",
+      "mag",
+      "audio",
+      "image"
+    ],
+    "fusion": "concat",
+    "seed": 42,
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-mag-audio-image__seed42",
+    "classes": [
+      "walk",
+      "standing",
+      "sitting"
+    ],
+    "n_classes": 3,
+    "n_train_internal": 17720,
+    "n_internal_val": 4430,
+    "n_test_heldout": 10373,
+    "input_shapes": {
+      "imu": [
+        50,
+        8
+      ],
+      "mag": [
+        50,
+        3
+      ],
+      "audio": [
+        40,
+        40,
+        1
+      ],
+      "image": [
+        64,
+        64,
+        6
+      ]
+    },
+    "shuffle_train_labels": false,
+    "args": {
+      "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+      "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__imu-mag-audio-image__seed42",
+      "fold": "test_p3",
+      "task": "activity",
+      "modalities": "imu,mag,audio,image",
+      "fusion": "concat",
+      "seed": 42,
+      "epochs": 80,
+      "batch": 32,
+      "lr": 0.0005,
+      "dropout": 0.35,
+      "feature_dim": 96,
+      "label_smoothing": 0.05,
+      "internal_val_frac": 0.2,
+      "patience": 12,
+      "shuffle_train_labels": false,
+      "no_zero_input_eval": false
+    },
+    "normalization_stats_summary": {
+      "imu": {
+        "mean_shape": [
+          1,
+          1,
+          8
+        ],
+        "std_shape": [
+          1,
+          1,
+          8
+        ],
+        "train_mean_global": 10.179012298583984,
+        "train_std_global": 56.78374099731445
+      },
+      "mag": {
+        "mean_shape": [
+          1,
+          1,
+          3
+        ],
+        "std_shape": [
+          1,
+          1,
+          3
+        ],
+        "train_mean_global": 0.8444117903709412,
+        "train_std_global": 34.08358383178711
+      },
+      "audio": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "train_mean_global": 4.1440701564754434e-11,
+        "train_std_global": 1.0000005960464478
+      },
+      "image": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "train_mean_global": 0.4721061587333679,
+        "train_std_global": 0.21390962600708008
+      }
+    }
+  },
+  "test": {
+    "accuracy": 0.9823580449243228,
+    "macro_f1": 0.981599692675759,
+    "weighted_f1": 0.9823512795695287,
+    "n": 10373
+  },
+  "nonoverlap": {
+    "accuracy": 0.9822396709665357,
+    "macro_f1": 0.9814513282033555,
+    "weighted_f1": 0.9822346017223567,
+    "n": 5349
+  },
+  "folder_majority": {
+    "accuracy": 0.983739837398374,
+    "macro_f1": 0.9831148475349103,
+    "weighted_f1": 0.9837311489387336,
+    "n": 369
+  },
+  "majority_baseline": {
+    "accuracy": 0.36103345223175554,
+    "macro_f1": 0.17684280115219342,
+    "weighted_f1": 0.1915385010069308,
+    "n": 10373,
+    "majority_class": "sitting"
+  },
+  "zero_input": {
+    "zero_imu": {
+      "accuracy": 0.4407596645136412,
+      "macro_f1": 0.32223376962209804,
+      "weighted_f1": 0.3307461831189356,
+      "n": 10373
+    },
+    "zero_mag": {
+      "accuracy": 0.9168032391786368,
+      "macro_f1": 0.9174039712116281,
+      "weighted_f1": 0.9166162494079934,
+      "n": 10373
+    },
+    "zero_audio": {
+      "accuracy": 0.6300009640412609,
+      "macro_f1": 0.5181695479010724,
+      "weighted_f1": 0.5371880189646897,
+      "n": 10373
+    },
+    "zero_image": {
+      "accuracy": 0.9814904077894534,
+      "macro_f1": 0.9814765315976887,
+      "weighted_f1": 0.9814535624307987,
+      "n": 10373
+    }
+  },
+  "model_params": 267971,
+  "best_model_size_mb": 3.3220672607421875
+}

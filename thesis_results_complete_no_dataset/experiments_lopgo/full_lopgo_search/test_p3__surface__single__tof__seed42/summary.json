@@ -1,0 +1,94 @@
+{
+  "config": {
+    "fold": "test_p3",
+    "task": "surface",
+    "modalities": [
+      "tof"
+    ],
+    "fusion": "single",
+    "seed": 42,
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__single__tof__seed42",
+    "classes": [
+      "asphalt",
+      "pvc",
+      "sand",
+      "gravel",
+      "grass"
+    ],
+    "n_classes": 5,
+    "n_train_internal": 6349,
+    "n_internal_val": 1626,
+    "n_test_heldout": 3275,
+    "input_shapes": {
+      "tof": [
+        50,
+        2
+      ]
+    },
+    "shuffle_train_labels": false,
+    "args": {
+      "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+      "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__single__tof__seed42",
+      "fold": "test_p3",
+      "task": "surface",
+      "modalities": "tof",
+      "fusion": "single",
+      "seed": 42,
+      "epochs": 80,
+      "batch": 32,
+      "lr": 0.0005,
+      "dropout": 0.35,
+      "feature_dim": 96,
+      "label_smoothing": 0.05,
+      "internal_val_frac": 0.2,
+      "patience": 12,
+      "shuffle_train_labels": false,
+      "no_zero_input_eval": false
+    },
+    "normalization_stats_summary": {
+      "tof": {
+        "mean_shape": [
+          1,
+          1,
+          2
+        ],
+        "std_shape": [
+          1,
+          1,
+          2
+        ],
+        "train_mean_global": 396.88031005859375,
+        "train_std_global": 837.7877197265625
+      }
+    }
+  },
+  "test": {
+    "accuracy": 0.5755725190839694,
+    "macro_f1": 0.6089429613319306,
+    "weighted_f1": 0.5898576697775839,
+    "n": 3275
+  },
+  "nonoverlap": {
+    "accuracy": 0.5666666666666667,
+    "macro_f1": 0.6010675292413459,
+    "weighted_f1": 0.5826857200103047,
+    "n": 1680
+  },
+  "folder_majority": {
+    "accuracy": 0.652542372881356,
+    "macro_f1": 0.6172814481344427,
+    "weighted_f1": 0.6007836790850726,
+    "n": 118
+  },
+  "majority_baseline": {
+    "accuracy": 0.28458015267175574,
+    "macro_f1": 0.08861421440456382,
+    "weighted_f1": 0.12608923332069233,
+    "n": 3275,
+    "majority_class": "sand"
+  },
+  "zero_input": {},
+  "model_params": 26245,
+  "best_model_size_mb": 0.366241455078125
+}

@@ -1,0 +1,130 @@
+{
+  "config": {
+    "fold": "test_p3",
+    "task": "activity",
+    "modalities": [
+      "audio",
+      "image"
+    ],
+    "fusion": "concat",
+    "seed": 42,
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__audio-image__seed42",
+    "classes": [
+      "walk",
+      "standing",
+      "sitting"
+    ],
+    "n_classes": 3,
+    "n_train_internal": 17720,
+    "n_internal_val": 4430,
+    "n_test_heldout": 10373,
+    "input_shapes": {
+      "audio": [
+        40,
+        40,
+        1
+      ],
+      "image": [
+        64,
+        64,
+        6
+      ]
+    },
+    "shuffle_train_labels": false,
+    "args": {
+      "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+      "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__activity__concat__audio-image__seed42",
+      "fold": "test_p3",
+      "task": "activity",
+      "modalities": "audio,image",
+      "fusion": "concat",
+      "seed": 42,
+      "epochs": 80,
+      "batch": 32,
+      "lr": 0.0005,
+      "dropout": 0.35,
+      "feature_dim": 96,
+      "label_smoothing": 0.05,
+      "internal_val_frac": 0.2,
+      "patience": 12,
+      "shuffle_train_labels": false,
+      "no_zero_input_eval": false
+    },
+    "normalization_stats_summary": {
+      "audio": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "train_mean_global": 4.1440701564754434e-11,
+        "train_std_global": 1.0000005960464478
+      },
+      "image": {
+        "mean_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "std_shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "train_mean_global": 0.4721061587333679,
+        "train_std_global": 0.21390962600708008
+      }
+    }
+  },
+  "test": {
+    "accuracy": 0.9291429673190013,
+    "macro_f1": 0.9290421693223312,
+    "weighted_f1": 0.928163347614445,
+    "n": 10373
+  },
+  "nonoverlap": {
+    "accuracy": 0.9289586838661432,
+    "macro_f1": 0.9289981223323807,
+    "weighted_f1": 0.9279968925399557,
+    "n": 5349
+  },
+  "folder_majority": {
+    "accuracy": 0.9376693766937669,
+    "macro_f1": 0.9378636915729951,
+    "weighted_f1": 0.9370325750633292,
+    "n": 369
+  },
+  "majority_baseline": {
+    "accuracy": 0.36103345223175554,
+    "macro_f1": 0.17684280115219342,
+    "weighted_f1": 0.1915385010069308,
+    "n": 10373,
+    "majority_class": "sitting"
+  },
+  "zero_input": {
+    "zero_audio": {
+      "accuracy": 0.3611298563578521,
+      "macro_f1": 0.1770588282949266,
+      "weighted_f1": 0.1917448183366977,
+      "n": 10373
+    },
+    "zero_image": {
+      "accuracy": 0.5363925576014653,
+      "macro_f1": 0.4628079113501178,
+      "weighted_f1": 0.4427372189515931,
+      "n": 10373
+    }
+  },
+  "model_params": 165315,
+  "best_model_size_mb": 2.0457534790039062
+}

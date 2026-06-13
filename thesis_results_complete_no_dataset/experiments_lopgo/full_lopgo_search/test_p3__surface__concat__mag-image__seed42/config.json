@@ -1,0 +1,86 @@
+{
+  "fold": "test_p3",
+  "task": "surface",
+  "modalities": [
+    "mag",
+    "image"
+  ],
+  "fusion": "concat",
+  "seed": 42,
+  "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+  "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__mag-image__seed42",
+  "classes": [
+    "asphalt",
+    "pvc",
+    "sand",
+    "gravel",
+    "grass"
+  ],
+  "n_classes": 5,
+  "n_train_internal": 6349,
+  "n_internal_val": 1626,
+  "n_test_heldout": 3275,
+  "input_shapes": {
+    "mag": [
+      50,
+      3
+    ],
+    "image": [
+      64,
+      64,
+      6
+    ]
+  },
+  "shuffle_train_labels": false,
+  "args": {
+    "data_dir": "datasets_lopgo_rgb64/lopgo/test_p3",
+    "out_dir": "experiments_lopgo/full_lopgo_search/test_p3__surface__concat__mag-image__seed42",
+    "fold": "test_p3",
+    "task": "surface",
+    "modalities": "mag,image",
+    "fusion": "concat",
+    "seed": 42,
+    "epochs": 80,
+    "batch": 32,
+    "lr": 0.0005,
+    "dropout": 0.35,
+    "feature_dim": 96,
+    "label_smoothing": 0.05,
+    "internal_val_frac": 0.2,
+    "patience": 12,
+    "shuffle_train_labels": false,
+    "no_zero_input_eval": false
+  },
+  "normalization_stats_summary": {
+    "mag": {
+      "mean_shape": [
+        1,
+        1,
+        3
+      ],
+      "std_shape": [
+        1,
+        1,
+        3
+      ],
+      "train_mean_global": 0.37013646960258484,
+      "train_std_global": 32.598690032958984
+    },
+    "image": {
+      "mean_shape": [
+        1,
+        1,
+        1,
+        6
+      ],
+      "std_shape": [
+        1,
+        1,
+        1,
+        6
+      ],
+      "train_mean_global": 0.47828495502471924,
+      "train_std_global": 0.22733472287654877
+    }
+  }
+}

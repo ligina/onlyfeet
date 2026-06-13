@@ -1,0 +1,6 @@
+seed,csv,test_frac,train_rows,test_rows_as_val,train_folders,test_folders
+42,splits_lopgo/random_folder/random_folder_seed42.csv,0.2,933,233,933,233
+43,splits_lopgo/random_folder/random_folder_seed43.csv,0.2,933,233,933,233
+44,splits_lopgo/random_folder/random_folder_seed44.csv,0.2,933,233,933,233
+45,splits_lopgo/random_folder/random_folder_seed45.csv,0.2,933,233,933,233
+46,splits_lopgo/random_folder/random_folder_seed46.csv,0.2,933,233,933,233
